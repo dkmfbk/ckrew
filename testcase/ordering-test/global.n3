@@ -1,0 +1,43 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/ordering-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/ordering-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/workers-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+            
+    :c1 a ckr:Context .
+    :c1 ckr:hasModule :m1 .
+
+    :m1 a ckr:Module .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    :A a owl:Class.
+    :B a owl:Class.    
+    :alpha rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :A ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :B .
+      
+     # supNot #
+    :C a owl:Class.
+    :beta rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget [ owl:complementOf :B . ] .   
+
+#=============================================================================

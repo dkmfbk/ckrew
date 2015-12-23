@@ -1,0 +1,21 @@
+#=============================================================================
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ckr: <http://dkm.fbk.eu/ckr/meta#> .
+@prefix : <http://dkm.fbk.eu/ckr/test/tourism-demokb#> .
+#=============================================================================
+
+#:m_sport_event {
+
+	:Team a owl:Class .
+	
+	:TopTeam a owl:Class ;
+		rdfs:subClassOf :Team .
+	
+	:Eval_TT a owl:Class ;
+		rdfs:subClassOf :TopTeam ;
+		ckr:hasEvalObject :Winner ;
+		ckr:hasEvalMeta :TopMatch .
+
+#}

@@ -1,0 +1,39 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/eswc12-fb-demokb#> .
+#=============================================================================
+
+#:m_chleague11 {
+
+    #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    :Team a owl:Class .
+    :TeamClubWC11 a owl:Class .
+    :TeamUEFA a owl:Class .
+    
+    :Winner a owl:Class ;
+       rdfs:subClassOf :Team .
+    
+    :Eval_TU a owl:Class ;
+             rdfs:subClassOf :TeamUEFA ;
+             ckr:hasEvalObject :Team ; 
+             ckr:hasEvalMeta :UEFAClubFootball .
+        
+    :Eval_TC a owl:Class ;
+             rdfs:subClassOf :TeamClubWC11 ;
+             ckr:hasEvalObject :Team ; 
+             ckr:hasEvalMeta :ClubWorldCup2011 .
+
+    [] owl:intersectionOf :l;
+       rdfs:subClassOf :Winner .
+    :l rdf:first :TeamUEFA;
+       rdf:rest [rdf:first :TeamClubWC11; rdf:rest rdf:nil] .
+
+#}
+
+#=============================================================================

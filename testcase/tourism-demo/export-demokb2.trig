@@ -1,0 +1,165 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ckr: <http://dkm.fbk.eu/ckr/meta#> .
+@prefix : <http://dkm.fbk.eu/ckr/test/tourism-demokb#> .
+
+ckr:global {
+	:trento_cuneo_120919 ckr:hasModule :m_trento_cuneo_120922 ;
+		a :VolleyMatch .
+	
+	:volley_fan_01 a :SportiveTourist ;
+		ckr:hasModule :m_volley_fan_01 .
+	
+	:m_event a ckr:Module .
+	
+	:m_sport_event a ckr:Module .
+	
+	:m_volley_match a ckr:Module .
+	
+	:m_tourist a ckr:Module .
+	
+	:m_sportive_tourist a ckr:Module .
+	
+	:m_modena_trento_130112 a ckr:Module .
+	
+	:m_trento_latina_130203 a ckr:Module .
+	
+	:m_trento_cuneo_120922 a ckr:Module .
+	
+	:m_volley_fan_01 a ckr:Module .
+	
+	<http://dkm.fbk.eu/ckr/test/tourism-demokb> a owl:Ontology ;
+		rdfs:comment "Ontology for tourism demo KB" .
+	
+	:hasParentEvent a owl:ObjectProperty .
+	
+	:Event a owl:Class ;
+		rdfs:subClassOf ckr:Context , [
+			a owl:Restriction ;
+			owl:onProperty ckr:hasModule ;
+			owl:hasValue :m_event
+		] .
+	
+	:CulturalEvent a owl:Class ;
+		rdfs:subClassOf :Event .
+	
+	:SportEvent a owl:Class ;
+		rdfs:subClassOf :Event , [
+			a owl:Restriction ;
+			owl:onProperty ckr:hasModule ;
+			owl:hasValue :m_sport_event
+		] .
+	
+	:Concert a owl:Class ;
+		rdfs:subClassOf :CulturalEvent .
+	
+	:VolleyMatch a owl:Class ;
+		rdfs:subClassOf :SportEvent , [
+			a owl:Restriction ;
+			owl:onProperty ckr:hasModule ;
+			owl:hasValue :m_volley_match
+		] .
+	
+	:VolleyA1Competition a owl:Class ;
+		rdfs:subClassOf :SportEvent .
+	
+	:Tourist a owl:Class ;
+		rdfs:subClassOf ckr:Context , [
+			a owl:Restriction ;
+			owl:onProperty ckr:hasModule ;
+			owl:hasValue :m_tourist
+		] .
+	
+	:CulturalTourist a owl:Class ;
+		rdfs:subClassOf :Tourist .
+	
+	:SportiveTourist a owl:Class ;
+		rdfs:subClassOf :Tourist , [
+			a owl:Restriction ;
+			owl:onProperty ckr:hasModule ;
+			owl:hasValue :m_sportive_tourist
+		] .
+	
+	:TopMatch a owl:Class ;
+		rdfs:subClassOf :VolleyMatch .
+	
+	[] a owl:Restriction ;
+		owl:onProperty :hasParentEvent ;
+		owl:someValuesFrom :VolleyA1Competition ;
+		rdfs:subClassOf :TopMatch .
+	
+	:campionato_A1_2012-2013 a :VolleyA1Competition .
+	
+	:modena_trento_130112 a :VolleyMatch ;
+		:hasParentEvent :campionato_A1_2012-2013 ;
+		ckr:hasModule :m_modena_trento_130112 .
+	
+	:trento_latina_130203 a :VolleyMatch ;
+		:hasParentEvent :campionato_A1_2012-2013 ;
+		ckr:hasModule :m_trento_latina_130203 .
+	
+#	:mario_rossi a :SportiveTourist ;
+#		ckr:hasModule :m_mario_rossi .
+}
+
+:m_sport_event {
+	:Team a owl:Class .
+	
+	:TopTeam a owl:Class ;
+		rdfs:subClassOf :Team .
+	
+	:Eval_TT a owl:Class ;
+		rdfs:subClassOf :TopTeam ;
+		ckr:hasEvalObject :Winner ;
+		ckr:hasEvalMeta :TopMatch .
+}
+
+:m_volley_match {
+	:HomeTeam a owl:Class ;
+		rdfs:subClassOf :Team .
+	
+	:HostTeam a owl:Class ;
+		rdfs:subClassOf :Team .
+	
+	:Winner a owl:Class ;
+		rdfs:subClassOf :Team .
+	
+	:Loser a owl:Class ;
+		rdfs:subClassOf :Team .
+}
+
+:m_sportive_tourist {
+	:PreferredTeam a owl:Class .
+	
+	:Eval_PT a owl:Class ;
+		rdfs:subClassOf :PreferredTeam ;
+		ckr:hasEvalObject :TopTeam ;
+		ckr:hasEvalMeta :SportEvent .
+}
+
+:m_modena_trento_130112 {
+	:casa_modena_volley a :HomeTeam , :Winner .
+	
+	:itas_diatec_trentino_volley a :HostTeam , :Loser .
+}
+
+:m_trento_latina_130203 {
+	:itas_diatec_trentino_volley a :HomeTeam , :Winner .
+	
+	:andreoli_latina_volley a :HostTeam , :Loser .
+}
+
+:m_trento_cuneo_120922 {
+	:itas_diatec_trentino_volley a :HomeTeam , :Loser .
+	
+	:bre_banca_lannutti_cuneo_volley a :HostTeam , :Winner .
+}
+
+:m_volley_fan_01 {
+	:andreoli_latina_volley a :PreferredTeam .
+}
+
+#:m_mario_rossi {
+#	:casa_modena_volley a :PreferredTeam .
+#}

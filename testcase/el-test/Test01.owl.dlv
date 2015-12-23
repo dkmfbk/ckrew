@@ -1,0 +1,22 @@
+subConj("A1", "A2", "A").
+isa("a", "A2").
+supEx("A", "R", "B", "e^{A->R_SOME_B}").
+subEx("R", "C", "D").
+subClass("B", "C").
+isa("a", "A1").
+nom("a").
+rol("R").
+cls("A2").
+cls("A").
+cls("C").
+cls("D").
+cls("A1").
+cls("B").
+subClass("Winner", "Team").
+isa("barcelona", "Winner").
+nom("barcelona").
+cls("Winner").
+cls("Team").
+isa("barcelona", "Team").
+nom("barcelona").
+cls("Team").

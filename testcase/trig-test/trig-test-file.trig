@@ -1,0 +1,30 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+@base           <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+#=============================================================================
+
+ckr:global {
+    :C a owl:Class .
+    
+    :m1 a :Module .
+    :m2 a :Module .
+}
+
+:m1 {
+   :D1 a owl:Class .
+
+   :ind1 a :D1 .
+}
+
+:m2 {
+   :D2 a owl:Class .
+
+   :ind2 a :D2 .
+}
+
+#=============================================================================

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+
+    <publishDate position="bottom" format="yyyy/MM/dd"/>
+
+    <skin>
+        <groupId>lt.velykis.maven.skins</groupId>
+        <artifactId>reflow-maven-skin</artifactId>
+        <version>1.1.1</version>
+    </skin>
+
+    <body>
+        <head>
+            <style>
+                footer { padding-top: 5px!important; padding-bottom: 5px!important; margin-top: 30px!important }
+                div.subfooter { padding-top: 20px!important; padding-bottom: 10px!important }
+                p.copyright { display: none }
+            </style>
+        </head>
+
+        <menu name="About">
+            <item name="Home" href="index.html"/>
+            <!--<item name="Description" href="description.html"/>-->
+            <!-- <item name="Team" href="team-list.html"/> -->
+            <item name="Publications" href="publications.html"/>
+            <item name="License" href="license.html"/>
+            <item name="Third-party licenses" href="third-party.html"/>
+        </menu>
+
+        <menu name="Downloads">
+            <item name="CKRew installation" href="installation.html"/>
+            <item name="Examples" href="demos.html"/>
+            <item name="Testsets" href="testsets.html"/>
+            <!--<item name="CKR Generator" href="generator.html"/>-->
+        </menu>
+        
+        <!--<menu name="Maven Reports" ref="reports"/>-->        
+        <!--<menu ref="modules" inherit="top"/>-->
+        <!--<menu ref="parent" inherit="top"/>-->
+
+        <menu name="Links">
+            <item name="GitHub project" href="https://github.com/dkmfbk/site"/>
+            <item name="Issue tracker" href="https://github.com/dkmfbk/site/issues"/>
+            <item name="Contact authors" href="mailto:bozzatoATfbkDOTeu"/>
+        </menu>
+
+        <!-- Menus used only in the footer -->
+        
+        <menu name="Main">
+            <item name="Home" href="index.html"/>
+            <item name="CKRew installation" href="installation.html"/>
+            <item name="Publications" href="publications.html"/>
+            <!--<item name="Description" href="description.html"/>-->
+            <!--<item name="Software" href="premonitor.html"/>-->
+        </menu>
+
+        <menu name="Credits">
+            <item name="CKR" href="https://dkm.fbk.eu/technologies/ckr-contextualized-knowledge-repository"/>
+            <item name="DreW" href="https://github.com/ghxiao/drew"/>
+            <item name="DLV" href="http://www.dlvsystem.com/dlv/"/>
+            <!--<item name="NomBank" href="http://nlp.cs.nyu.edu/meyers/NomBank.html"/>-->
+        </menu>
+    </body>
+
+    <custom>
+        <reflowSkin>
+            <theme>bootswatch-cosmo</theme>
+
+            <endContent>
+                ${site.topbar}
+                <script src="js/custom.js"></script>
+            </endContent>
+
+            <highlightJs>true</highlightJs>
+            <highlightJsTheme>googlecode</highlightJsTheme>
+            <imgLightbox>true</imgLightbox>
+            <smoothScroll>false</smoothScroll>
+            <bootstrapCss>true</bootstrapCss>
+            <bootstrapIcons>true</bootstrapIcons>
+            <html5Anchor>true</html5Anchor>
+            <markPageHeader>true</markPageHeader>
+             
+            <absoluteResourceURL>${site-root}</absoluteResourceURL>
+            <protocolRelativeURLs>true</protocolRelativeURLs>
+            
+            <skinAttribution>true</skinAttribution>
+            <brand>
+                <name>
+                    <![CDATA[
+                        <span>CKR<em>ew</em> - CKR datalog rewriter</span>
+                    ]]>
+                </name>
+                <href>index.html</href>
+            </brand>
+            <titleTemplate>%2$s | %1$s</titleTemplate>
+            <toc>none</toc>
+            <!--
+              <toc>top</toc>
+              <tocTopMax>6</tocTopMax>
+              <tocTopFlatten>false</tocTopFlatten>
+            -->
+            <topNav>About|Downloads|Links</topNav>
+
+            <bottomNav maxSpan="8">
+                <column>Main</column>
+                <column>Credits</column>
+            </bottomNav>
+
+            <breadcrumbs>false</breadcrumbs>
+                <!-- 
+                PreMOn means PREdicate Model for ONtologies and is developed within:<br/><br/>
+                <a href="http://dkm.fbk.eu/"><img src="https://premon.fbk.eu/images/fbkdkm.png"/></a>&nbsp;&nbsp;
+                <a href="http://www.newsreader-project.eu/"><img src="https://premon.fbk.eu/images/newsreader.png"/></a><br/>
+                -->
+                <!-- Insert here Google Analytics -->
+            <bottomDescription quote="false">
+                <![CDATA[
+                <div style="width: 60%; float: left">
+                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+                    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CKRew testsets and web site </span>
+                    are licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+                    CKRew software is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>
+                </div>
+                <div style="float: right">
+                    <a href="http://dkm.fbk.eu/"><img src="images/fbkdkm.png"/></a>&nbsp;&nbsp;
+                </div>
+                ]]>
+            </bottomDescription>
+            <!--<shortTitle>generate</shortTitle>-->
+            <titleTemplate>%1$s - %2$s</titleTemplate>
+            <pages>
+                <index>
+                    <shortTitle>Home</shortTitle>
+                    <markPageHeader>false</markPageHeader>
+                    <sections>
+                        <body/>
+                        <columns>3</columns>
+                    </sections>
+                </index>
+                <taglist>
+                    <html5Anchor>false</html5Anchor>
+                </taglist>
+                <license>
+                    <highlightJs>false</highlightJs>
+                </license>
+                <pipeline>
+                    <highlightJs>false</highlightJs>
+                </pipeline>
+            </pages>
+        </reflowSkin>
+    </custom>
+</project>

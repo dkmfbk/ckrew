@@ -1,0 +1,44 @@
+<rdf:RDF
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:ckr="http://dkm.fbk.eu/ckr/meta#">
+
+ <owl:Ontology 
+     rdf:about="http://dkm.fbk.eu/ckr/meta#"
+     dc:title="CKR Meta Vocabulary"/>   
+   
+<rdfs:Class rdf:about="http://dkm.fbk.eu/ckr/meta#Context">
+  <rdfs:label>Context</rdfs:label>
+</rdfs:Class>
+
+<rdfs:Class rdf:about="http://dkm.fbk.eu/ckr/meta#Module">
+  <rdfs:label>Module</rdfs:label>
+</rdfs:Class>
+
+<rdfs:Class rdf:about="http://dkm.fbk.eu/ckr/meta#AttributeValue">
+  <rdfs:label>AttributeValue</rdfs:label>
+</rdfs:Class>
+
+<rdf:Property rdf:about="http://dkm.fbk.eu/ckr/meta#hasModule">
+  <rdfs:label>hasModule</rdfs:label>
+  <rdfs:range rdf:resource="http://dkm.fbk.eu/ckr/meta#Context"/>
+  <rdfs:domain rdf:resource="http://dkm.fbk.eu/ckr/meta#Module"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="http://dkm.fbk.eu/ckr/meta#hasAttribute">
+  <rdfs:label>hasAttribute</rdfs:label>
+  <rdfs:range rdf:resource="http://dkm.fbk.eu/ckr/meta#Context"/>
+  <rdfs:domain rdf:resource="http://dkm.fbk.eu/ckr/meta#AttributeValue"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="http://dkm.fbk.eu/ckr/meta#hasEvalObject">
+  <rdfs:label>hasEvalObject</rdfs:label>
+</rdf:Property>
+
+<rdf:Property rdf:about="http://dkm.fbk.eu/ckr/meta#hasEvalMeta">
+  <rdfs:label>hasEvalMeta</rdfs:label>
+</rdf:Property>
+
+</rdf:RDF>

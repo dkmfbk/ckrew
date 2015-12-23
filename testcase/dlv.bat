@@ -1,0 +1,1 @@
+..\localdlv\dlv.exe %*

@@ -1,0 +1,51 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/tourism-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/tourism-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/tourism-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    
+    # (global object knowledge) #    
+    :Cheap a owl:Class .
+    :Interesting a owl:Class .
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :cultural_tourist a ckr:Context .
+    :cultural_tourist ckr:hasModule :ctourist_m .
+
+    :ctourist_m a ckr:Module .
+
+    :fbmatch a :Cheap .
+    :market a :Cheap .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    :ax rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :Cheap ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :Interesting .
+
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

@@ -1,0 +1,54 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/workers-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/workers-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/workers-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    :Em2012 a owl:Class ;
+        rdfs:subClassOf ckr:Context .
+
+    # (global object knowledge) #    
+    :WorkingBefore a owl:Class .
+    :WorkingNow a owl:Class .
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :employees2012 a ckr:Context , :Em2012 .
+    :employees2013 a ckr:Context .
+    
+    :employees2012 ckr:hasModule :em2012_m .
+    :employees2013 ckr:hasModule :em2013_m .
+
+    :em2012_m a ckr:Module .
+    :em2013_m a ckr:Module .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    :ax rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :WorkingBefore ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :WorkingNow .
+
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

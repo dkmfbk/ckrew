@@ -1,0 +1,3 @@
+ instd(X, "WorkingNow", "employees2013") ?
+% instd(X, "WorkingBefore", "employees2013") ?
+% instd(X, "WorkingNow", "employees2012") ?

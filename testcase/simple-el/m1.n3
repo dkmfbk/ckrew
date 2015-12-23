@@ -1,0 +1,128 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-el#> .
+#=============================================================================
+
+#:m1 {
+
+    #-------------------------------------------------------------------------
+    
+    #<http://dkm.fbk.eu/ckr/test/simple-el#> a owl:Ontology ;                         
+    #              owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+
+    :D a owl:Class .
+
+    :R_1 a owl:ObjectProperty .
+
+    :C_1 a owl:Class ;
+        rdfs:subClassOf :D .
+    
+    :C_2 a owl:Class.
+    :C_3 a owl:Class.
+#    :C_conj a owl:Class ;
+#        rdfs:subClassOf :D ;
+#        owl:intersectionOf ( :C_2 :C_3 ) .
+    [ owl:intersectionOf ( :C_2 :C_3 ) ] 
+       rdfs:subClassOf :D .  
+    
+    :C_4 a owl:Class.
+#    :C_ex a owl:Class ;
+#        rdfs:subClassOf :D , [
+#            a owl:Restriction ;
+#            owl:onProperty :R_1 ;
+#            owl:someValuesFrom :C_4
+#        ] .
+      [ a owl:Restriction ;
+            owl:onProperty :R_1 ;
+            owl:someValuesFrom :C_4
+      ] rdfs:subClassOf :D .
+
+    :R_3 a owl:ObjectProperty .
+    :R_4 a owl:ObjectProperty .
+
+    :R_2 a owl:ObjectProperty ;
+        rdfs:subPropertyOf :R_1 .
+     
+    :R_1 owl:propertyChainAxiom ( :R_3 :R_4 ) .
+    
+    :C_ev1 a owl:Class ;
+        rdfs:subClassOf :D ;
+        ckr:hasEvalObject :D ; 
+        ckr:hasEvalMeta :B .
+        
+#    # :C_ev2 a owl:Class ;
+#    #     rdfs:subClassOf :D , [
+#    #         a owl:Restriction ;
+#    #         owl:onProperty :R_ev ;
+#    #         owl:someValuesFrom :D
+#    #     ] .    
+
+    :R_6 a owl:ObjectProperty .
+    
+    :R_ev a owl:ObjectProperty ; 
+        ckr:hasEvalObject :R_5 ; 
+        ckr:hasEvalMeta :B ;        
+        rdfs:subPropertyOf :R_6 .           
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    :i_1 a :C_1 .
+
+    :i_2 a :C_2 , :C_3 .
+
+    :i_3 :R_1 :i_4 .
+    :i_4 a :C_4 .
+
+    :i_4 :R_2 :i_3 .
+
+    :i_5 :R_3 :i_6 .
+    :i_6 :R_4 :i_7 .
+
+    #------------------------------------------------------------------------- 
+    ## TEST: Inferred axioms #
+    # 
+    ## :pel-c-subc
+    # :i_1 rdf:type :D .
+    #
+    ## :pel-c-subcnj
+    # :i_2 rdf:type :D .
+    #
+    ## :pel-c-subx
+    # :i_3 rdf:type :D . 
+    #
+    ## :pel-r-subr
+    # :i_4 m1:R_1 :i_3 . 
+    #
+    ## :pel-r-subrc
+    # :i_5 m1:R_1 :i_7 . 
+    #
+    ## :plc-c-subevalat
+    # :b rdf:type :D .
+    # :a rdf:type :D .
+    #
+    ### :plc-c-subexeval
+    ## :c rdf:type :D .
+    #
+    ## :plc-c-subevalr
+    # :c m1:R_6 :i_1 .
+    #
+    # :i_1 rdf:type :C .
+    # :i_2 rdf:type :C .
+    # :i_3 rdf:type :C .
+    # :a rdf:type :C .
+    # :b rdf:type :C .
+    # :c rdf:type :C .    
+    #
+    #-------------------------------------------------------------------------
+
+#}
+
+#=============================================================================

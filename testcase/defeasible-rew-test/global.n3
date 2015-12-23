@@ -1,0 +1,190 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+@base           <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/simple-rl#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+     
+     :c1 a ckr:Context .
+     :c1 ckr:hasModule :m1 .
+     :m1 a ckr:Module .
+     
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+
+    # insta #
+    :C1 a owl:Class .
+    :C2 a owl:Class .    
+    :ax1 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :ind1 ;
+      owl:annotatedProperty rdf:type ;
+      owl:annotatedTarget :C1 .
+      
+    # triplea #
+    :R1 a owl:ObjectProperty .
+    :ax2 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :ind2 ;
+      owl:annotatedProperty :R1 ;
+      owl:annotatedTarget :ind3 .
+
+    # -triplea #
+    :R3 a owl:ObjectProperty .
+    :npa a owl:NegativePropertyAssertion ;
+         ckr:hasAxiomType ckr:defeasible ;
+         owl:sourceIndividual :i_npa1 ; 
+         owl:assertionProperty :R3 ;
+         owl:targetIndividual :i_npa2 .
+
+    # subClass #
+    :C3 a owl:Class .
+    :C4 a owl:Class .    
+    :ax3 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C3 ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :C4 .
+
+    # subConj #
+    :C5 a owl:Class.
+    :C6 a owl:Class.
+    :C7 a owl:Class.
+    :ax4 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource [ owl:intersectionOf ( :C5 :C6 ) ] ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :C7 .    
+
+    # subEx #
+    :C8 a owl:Class.
+    :C9 a owl:Class.
+    :R4 a owl:ObjectProperty .
+    :ax5 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource [ a owl:Restriction ;
+      	      		      owl:onProperty :R4 ;
+      			      owl:someValuesFrom :C8 ] ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :C9 .
+
+    # supEx #
+    :C10 a owl:Class.
+    :R5 a owl:ObjectProperty .    
+    :ax6 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C10 ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget [
+            a owl:Restriction ;
+            owl:onProperty :R5 ;
+            owl:hasValue :obj_ex .
+        ] .
+
+    # oneOf #
+    :C11 a owl:Class.
+    :ax7 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource [ owl:oneOf ( :ind2 ) ] ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :C11 .
+
+    # supForall #
+    :C12 a owl:Class.
+    :C13 a owl:Class.
+    :R6 a owl:ObjectProperty . 
+    :ax8 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C12 ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget [
+            a owl:Restriction ;
+            owl:onProperty :R6 ;
+            owl:allValuesFrom :C13 .
+        ] .
+
+    # supLeqOne #
+    :C14 a owl:Class.
+    :C15 a owl:Class.
+    :R7 a owl:ObjectProperty . 
+    :ax9 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C14 ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget [
+            a owl:Restriction ;
+            owl:onProperty :R7 ;
+            owl:maxQualifiedCardinality "1" ;
+            owl:onClass :C15 .
+        ] .
+
+    # supNot #
+    :C16 a owl:Class.
+    :C17 a owl:Class.
+    :ax10 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C16 ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget [ owl:complementOf :C17 . ] . 
+
+    # subRole #
+    :R8 a owl:ObjectProperty .
+    :R9 a owl:ObjectProperty .
+    :ax11 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :R8 ;
+      owl:annotatedProperty rdfs:subPropertyOf ;
+      owl:annotatedTarget :R9 .
+
+    # subRChain #
+    :R10 a owl:ObjectProperty .
+    :R11 a owl:ObjectProperty .
+    :R12 a owl:ObjectProperty .
+    :ax12 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :R10 ;
+      owl:annotatedProperty owl:propertyChainAxiom ;
+      owl:annotatedTarget ( :R11 :R12 ) .
+
+    # inv #
+    :R13 a owl:ObjectProperty .
+    :R14 a owl:ObjectProperty .
+    :ax13 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :R13 ;
+      owl:annotatedProperty owl:inverseOf ;
+      owl:annotatedTarget :R14 .
+
+    # dis #
+    :R15 a owl:ObjectProperty .
+    :R16 a owl:ObjectProperty .
+    :ax14 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :R15 ;
+      owl:annotatedProperty owl:propertyDisjointWith ;
+      owl:annotatedTarget :R16 .
+
+    # irr #
+    :R18 a owl:ObjectProperty .
+    :ax15 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource :R18 ;
+     owl:annotatedProperty rdf:type ;
+     owl:annotatedTarget owl:IrreflexiveProperty .
+     
+
+#=============================================================================

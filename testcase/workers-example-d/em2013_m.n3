@@ -1,0 +1,41 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/workers-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/workers-example-d#> .
+#=============================================================================
+
+#:em2012_m {
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+    
+    :WorkingBefore a owl:Class .
+    :WorkingNow a owl:Class .
+    
+    :C_ev a owl:Class ;
+        ckr:hasEvalObject :WorkingNow ;         
+        ckr:hasEvalMeta :Em2012 ;
+        rdfs:subClassOf :WorkingBefore .
+    
+     :X a owl:Class ;
+        rdfs:subClassOf [
+            owl:complementOf :WorkingNow .
+        ] .
+
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    :charlie a :X .
+
+    #------------------------------------------------------------------------- 
+    ## TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+#}
+
+#=============================================================================

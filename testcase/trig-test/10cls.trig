@@ -1,0 +1,3280 @@
+#################################################################
+@prefix : <http://dkm.fbk.eu/ckr/test/synth-ontology#> .
+@prefix ckr: <http://dkm.fbk.eu/ckr/meta#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+#################################################################
+
+ckr:global {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/meta#hasModule
+
+ckr:hasModule rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R9
+
+:R9 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/meta#Context
+
+ckr:Context rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/meta#Module
+
+ckr:Module rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A8
+
+:A8 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A9
+
+:A9 rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c0
+
+:c0 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c1
+
+:c1 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c2
+
+:c2 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c3
+
+:c3 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c4
+
+:c4 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c5
+
+:c5 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c6
+
+:c6 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c7
+
+:c7 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c8
+
+:c8 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#c9
+
+:c9 rdf:type ckr:Context ,
+             owl:NamedIndividual ;
+    
+    ckr:hasModule :m9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m0
+
+:m0 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m1
+
+:m1 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m2
+
+:m2 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m3
+
+:m3 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m4
+
+:m4 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m5
+
+:m5 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m6
+
+:m6 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m7
+
+:m7 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m8
+
+:m8 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#m9
+
+:m9 rdf:type ckr:Module ,
+             owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m0 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A2 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A9
+
+:A9 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type owl:NamedIndividual ;
+     
+     :R3 :a15 ;
+     
+     :R4 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type owl:NamedIndividual ;
+     
+     :R1 :a12 ;
+     
+     :R7 :a5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type :A7 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type owl:NamedIndividual ;
+     
+     :R4 :a11 ;
+     
+     :R1 :a6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A2 ,
+              owl:NamedIndividual ;
+     
+     :R6 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual ;
+     
+     :R4 :a13 ;
+     
+     :R8 :a14 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type :A3 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type :A1 ,
+             owl:NamedIndividual ;
+    
+    :R4 :a13 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual ;
+    
+    :R3 :a11 ;
+    
+    :R1 :a14 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type :A2 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A4 ,
+             owl:NamedIndividual ;
+    
+    :R8 :a10 ;
+    
+    :R4 :a19 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m1 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A3 ,
+                    :A5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A8
+
+:A8 rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type :A3 ,
+             owl:NamedIndividual ;
+    
+    :R2 :a2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type :A8 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type :A1 ,
+              owl:NamedIndividual ;
+     
+     :R5 :a17 ;
+     
+     :R1 :a7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type :A7 ,
+              owl:NamedIndividual ;
+     
+     :R0 :a1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type :A3 ,
+              owl:NamedIndividual ;
+     
+     :R1 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual ;
+     
+     :R4 :a2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type :A3 ,
+             owl:NamedIndividual ;
+    
+    :R4 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type :A3 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type :A4 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual ;
+    
+    :R0 :a14 ;
+    
+    :R3 :a2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A0 ,
+             owl:NamedIndividual ;
+    
+    :R8 :a10 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m2 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R0 ,
+                       :R1 ,
+                       :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A3 ,
+                    :A5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type :A0 ,
+             owl:NamedIndividual ;
+    
+    :R6 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type :A1 ,
+              owl:NamedIndividual ;
+     
+     :R8 :a13 ;
+     
+     :R2 :a6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type :A1 ,
+              :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual ;
+     
+     :R3 :a5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type owl:NamedIndividual ;
+     
+     :R0 :a4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type :A6 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A0 ,
+              :A4 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a13 ;
+    
+    :R0 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual ;
+    
+    :R3 :a6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type :A1 ,
+             owl:NamedIndividual ;
+    
+    :R0 :a11 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R1 :a12 ;
+    
+    :R7 :a2 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m3 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R9
+
+:R9 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A8
+
+:A8 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A9
+
+:A9 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A8 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type :A1 ,
+             owl:NamedIndividual ;
+    
+    :R4 :a18 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type owl:NamedIndividual ;
+    
+    :R0 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type owl:NamedIndividual ;
+     
+     :R5 :a19 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type :A0 ,
+              owl:NamedIndividual ;
+     
+     :R0 :a13 ;
+     
+     :R1 :a3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual ;
+     
+     :R1 :a10 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A5 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual ;
+    
+    :R2 :a13 ;
+    
+    :R3 :a13 ;
+    
+    :R9 :a7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type :A8 ,
+             owl:NamedIndividual ;
+    
+    :R8 :a12 ;
+    
+    :R4 :a13 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual ;
+    
+    :R4 :a3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R1 :a3 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m4 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A4 ,
+                    :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A9
+
+:A9 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A3 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type owl:NamedIndividual ;
+    
+    :R6 :a16 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type :A2 ,
+              :A7 ,
+              owl:NamedIndividual ;
+     
+     :R5 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type :A6 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type :A4 ,
+              owl:NamedIndividual ;
+     
+     :R4 :a11 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual ;
+     
+     :R4 :a11 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type :A5 ,
+             owl:NamedIndividual ;
+    
+    :R4 :a7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R8 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type :A4 ,
+             :A5 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual ;
+    
+    :R8 :a3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A1 ,
+             owl:NamedIndividual ;
+    
+    :R5 :a18 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m5 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R1 ,
+                       :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A1 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A8
+
+:A8 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A6 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type :A3 ,
+             :A4 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type :A3 ,
+              :A4 ,
+              owl:NamedIndividual ;
+     
+     :R3 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type :A6 ,
+              :A7 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type :A1 ,
+              :A7 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type :A4 ,
+              owl:NamedIndividual ;
+     
+     :R5 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type :A6 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type owl:NamedIndividual ;
+     
+     :R5 :a17 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type :A0 ,
+             :A4 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual ;
+    
+    :R0 :a10 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R2 :a8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A0 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#b0
+
+:b0 rdf:type owl:NamedIndividual .
+
+
+
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[] rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :a5
+                        :b0
+                      )
+ .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m6 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 ,
+                       :R4 ,
+                       :R6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A2 ,
+                    :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A5 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type :A3 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type :A1 ,
+              :A4 ,
+              owl:NamedIndividual ;
+     
+     :R6 :a2 ;
+     
+     :R5 :a4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type owl:NamedIndividual ;
+     
+     :R4 :a8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type :A4 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type :A4 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual ;
+     
+     :R7 :a12 ;
+     
+     :R2 :a18 ;
+     
+     :R3 :a3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type owl:NamedIndividual ;
+     
+     :R6 :a6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type :A6 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type :A3 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual ;
+    
+    :R8 :a10 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual ;
+    
+    :R8 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type :A1 ,
+             :A4 ,
+             owl:NamedIndividual ;
+    
+    :R4 :a16 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A3 ,
+             owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m7 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 ,
+                       :R6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A2 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A9
+
+:A9 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type :A0 ,
+              owl:NamedIndividual ;
+     
+     :R4 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type :A3 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type :A3 ,
+              owl:NamedIndividual ;
+     
+     :R4 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type :A0 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual ;
+     
+     :R1 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A4 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R1 :a17 ;
+    
+    :R5 :a8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type owl:NamedIndividual ;
+    
+    :R8 :a11 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type :A9 ,
+             owl:NamedIndividual ;
+    
+    :R1 :a0 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m8 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R5 .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 ,
+                    :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A2
+
+:A2 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A4 ,
+                    :A8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A2 ,
+                    :A6 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A1 ,
+                    :A2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A8
+
+:A8 rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type :A2 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R2 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a10
+
+:a10 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type owl:NamedIndividual ;
+     
+     :R2 :a10 ;
+     
+     :R4 :a17 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type :A2 ,
+              owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a13
+
+:a13 rdf:type :A0 ,
+              owl:NamedIndividual ;
+     
+     :R1 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type :A2 ,
+              owl:NamedIndividual ;
+     
+     :R1 :a2 ;
+     
+     :R4 :a7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a17
+
+:a17 rdf:type owl:NamedIndividual ;
+     
+     :R2 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A2 ,
+              owl:NamedIndividual ;
+     
+     :R6 :a8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type :A4 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type :A1 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type :A2 ,
+             owl:NamedIndividual ;
+    
+    :R2 :a0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a7
+
+:a7 rdf:type owl:NamedIndividual ;
+    
+    :R2 :a3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type :A1 ,
+             owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+:m9 {
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R0
+
+:R0 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R1
+
+:R1 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R2
+
+:R2 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R4 ,
+                       :R8 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R3
+
+:R3 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R4
+
+:R4 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R2 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R5
+
+:R5 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R6
+
+:R6 rdf:type owl:ObjectProperty ;
+    
+    rdfs:subPropertyOf :R3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R7
+
+:R7 rdf:type owl:ObjectProperty .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#R8
+
+:R8 rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A0
+
+:A0 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A3 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A1
+
+:A1 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A3 ,
+                    :A4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A3
+
+:A3 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A7 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A4
+
+:A4 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A5
+
+:A5 rdf:type owl:Class ;
+    
+    rdfs:subClassOf :A0 ,
+                    :A1 ,
+                    :A4 ,
+                    :A5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A6
+
+:A6 rdf:type owl:Class .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#A7
+
+:A7 rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a0
+
+:a0 rdf:type owl:NamedIndividual ;
+    
+    :R3 :a1 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a1
+
+:a1 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a11
+
+:a11 rdf:type owl:NamedIndividual ;
+     
+     :R7 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a12
+
+:a12 rdf:type owl:NamedIndividual ;
+     
+     :R2 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a14
+
+:a14 rdf:type owl:NamedIndividual .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a15
+
+:a15 rdf:type owl:NamedIndividual ;
+     
+     :R1 :a0 ;
+     
+     :R8 :a9 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a16
+
+:a16 rdf:type :A5 ,
+              owl:NamedIndividual ;
+     
+     :R0 :a4 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a18
+
+:a18 rdf:type :A6 ,
+              owl:NamedIndividual ;
+     
+     :R5 :a0 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a19
+
+:a19 rdf:type :A0 ,
+              owl:NamedIndividual ;
+     
+     :R4 :a12 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a2
+
+:a2 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a1 ,
+        :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a3
+
+:a3 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a14 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a4
+
+:a4 rdf:type owl:NamedIndividual ;
+    
+    :R1 :a19 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a5
+
+:a5 rdf:type owl:NamedIndividual ;
+    
+    :R4 :a15 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a6
+
+:a6 rdf:type :A7 ,
+             owl:NamedIndividual ;
+    
+    :R5 :a5 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a8
+
+:a8 rdf:type owl:NamedIndividual ;
+    
+    :R5 :a19 .
+
+
+
+###  http://dkm.fbk.eu/ckr/test/synth-ontology#a9
+
+:a9 rdf:type owl:NamedIndividual ;
+    
+    :R7 :a4 .
+
+
+
+
+###  Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net
+}
+
+#################################################################

@@ -1,0 +1,83 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+@base           <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/simple-rl#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    :B a owl:Class ;
+        rdfs:subClassOf ckr:Context, [
+            a owl:Restriction ;
+            owl:onProperty ckr:hasModule ;
+            owl:hasValue :mB
+        ] , [
+            a owl:Restriction ;
+            owl:onProperty :att1 ;
+            owl:hasValue :attv1
+        ] . 
+
+    # (global object knowledge) #    
+    :C a owl:Class .
+    :D a owl:Class ;
+       rdfs:subClassOf :C.
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :c1 a ckr:Context .
+    :c1 ckr:hasModule :m1 .
+
+    :c2 a ckr:Context , :B .
+    :c2 ckr:hasModule :m2 .
+
+    :m1 a ckr:Module .
+    :m2 a ckr:Module .
+    :mB a ckr:Module .
+    
+    #:att1 a owl:ObjectProperty , owl:AnnotationProperty; 
+    :att1 a owl:ObjectProperty;
+          rdfs:subPropertyOf ckr:hasAttribute .
+    :attv1 a ckr:AttributeValue .
+
+    #:c2 :att1 :attv1 .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    #:C1 a owl:Class .
+    #:C2 a owl:Class .
+    #
+    #:ax rdf:type owl:Axiom ;
+    #  ckr:hasAxiomType ckr:defeasible ;
+    #  owl:annotatedSource :C1 ;
+    #  owl:annotatedProperty rdfs:subClassOf ;
+    #  owl:annotatedTarget :C2 .
+    #
+    #:ax1 rdf:type owl:Axiom ;
+    #  ckr:hasAxiomType ckr:defeasible ;
+    #  owl:annotatedSource :ind1 ;
+    #  owl:annotatedProperty rdf:type ;
+    #  owl:annotatedTarget :C1 .
+
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    # 
+    # :c2 ckr:hasModule :mB .
+    # :c2 :att1 :attv1 .    
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

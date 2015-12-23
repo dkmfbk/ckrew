@@ -1,0 +1,23 @@
+#=============================================================================
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ckr: <http://dkm.fbk.eu/ckr/meta#> .
+@prefix : <http://dkm.fbk.eu/ckr/test/tourism-demokb#> .
+#=============================================================================
+
+#:m_trento_cuneo_120922 {
+
+	:Team a owl:Class .
+	:HomeTeam a owl:Class .
+	:HostTeam a owl:Class .
+	:Winner a owl:Class .
+	:Loser a owl:Class .
+
+	:itas_diatec_trentino_volley a :HomeTeam , :Loser .
+	
+	:bre_banca_lannutti_cuneo_volley a :HostTeam , :Winner .
+#}
+
+#=============================================================================
+

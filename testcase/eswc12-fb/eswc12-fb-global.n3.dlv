@@ -1,0 +1,30 @@
+isa("m_chleague11", "Module").
+isa("club-world-cup-2011", "ClubWorldCup2011").
+subClass("ClubWorldCup2011", "Context").
+subClass("UEFAClubFootball", "ClubFootball").
+isa("m_uefaclubfb", "Module").
+subClass("SOME_fresh1", "m_uefaclubfb").
+isa("m_clubwc11", "Module").
+supEx("UEFAClubFootball", "hasModule", "SOME_fresh1", "e^{UEFAClubFootball->hasModule_SOME_SOME_fresh1}").
+isa("club-world-cup-2011", "ClubFootball").
+isa("champions-league-2011", "UEFAClubFootball").
+subClass("ClubFootball", "Context").
+nom("m_uefaclubfb").
+nom("club-world-cup-2011").
+nom("m_chleague11").
+nom("champions-league-2011").
+nom("m_clubwc11").
+rol("hasAttribute").
+rol("hasModule").
+cls("UEFAClubFootball").
+cls("AttributeValue").
+cls("ClubFootball").
+cls("ClubWorldCup2011").
+cls("Module").
+cls("SOME_fresh1").
+cls("Context").
+subClass("Winner", "Team").
+isa("barcelona", "Winner").
+nom("barcelona").
+cls("Winner").
+cls("Team").

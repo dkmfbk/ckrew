@@ -1,0 +1,82 @@
+%-------------------------------------------------------------------------
+%inst(X, "D", "c1") ?
+%triple(X, "R_6", Y, "c1") ?
+
+%------------------------------------------------------------------------- 
+%# TEST: Inferred axioms #
+ 
+%# :prl-ntriple
+%-tripled("i_npa1", "R_npa", "i_npa2", "c1") ?
+
+%# (:prl-eq1)
+
+%# :prl-eq2
+%eq("i_eq2", "i_eq1", "c1") ?
+
+%# :prl-eq3
+%instd("i_eq2", "C_4", "c1") ?
+
+%# :prl-eq4
+%tripled("i_eq2", "R_1", "i_eq3", "c1") ?
+
+%# :prl-eq5
+%tripled("i_eq3", "R_1", "i_eq2", "c1") ?
+
+%# :prl-eq6
+%eq("i_eq4", "i_eq6", "c1") ?
+
+%# :prl-neq
+%-eq("i_neq4", "i_neq5", "c1") ?
+
+%# :prl-subc
+%instd("i_1", "D", "c1") ?
+
+%# :prl-not
+%-instd("i_not", "C_4", "c1") ?
+
+%# :prl-subcnj
+%instd("i_2", "D", "c1") ?
+
+%# :prl-subex 
+%instd("i_3", "D", "c1") ?
+
+%# :prl-supex
+%tripled("i_ex2", "R_ex", "obj_ex", "c1") ?
+
+%# :prl-supforall
+%instd("i_all2", "C_4", "c1") ?
+
+%# :prl-supleqone
+%eq("i_leq1", "i_leq2", "c1") ?
+
+%# :prl-subr 
+%tripled("i_4", "R_1", "i_3", "c1") ?
+
+%# :prl-subrc 
+%tripled("i_5", "R_1", "i_7", "c1") ?
+
+%# :prl-dis
+%-tripled("i_dis1", "R_dis2", "i_dis2", "c1") ?
+
+%# :prl-inv1
+%tripled("i_inv2", "R_inv2", "i_inv1", "c1") ?
+
+%# :prl-inv2
+%tripled("i_inv2", "R_inv2", "i_inv1", "c1") ?
+
+%# :prl-irr
+%-tripled("i_inv1", "R_irr", "i_inv1", "c1") ?
+
+%# :plc-subevalat
+%instd("b", "D", "c1") ?
+%instd("a", "D", "c1") ?
+
+%# :plc-subevalr
+%tripled("c", "R_6", "i_1", "c1") ?
+
+%# :plc-eq
+% c2:i_eq1 owl:sameAs c2:i_eq2 .
+eq("i_eq1", "i_eq2", "c2") ?
+
+%-------------------------------------------------------------------------
+

@@ -1,0 +1,267 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-rl#> .
+#=============================================================================
+
+#:m1 {
+
+    #-------------------------------------------------------------------------
+    
+    #<http://dkm.fbk.eu/ckr/test/simple-el#> a owl:Ontology ;                         
+    #              owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+
+    :D a owl:Class .
+    :R_1 a owl:ObjectProperty .
+
+    # subClass #
+    :C_1 a owl:Class ;
+        rdfs:subClassOf :D .
+    
+    # subConj #
+    :C_2 a owl:Class.
+    :C_3 a owl:Class.
+#    :C_conj a owl:Class ;
+#        rdfs:subClassOf :D ;
+#        owl:intersectionOf ( :C_2 :C_3 ) .
+    [ owl:intersectionOf ( :C_2 :C_3 ) ] 
+       rdfs:subClassOf :D .  
+    
+    # subEx #
+    :C_4 a owl:Class.
+    
+#    :C_ex a owl:Class ;
+#        rdfs:subClassOf :D , [
+#            a owl:Restriction ;
+#            owl:onProperty :R_1 ;
+#            owl:someValuesFrom :C_4
+#        ] .
+      [ a owl:Restriction ;
+            owl:onProperty :R_1 ;
+            owl:someValuesFrom :C_4
+      ] rdfs:subClassOf :D .
+      
+    # supEx #
+    :R_ex a owl:ObjectProperty .
+    :C_ex2 a owl:Class ;
+        rdfs:subClassOf [
+            a owl:Restriction ;
+            owl:onProperty :R_ex ;
+            owl:hasValue :obj_ex .
+        ] .
+    :i_ex2 a :C_ex2 .
+    
+    # supForall #
+    :R_all a owl:ObjectProperty .
+    :C_all a owl:Class ;
+        rdfs:subClassOf [
+            a owl:Restriction ;
+            owl:onProperty :R_all ;
+            owl:allValuesFrom :C_4 .
+        ] .
+    :i_all1 a :C_all .
+    :i_all1 :R_all :i_all2 .
+
+    # supLeqOne #
+    :R_leq a owl:ObjectProperty .
+    :C_leq a owl:Class ;
+        rdfs:subClassOf [
+            a owl:Restriction ;
+            owl:onProperty :R_leq ;
+            owl:maxQualifiedCardinality "1" ;
+            owl:onClass :C_4 .
+        ] .
+    :i_leq a :C_leq .
+    :i_leq :R_leq :i_leq1 .
+    :i_leq1 a :C_4 .
+    :i_leq :R_leq :i_leq2 .
+    :i_leq2 a :C_4 .
+
+    # supNot #
+    :C_not a owl:Class ;
+        rdfs:subClassOf [
+            owl:complementOf :C_4 .
+        ] .
+    :i_not a :C_not .
+    :i_not a :C_4 .    
+
+    # subRole #
+    :R_3 a owl:ObjectProperty .
+    :R_4 a owl:ObjectProperty .
+
+    :R_2 a owl:ObjectProperty ;
+        rdfs:subPropertyOf :R_1 .
+    
+    # subRChain #
+    :R_1 owl:propertyChainAxiom ( :R_3 :R_4 ) .
+    
+    # inv #
+    :R_inv1 a owl:ObjectProperty .
+    :R_inv2 a owl:ObjectProperty;
+            owl:inverseOf :R_inv1 .
+    :i_inv1 :R_inv1 :i_inv2 .
+    
+    # dis #
+    :R_dis1 a owl:ObjectProperty .
+    :R_dis2 a owl:ObjectProperty ;
+            owl:propertyDisjointWith :R_dis1. 
+    :i_dis1 :R_dis1 :i_dis2 .
+    :i_dis1 :R_dis2 :i_dis2 .
+    
+    # irr #
+    :R_irr a owl:ObjectProperty ;
+           a owl:IrreflexiveProperty . 
+    :i_irr :R_irr :i_irr .
+
+
+    # subEval #
+    :C_ev1 a owl:Class ;
+        rdfs:subClassOf :D ;
+        ckr:hasEvalObject :D ;
+        # ckr:hasEvalObject :C_4 ; #*!*         
+        ckr:hasEvalMeta :B .
+        
+#    # :C_ev2 a owl:Class ;
+#    #     rdfs:subClassOf :D , [
+#    #         a owl:Restriction ;
+#    #         owl:onProperty :R_ev ;
+#    #         owl:someValuesFrom :D
+#    #     ] .    
+
+    # subEvalR #
+    :R_6 a owl:ObjectProperty .
+    
+    :R_ev a owl:ObjectProperty ; 
+        ckr:hasEvalObject :R_5 ; 
+        ckr:hasEvalMeta :B ;
+        # ckr:hasEvalMeta :C_4 ; #*!*        
+        rdfs:subPropertyOf :R_6 .           
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    :i_1 a :C_1 .
+
+    :i_2 a :C_2 , :C_3 .
+
+    :i_3 :R_1 :i_4 .
+    :i_4 a :C_4 .
+
+    :i_4 :R_2 :i_3 .
+
+    :i_5 :R_3 :i_6 .
+    :i_6 :R_4 :i_7 .
+    
+    # negtriple #
+    :R_npa a owl:ObjectProperty .
+    :npa a owl:NegativePropertyAssertion ;
+         owl:sourceIndividual :i_npa1 ; 
+         owl:assertionProperty :R_npa ;
+         owl:targetIndividual :i_npa2 .
+    :i_npa1 :R_npa :i_npa2 . 
+    
+    # eq #
+    :i_eq1 owl:sameAs :i_eq2 .
+    :i_eq1 a :C_4 .
+    :i_eq1 :R_1 :i_eq3 .
+    :i_eq3 :R_1 :i_eq1 .
+    :i_eq4 owl:sameAs :i_eq5 .
+    :i_eq5 owl:sameAs :i_eq6 .
+    
+    # neq #
+    :difa a owl:AllDifferent ;
+          owl:members ( :i_eq4 :i_eq5 ) . 
+
+    #------------------------------------------------------------------------- 
+    ## TEST: Inferred axioms #
+    # 
+    ## :prl-ntriple
+    # :i_npa1 a :bot .
+    #
+    ## (:prl-eq1)
+    #
+    ## :prl-eq2
+    # :i_eq2 owl:sameAs :i_eq1 .
+    #
+    ## :prl-eq3
+    # :i_eq2 a :C_4 .
+    #
+    ## :prl-eq4
+    # :i_eq2 :R_1 :i_eq3 .
+    #
+    ## :prl-eq5
+    # :i_eq3 :R_1 :i_eq2 .
+    #
+    ## :prl-eq6
+    # :i_eq4 owl:sameAs :i_eq6 .
+    #
+    ## :prl-neq
+    # :i_eq4 a :bot .
+    #
+    ## :prl-subc
+    # :i_1 rdf:type :D .
+    #
+    ## :prl-not
+    # :i_not a :bot .
+    #        
+    ## :prl-subcnj
+    # :i_2 rdf:type :D .
+    #
+    ## :prl-subex
+    # :i_3 rdf:type :D . 
+    #
+    ## :prl-supex
+    # :i_ex2 :R_ex :obj_ex .
+    #
+    ## :prl-supforall
+    # :i_all2 a :C_4 .
+    #        
+    ## :prl-supleqone
+    # :i_leq1 owl:SameIndividual :i_leq2
+    #    
+    ## :prl-subr
+    # :i_4 m1:R_1 :i_3 . 
+    #
+    ## :prl-subrc
+    # :i_5 m1:R_1 :i_7 . 
+    #
+    ## :prl-dis
+    # :i_dis1 a :bot .
+    #
+    ## :prl-inv1
+    # :i_inv2 :R_inv2 :i_inv1 .
+    #        
+    ## :prl-inv2
+    # :i_inv2 :R_inv2 :i_inv1 .
+    #        
+    ## :prl-irr
+    # :i_irr a :bot .
+    #        
+    ## :plc-subevalat
+    # :b rdf:type :D .
+    # :a rdf:type :D .
+    #
+    ## :plc-subevalr
+    # :c m1:R_6 :i_1 .
+    #
+    ## :plc-eq
+    # c2:i_eq1 owl:sameAs c2:i_eq2 .
+    #
+    # :i_1 rdf:type :C .
+    # :i_2 rdf:type :C .
+    # :i_3 rdf:type :C .
+    # :a rdf:type :C .
+    # :b rdf:type :C .
+    # :c rdf:type :C .
+    #
+    #-------------------------------------------------------------------------
+
+#}
+
+#=============================================================================

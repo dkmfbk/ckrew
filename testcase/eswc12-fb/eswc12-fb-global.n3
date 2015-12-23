@@ -1,0 +1,49 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/eswc12-fb-demokb#> .
+#=============================================================================
+
+#ckr:global {
+
+    #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/tourism-demokb> a owl:Ontology ;
+        rdfs:comment "Ontology for ESWC12 poster football demokb" ;
+        owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+    #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    :ClubFootball a owl:Class;
+                  rdfs:subClassOf ckr:Context.
+    :UEFAClubFootball a owl:Class;
+                  rdfs:subClassOf :ClubFootball , [
+                    a owl:Restriction ;
+                    owl:onProperty ckr:hasModule ;
+                    owl:hasValue :m_uefaclubfb
+                  ] .
+    :ClubWorldCup2011 a owl:Class;
+                  rdfs:subClassOf ckr:Context.
+                  
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :champions-league-2011 a :UEFAClubFootball .
+    :champions-league-2011 ckr:hasModule :m_chleague11 .
+    
+    :club-world-cup-2011 a :ClubFootball .
+    :club-world-cup-2011 ckr:hasModule :m_clubwc11 .
+        
+    :club-world-cup-2011 a :ClubWorldCup2011 .
+            
+    :m_uefaclubfb            a ckr:Module .
+    :m_chleague11            a ckr:Module .
+    :m_clubwc11              a ckr:Module .
+
+#}
+
+#=============================================================================

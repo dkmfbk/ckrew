@@ -1,0 +1,64 @@
+%------------------------------------------------------------------------- 
+%# TEST: Inferred axioms WITH OVERRIDING #
+%-------------------------------------------------------------------------
+
+%# :prop-inst
+%-instd("ind1", "C1", "c1") ?
+
+%# :prop-triple
+%-tripled("ind2", "R1", "ind3", "c1") ?
+
+%# :prop-ntriple
+%tripled("i_npa1", "R3", "i_npa2", "c1") ?
+
+%# :prop-subc
+%-instd("i_sc", "C4", "c1") ?
+%instd("i_sc", "C3", "c1") ?
+
+%# :prop-subcnj
+%-instd("i_scj", "C7", "c1") ?
+%instd("i_scj", "C5", "c1") ?
+
+%# :prop-subex 
+%-instd("i_sbx1", "C9", "c1") ?
+%instd("i_sbx3", "C9", "c1") ?
+
+%# :prop-supex
+%-tripled("i_spx1", "R5", "obj_ex", "c1") ?
+%tripled("i_spx2", "R5", "obj_ex", "c1") ?
+
+%# :prop-insta (oneOf)
+%-instd("ind2", "C11", "c1") ?
+
+%# :prl-supforall
+%-instd("i_sfl2", "C13", "c1") ?
+%instd("i_sfl4", "C13", "c1") ?
+
+%# :prl-supleqone
+%-eq("i_leq1", "i_leq2", "c1") ?
+%ovrSupLeqOne("i_leq", "i_leq1", "i_leq2", "C14", "R7", "C15", "c1") ?
+%ovrSupLeqOne("i_leq", "i_leq2", "i_leq1", "C14", "R7", "C15", "c1") ?
+%prova("i_leq1", "i_leq2", "c1") ?
+
+%# :prl-not
+%instd("i_not", "C17", "c1") ?
+
+%# :prl-subr 
+%-tripled("i_sr1", "R9", "i_sr2", "c1") ?
+
+%# :prl-subrc 
+%-tripled("i_src1", "R10", "i_src3", "c1") ?
+
+%# :prl-inv1
+%-tripled("i_inv2", "R14", "i_inv1", "c1") ?
+
+%# :prl-dis
+%tripled("i_dis1", "R16", "i_dis2", "c1") ?
+
+%# :prl-irr
+tripled("i_irr", "R18", "i_irr", "c1") ?
+
+%#####################
+
+%-------------------------------------------------------------------------
+

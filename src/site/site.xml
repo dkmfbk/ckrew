@@ -39,9 +39,9 @@
         <!--<menu ref="parent" inherit="top"/>-->
 
         <menu name="Links">
-            <item name="GitHub project" href="https://github.com/dkmfbk/site"/>
-            <item name="Issue tracker" href="https://github.com/dkmfbk/site/issues"/>
-            <item name="Contact authors" href="mailto:bozzatoATfbkDOTeu"/>
+            <item name="GitHub project" href="https://github.com/dkmfbk/ckrew"/>
+            <item name="Issue tracker" href="https://github.com/dkmfbk/ckrew/issues"/>
+            <item name="Contact authors" href="mailto:bozzato[AT]fbk[DOT]eu"/>
         </menu>
 
         <!-- Menus used only in the footer -->

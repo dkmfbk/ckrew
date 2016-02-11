@@ -29,7 +29,7 @@
         <compiler-plugin.version>2.3.1</compiler-plugin.version>
         <assembly-plugin.version>2.2.2</assembly-plugin.version>
         <!-- <site.root>file:./</site.root>-->
-        <site.root>https://dkm-static.fbk.eu/resources/tools/ckr/ckrew/</site.root>
+        <site.root>http://ckrew.fbk.eu</site.root>
     </properties>
 
     <distributionManagement>

@@ -18,15 +18,19 @@
     # TBox/RBox axioms #
     
      :Interesting a owl:Class .
-     :X a owl:Class ;
-        rdfs:subClassOf [
-            owl:complementOf :Interesting .
-        ] .
+     # :X a owl:Class ;
+     #    rdfs:subClassOf [
+     #        owl:complementOf :Interesting .
+     #    ] .
+     
+     :notInteresting a owl:Class .
+     [ owl:intersectionOf ( :Interesting :notInteresting ) ] 
+         rdfs:subClassOf owl:Nothing .
         
     #-------------------------------------------------------------------------
     # ABox axioms #
 
-    :fbmatch a :X .
+    :fbmatch a :notInteresting .
 
     #------------------------------------------------------------------------- 
     ## TEST: Inferred axioms #

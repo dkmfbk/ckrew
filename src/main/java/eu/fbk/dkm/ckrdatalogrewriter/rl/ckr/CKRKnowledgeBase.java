@@ -52,6 +52,10 @@ public class CKRKnowledgeBase {
 	public OWLOntology getGlobalOntology() {
 		return globalModule.getModuleOntology();
 	}
+	
+	public LinkedList<CKRModule> getLocalModule(){
+		return localModule;
+	}
 
 	/**
 	 * Counts number of axioms in the global and local knowledge modules.

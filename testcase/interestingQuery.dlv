@@ -1,5 +1,3 @@
-instd(X, "Interesting", "cultural_tourist") ?
-% instd(X, "Interesting", "g") ?
-% instd(X, "Cheap", "cultural_tourist") ?
-% -instd(X, "Interesting", "cultural_tourist") ?
-
+instd(X, "Interesting", "cultural_tourist", "main") ?
+% instd(X, "Interesting", "g", "main") ?
+% instd(X, "Cheap", "cultural_tourist", "main") ?

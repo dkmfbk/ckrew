@@ -17,39 +17,45 @@
     #-------------------------------------------------------------------------
     # Local overriding #
 
-    # insta #
-    :C1 a owl:Class .
-    :notC1 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C1 .] .
-    :ind1 a :notC1 .
+   # insta #
+   :C1 a owl:Class .
+   :ind1 a :notC1 .
+   :notC1 a owl:Class.
+   #    rdfs:subClassOf [ owl:complementOf :C1 .] .
+   [ owl:intersectionOf ( :C1 :notC1 ) ] 
+         rdfs:subClassOf owl:Nothing .
 
-    # triplea #
-    :R1 a owl:ObjectProperty .
-    :nR1 a owl:NegativePropertyAssertion ;
-         owl:sourceIndividual :ind2 ; 
-         owl:assertionProperty :R1 ;
-         owl:targetIndividual :ind3 .
-         
-    # -triplea #
-    :R3 a owl:ObjectProperty .
-    :i_npa1 :R3 :i_npa2 .
+   # triplea #
+   :R1 a owl:ObjectProperty .
+   :nR1 a owl:NegativePropertyAssertion ;
+        owl:sourceIndividual :ind2 ; 
+        owl:assertionProperty :R1 ;
+        owl:targetIndividual :ind3 .
+        
+   # -triplea #
+   :R3 a owl:ObjectProperty .
+   :i_npa1 :R3 :i_npa2 .
 
-    # subClass #
-    :C3 a owl:Class .
-    :C4 a owl:Class .
-    :notC4 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C4 .] .
-    :i_sc a :notC4.
-    :i_sc a :C3.
+   # subClass #
+   :C3 a owl:Class .
+   :C4 a owl:Class .
+   :notC4 a owl:Class .
+   #    rdfs:subClassOf [ owl:complementOf :C4 .] .
+   [ owl:intersectionOf ( :C4 :notC4 ) ] 
+         rdfs:subClassOf owl:Nothing .    
+   :i_sc a :notC4.
+   :i_sc a :C3.
 
-    # subConj #
-    :C5 a owl:Class.
-    :C6 a owl:Class.
-    :C7 a owl:Class.
-    :notC7 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C7 .] .
-    :i_scj a :C5 , :C6 .
-    :i_scj a :notC7 .
+   # subConj #
+   :C5 a owl:Class.
+   :C6 a owl:Class.
+   :C7 a owl:Class.
+   :notC7 a owl:Class.
+   #    rdfs:subClassOf [ owl:complementOf :C7 .] .
+   [ owl:intersectionOf ( :C7 :notC7 ) ]
+   	rdfs:subClassOf owl:Nothing .
+   :i_scj a :C5 , :C6 .
+   :i_scj a :notC7 .
 
    # subEx #
    :C8 a owl:Class.
@@ -57,11 +63,13 @@
    :R4 a owl:ObjectProperty .
    :i_sbx1 :R4 :i_sbx2 .    
    :i_sbx2 a :C8 .
-   :notC9 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C9 .] .
-   :i_sbx1 a :notC9 .
-   :i_sbx3 :R4 :i_sbx4 .    
-   :i_sbx4 a :C8 .
+   :notC9 a owl:Class .
+   #     rdfs:subClassOf [ owl:complementOf :C9 .] .
+   [ owl:intersectionOf ( :C9 :notC9 ) ]
+   	rdfs:subClassOf owl:Nothing .
+   :i_sbx1 a :notC9 .                                 
+   :i_sbx3 :R4 :i_sbx4 .
+   :i_sbx4 a :C8 .                                               
 
    # supEx #      
    :C10 a owl:Class.
@@ -75,8 +83,10 @@
 
    # oneOf #
    :C11 a owl:Class.
-   :notC11 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C11 .] .
+   :notC11 a owl:Class .
+   #     rdfs:subClassOf [ owl:complementOf :C11 .] .
+   [ owl:intersectionOf ( :C11 :notC11 ) ]
+   	rdfs:subClassOf owl:Nothing .
    :ind2 a :notC11 .
 
    # supForall #
@@ -85,8 +95,10 @@
    :R6 a owl:ObjectProperty .
    :i_sfl1 a :C12 .
    :i_sfl1 :R6 :i_sfl2 .
-   :notC13 a owl:Class ;
-        rdfs:subClassOf [ owl:complementOf :C13 .] .   
+   :notC13 a owl:Class .
+   #     rdfs:subClassOf [ owl:complementOf :C13 .] .
+   [ owl:intersectionOf ( :C13 :notC13 ) ]
+   	rdfs:subClassOf owl:Nothing .
    :i_sfl2 a :notC13 .
    :i_sfl3 a :C12 .
    :i_sfl3 :R6 :i_sfl4 .   
@@ -102,11 +114,11 @@
    :i_leq2 a :C15 .
    :i_leq1 owl:differentFrom :i_leq2 .
 
-   # supNot #
-   :C16 a owl:Class.
-   :C17 a owl:Class.   
-   :i_not a :C16 .
-   :i_not a :C17 .
+#   # supNot #
+#   :C16 a owl:Class.
+#   :C17 a owl:Class.   
+#   :i_not a :C16 .
+#   :i_not a :C17 .
 
    # subRole #
    :R8 a owl:ObjectProperty .
@@ -128,14 +140,19 @@
          owl:assertionProperty :R10 ;
          owl:targetIndividual :i_src3 .
 
-   # inv #
-   :R13 a owl:ObjectProperty .
-   :R14 a owl:ObjectProperty .  
+  # inv #
+  :R13 a owl:ObjectProperty .
+  :R14 a owl:ObjectProperty .  
    :i_inv1 :R13 :i_inv2 .
    :nR14 a owl:NegativePropertyAssertion ;
          owl:sourceIndividual :i_inv2 ; 
          owl:assertionProperty :R14 ;
-         owl:targetIndividual :i_inv1 . 
+         owl:targetIndividual :i_inv1 .
+#   :i_inv1 :R14 :i_inv2 .
+#   :nR14 a owl:NegativePropertyAssertion ;
+#         owl:sourceIndividual :i_inv2 ; 
+#         owl:assertionProperty :R13 ;
+#         owl:targetIndividual :i_inv1 .
 
    # dis #     
    :R15 a owl:ObjectProperty .
@@ -146,7 +163,7 @@
    # irr #
    :R18 a owl:ObjectProperty .
    :i_irr :R18 :i_irr .
-    
+                                                     
 #}
 
 #=============================================================================

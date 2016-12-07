@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.semanticweb.drew.dlprogram.model.DLProgram;
-import org.semanticweb.drew.dlprogram.model.Literal;
-import org.semanticweb.drew.dlprogram.model.Term;
 import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
@@ -24,7 +22,6 @@ import org.semanticweb.owlapi.model.OWLLogicalAxiom;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLNegativeObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
-import org.semanticweb.owlapi.model.OWLObjectComplementOf;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectMaxCardinality;
 import org.semanticweb.owlapi.model.OWLObjectOneOf;
@@ -42,7 +39,7 @@ import org.semanticweb.owlapi.model.OWLSubPropertyChainOfAxiom;
 
 /**
  * @author Loris
- * @version 1.3 
+ * @version 1.4
  * 
  * Encodes the <code>Irl</code> and <code>Iglob</code>
  * rules for translation to Datalog of the global ontology.
@@ -52,8 +49,7 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	
 	private OWLAnnotationProperty hasAxiomType;
 	private OWLAnnotationValue defeasible;
-	private Term contextTerm, globalTerm, indiv1Term, indiv2Term, indiv3Term;
-
+	//private Term contextTerm, globalTerm, indiv1Term, indiv2Term, indiv3Term;
 
     //--- CONSTRUCTORS ----------------------------------------------------------
     
@@ -65,11 +61,11 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
     	
     	this.contextID = IRI.create("g");
     	
-		this.contextTerm = getVariable("C");
-		this.globalTerm = getConstant(contextID);
-		this.indiv1Term = getVariable("X");
-		this.indiv2Term = getVariable("Y");
-		this.indiv3Term = getVariable("Z");
+//		this.contextTerm = getVariable("C");
+//		this.globalTerm = getConstant(contextID);
+//		this.indiv1Term = getVariable("X");
+//		this.indiv2Term = getVariable("Y");
+//		this.indiv3Term = getVariable("Z");
 	}
 
     //--- REWRITE METHOD --------------------------------------------------------
@@ -146,27 +142,32 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 		// addFact(RewritingVocabulary.SUB_CLASS, a, c);
 
 		IRI individualIRI = axiom.getIndividual().asOWLNamedIndividual().getIRI(); 
-		IRI classIRI = axiom.getClassExpression().asOWLClass().getIRI();
+		IRI classIRI = rewConceptName(axiom.getClassExpression().asOWLClass());
 		
 		addFact(CKRRewritingVocabulary.INSTA,
 				individualIRI, 
 				classIRI,
-				contextID);
+				contextID,
+				IRI.create(MAIN));
 		
-		//add rule for overriding
+		//add atom for def.axiom
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( C(a) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term indivTerm = getConstant(individualIRI);
-			Term classTerm = getConstant(classIRI);
+//			Term indivTerm = getConstant(individualIRI);
+//			Term classTerm = getConstant(classIRI);
+//
+//			Literal ovrinsta = getLiteral(true, CKRRewritingVocabulary.OVRINSTA, 
+//					                              indivTerm, classTerm, contextTerm);
+//			Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//					                            indivTerm, classTerm, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);			
+//			addRule(ovrinsta, ninstd, prec);
 
-			Literal ovrinsta = getLiteral(true, CKRRewritingVocabulary.OVRINSTA, 
-					                              indivTerm, classTerm, contextTerm);
-			Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-					                            indivTerm, classTerm, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);			
-			addRule(ovrinsta, ninstd, prec);	
+			addFact(CKRRewritingVocabulary.DEF_INSTA,
+					individualIRI, 
+					classIRI);
 	    }
 	}
 	
@@ -186,24 +187,31 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				axiom.getSubject().asOWLNamedIndividual().getIRI(),
  				axiom.getProperty().asOWLObjectProperty().getIRI(),
 				axiom.getObject().asOWLNamedIndividual().getIRI(),
-				contextID//
+				contextID,
+				IRI.create(MAIN)//
 		);
 		
-		//add rule for overriding
+		//add fact for def.axiom
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( R(a,b) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term subjectTerm = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
-			Term propertyTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
-			Term objectTerm = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
-
-			Literal ovrtriplea = getLiteral(true, CKRRewritingVocabulary.OVRTRIPLEA, 
-					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
-			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);
-			addRule(ovrtriplea, ntripled, prec);	
+//			Term subjectTerm = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
+//			Term propertyTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
+//			Term objectTerm = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
+//
+//			Literal ovrtriplea = getLiteral(true, CKRRewritingVocabulary.OVRTRIPLEA, 
+//					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
+//			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);
+//			addRule(ovrtriplea, ntripled, prec);
+	    	
+			addFact(CKRRewritingVocabulary.DEF_TRIPLEA, //
+					axiom.getSubject().asOWLNamedIndividual().getIRI(),
+	 				axiom.getProperty().asOWLObjectProperty().getIRI(),
+					axiom.getObject().asOWLNamedIndividual().getIRI()//
+			);
 	    }		
 	}
 	
@@ -211,28 +219,53 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	//Rewrite \non R(a,b)
 	public void visit(OWLNegativeObjectPropertyAssertionAxiom axiom) {
 		
-		addNegativeFact(CKRRewritingVocabulary.TRIPLEA, 
-				axiom.getSubject().asOWLNamedIndividual().getIRI(), 
-				axiom.getProperty().asOWLObjectProperty().getIRI(), 
+//		addNegativeFact(CKRRewritingVocabulary.TRIPLEA, 
+//				axiom.getSubject().asOWLNamedIndividual().getIRI(), 
+//				axiom.getProperty().asOWLObjectProperty().getIRI(), 
+//				axiom.getObject().asOWLNamedIndividual().getIRI(),
+//				contextID
+//		);
+	
+//		Constant ind1 = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
+//		Constant roleTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
+//		Constant ind2 = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
+//		
+//		Literal unsat = getLiteral(true, CKRRewritingVocabulary.UNSAT, 
+//                getConstant(contextID), getVariable("T"));
+//		
+//		Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                ind1, roleTerm, ind2, getConstant(contextID), getVariable("T"));
+//
+//		addRule(unsat, tripled);		
+		
+		addFact(CKRRewritingVocabulary.NTRIPLEA, //
+				axiom.getSubject().asOWLNamedIndividual().getIRI(), //
+				axiom.getProperty().asOWLObjectProperty().getIRI(), //
 				axiom.getObject().asOWLNamedIndividual().getIRI(),
 				contextID
 		);
 		
-		//add rule for overriding
+		//add fact for def.axiom
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( -R(a,b) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term subjectTerm = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
-			Term propertyTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
-			Term objectTerm = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
-
-			Literal ovrntriplea = getLiteral(true, CKRRewritingVocabulary.OVRNTRIPLEA, 
-					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
-			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);			
-			addRule(ovrntriplea, tripled, prec);	
+//			Term subjectTerm = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
+//			Term propertyTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
+//			Term objectTerm = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
+//
+//			Literal ovrntriplea = getLiteral(true, CKRRewritingVocabulary.OVRNTRIPLEA, 
+//					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
+//			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//					                              subjectTerm, propertyTerm, objectTerm, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);			
+//			addRule(ovrntriplea, tripled, prec);
+	    	
+			addFact(CKRRewritingVocabulary.DEF_NTRIPLEA, //
+					axiom.getSubject().asOWLNamedIndividual().getIRI(), //
+					axiom.getProperty().asOWLObjectProperty().getIRI(), //
+					axiom.getObject().asOWLNamedIndividual().getIRI()
+			);	    	
 	    }		
 	}
 	
@@ -243,7 +276,7 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	public void visit(OWLSubClassOfAxiom axiom) {
 		OWLClassExpression subClass = axiom.getSubClass();
 		OWLClassExpression superClass = axiom.getSuperClass();
-
+		
 		// atomic case: A \subs C
 		if ((subClass.getClassExpressionType() == ClassExpressionType.OWL_CLASS)
 				&& (superClass.getClassExpressionType() == ClassExpressionType.OWL_CLASS)) {
@@ -264,26 +297,31 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				// addFact(RewritingVocabulary.SUB_CLASS, a, c);
 
 			       addFact(CKRRewritingVocabulary.SUB_CLASS, //
-						subClass.asOWLClass().getIRI(), 
-						superClass.asOWLClass().getIRI(),
+						rewConceptName(subClass.asOWLClass()), 
+						rewConceptName(superClass.asOWLClass()),
 						contextID);
 			//}
-				//add rule for overriding
+				//add fact for def.axiom
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( A subs B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
-					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
+//					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
+//					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBCLASS, 
+//							                            indiv1Term, subclassTerm, superclassTerm, contextTerm);
+//					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//							                            indiv1Term, superclassTerm, contextTerm);
+//					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassTerm, contextTerm);
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, ninstd, instd, prec);
 
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBCLASS, 
-							                            indiv1Term, subclassTerm, superclassTerm, contextTerm);
-					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-							                            indiv1Term, superclassTerm, contextTerm);
-					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassTerm, contextTerm);
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, ninstd, instd, prec);	
+				    addFact(CKRRewritingVocabulary.DEF_SUBCLASS, //
+							rewConceptName(subClass.asOWLClass()), 
+							rewConceptName(superClass.asOWLClass())
+					);
 			    }								
 		}
 		
@@ -306,9 +344,9 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				IRI[] params = new IRI[4];
 				int i = 0;
 				for (OWLClassExpression op : operands) {
-					params[i++] = op.asOWLClass().getIRI();
+					params[i++] = rewConceptName(op.asOWLClass());
 				}
-				params[2] = superClass.asOWLClass().getIRI();
+				params[2] = rewConceptName(superClass.asOWLClass());
 				params[3] = contextID;
 
 				addFact(CKRRewritingVocabulary.SUB_CONJ, params);
@@ -317,24 +355,26 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( A1 \\and A2 \\subs B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term subclassATerm = getConstant(params[0]);
-					Term subclassBTerm = getConstant(params[1]);
-					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
-					
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBCONJ, 
-							                            indiv1Term, subclassATerm, subclassBTerm, superclassTerm, contextTerm);
-					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-							                            indiv1Term, superclassTerm, contextTerm);
-					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassATerm, contextTerm);
-					Literal instdB = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassBTerm, contextTerm);					
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, ninstd, instdA, instdB, prec);	
+//					Term subclassATerm = getConstant(params[0]);
+//					Term subclassBTerm = getConstant(params[1]);
+//					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
+//					
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBCONJ, 
+//							                            indiv1Term, subclassATerm, subclassBTerm, superclassTerm, contextTerm);
+//					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//							                            indiv1Term, superclassTerm, contextTerm);
+//					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassATerm, contextTerm);
+//					Literal instdB = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassBTerm, contextTerm);					
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, ninstd, instdA, instdB, prec);
+			    	
+			    	addFact(CKRRewritingVocabulary.DEF_SUBCONJ, params[0], params[1], params[2]);
 			    }
 			}
-
+			
 			// exist(R,A) subclass B
 			else if (subClass.getClassExpressionType() == ClassExpressionType.OBJECT_SOME_VALUES_FROM) {
 				OWLObjectSomeValuesFrom some = (OWLObjectSomeValuesFrom) subClass;
@@ -347,29 +387,35 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				// addFact(RewritingVocabulary.SUB_EX, r, a, b);
 				addFact(CKRRewritingVocabulary.SUB_EX,//
 						some.getProperty().asOWLObjectProperty().getIRI(),//
-						some.getFiller().asOWLClass().getIRI(),//
-						superClass.asOWLClass().getIRI(), 
+						rewConceptName(some.getFiller().asOWLClass()),//
+						rewConceptName(superClass.asOWLClass()), 
 						contextID);
 				
 				//add rule for overriding
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( \\exists R.A \\subs B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term propertyTerm = getConstant(some.getProperty().asOWLObjectProperty().getIRI());
-					Term subclassATerm = getConstant(some.getFiller().asOWLClass().getIRI());
-					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
-
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBEX, 
-							                            indiv1Term, propertyTerm, subclassATerm, superclassTerm, contextTerm);
-					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-							                            indiv1Term, superclassTerm, contextTerm);
-					Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);
-					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv2Term, subclassATerm, contextTerm);					
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, ninstd, tripled, instd, prec);	
+//					Term propertyTerm = getConstant(some.getProperty().asOWLObjectProperty().getIRI());
+//					Term subclassATerm = getConstant(some.getFiller().asOWLClass().getIRI());
+//					Term superclassTerm = getConstant(superClass.asOWLClass().getIRI());
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBEX, 
+//							                            indiv1Term, propertyTerm, subclassATerm, superclassTerm, contextTerm);
+//					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//							                            indiv1Term, superclassTerm, contextTerm);
+//					Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);
+//					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv2Term, subclassATerm, contextTerm);					
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, ninstd, tripled, instd, prec);	
+			    	
+					addFact(CKRRewritingVocabulary.DEF_SUBEX,//
+							some.getProperty().asOWLObjectProperty().getIRI(),//
+							rewConceptName(some.getFiller().asOWLClass()),//
+							rewConceptName(superClass.asOWLClass())
+					);
 			    }
 
 			} else if (subClass.getClassExpressionType() == ClassExpressionType.OBJECT_ONE_OF) {
@@ -381,23 +427,29 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				// addFact(RewritingVocabulary.SUB_CLASS, c, a);
 				addFact(CKRRewritingVocabulary.INSTA, //
 						oneOf.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI(),//
-						superClass.asOWLClass().getIRI(),
-						contextID);
+						rewConceptName(superClass.asOWLClass()),
+						contextID,
+						IRI.create(MAIN));
 				
 				//add rule for overriding
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( {a} \\subs B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term indivTerm = getConstant(oneOf.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI());
-					Term classTerm = getConstant(superClass.asOWLClass().getIRI());
-
-					Literal ovrinsta = getLiteral(true, CKRRewritingVocabulary.OVRINSTA, 
-							                              indivTerm, classTerm, contextTerm);
-					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-							                            indivTerm, classTerm, contextTerm);
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);					
-					addRule(ovrinsta, ninstd, prec);	
+//					Term indivTerm = getConstant(oneOf.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI());
+//					Term classTerm = getConstant(superClass.asOWLClass().getIRI());
+//
+//					Literal ovrinsta = getLiteral(true, CKRRewritingVocabulary.OVRINSTA, 
+//							                              indivTerm, classTerm, contextTerm);
+//					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//							                            indivTerm, classTerm, contextTerm);
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);					
+//					addRule(ovrinsta, ninstd, prec);	
+			    	
+					addFact(CKRRewritingVocabulary.DEF_INSTA,
+							oneOf.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI(),//
+							rewConceptName(superClass.asOWLClass())
+					);			    	
 			    }
 
 			} else {
@@ -414,7 +466,7 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				OWLObjectOneOf object = (OWLObjectOneOf) some.getFiller();
 				
 				addFact(CKRRewritingVocabulary.SUP_EX, //
-						subClass.asOWLClass().getIRI(),//
+						rewConceptName(subClass.asOWLClass()),//
 						some.getProperty().asOWLObjectProperty().getIRI(),
 						object.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI(),
 						contextID);
@@ -423,21 +475,26 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				if(isDefeasible(axiom)){
 					//System.out.println("D( A \\subs \\exists R.{a} ): " + axiom.getAxiomWithoutAnnotations());
 					
-					Term propertyTerm = getConstant(some.getProperty().asOWLObjectProperty().getIRI());
-					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
-					Term nominalTerm = getConstant(object.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI());
-
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPEX, 
-							                            indiv1Term, subclassTerm, propertyTerm, nominalTerm, contextTerm);
-					Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-	                                                    indiv1Term, propertyTerm, nominalTerm, contextTerm);
-					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-	                                                    indiv1Term, subclassTerm, contextTerm);					
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, ntripled, instd, prec);
+//					Term propertyTerm = getConstant(some.getProperty().asOWLObjectProperty().getIRI());
+//					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
+//					Term nominalTerm = getConstant(object.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI());
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPEX, 
+//							                            indiv1Term, subclassTerm, propertyTerm, nominalTerm, contextTerm);
+//					Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//	                                                    indiv1Term, propertyTerm, nominalTerm, contextTerm);
+//					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//	                                                    indiv1Term, subclassTerm, contextTerm);					
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, ntripled, instd, prec);
+					
+					addFact(CKRRewritingVocabulary.DEF_SUPEX, //
+							rewConceptName(subClass.asOWLClass()),//
+							some.getProperty().asOWLObjectProperty().getIRI(),
+							object.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI());
 				}
-				    
+				
 			// A subclass all(R, C')		
 			} else if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_ALL_VALUES_FROM) {
 
@@ -445,107 +502,117 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 				OWLClass object = (OWLClass) all.getFiller();
 				
 				addFact(CKRRewritingVocabulary.SUP_ALL, //
-						subClass.asOWLClass().getIRI(),//
+						rewConceptName(subClass.asOWLClass()),//
 						all.getProperty().asOWLObjectProperty().getIRI(),
-						object.asOWLClass().getIRI(),
+						rewConceptName(object.asOWLClass()),
 						contextID);
 				
 				//add rule for overriding
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( A \\subs \\forall R.B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term propertyTerm = getConstant(all.getProperty().asOWLObjectProperty().getIRI());
-					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
-					Term objectTerm = getConstant(object.asOWLClass().getIRI());
-
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPALL, 
-							                            indiv1Term, indiv2Term, subclassTerm, propertyTerm, objectTerm, contextTerm);
-					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
-                                                        indiv2Term, objectTerm, contextTerm);					
-					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassTerm, contextTerm);
-					Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);					
-					addRule(ovrsubs, ninstd, instd, tripled, prec);
+//					Term propertyTerm = getConstant(all.getProperty().asOWLObjectProperty().getIRI());
+//					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
+//					Term objectTerm = getConstant(object.asOWLClass().getIRI());
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPALL, 
+//							                            indiv1Term, indiv2Term, subclassTerm, propertyTerm, objectTerm, contextTerm);
+//					Literal ninstd = getLiteral(false, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv2Term, objectTerm, contextTerm);					
+//					Literal instd = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassTerm, contextTerm);
+//					Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);					
+//					addRule(ovrsubs, ninstd, instd, tripled, prec);
+			    	
+					addFact(CKRRewritingVocabulary.DEF_SUPALL, //
+							rewConceptName(subClass.asOWLClass()),//
+							all.getProperty().asOWLObjectProperty().getIRI(),
+							rewConceptName(object.asOWLClass())
+					);			    	
 			    }
-				
+			    
 			// A subclass max(R, 1, B')
 		    // Assuming n=1
 			} else if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_MAX_CARDINALITY) {
 				
 				OWLObjectMaxCardinality max = (OWLObjectMaxCardinality) superClass;
-				OWLClass object = (OWLClass) max.getFiller();
+				//OWLClass object = (OWLClass) max.getFiller();
 				
 				addFact(CKRRewritingVocabulary.SUP_LEQONE, //
-						subClass.asOWLClass().getIRI(),//
+						rewConceptName(subClass.asOWLClass()),//
 						max.getProperty().asOWLObjectProperty().getIRI(),
-						object.asOWLClass().getIRI(),
 						contextID);
 				
 				//add rule for overriding
 			    if(isDefeasible(axiom)){
 			    	//System.out.println("D( A \\subs \\leq 1 R.B ): " + axiom.getAxiomWithoutAnnotations());
 			    	
-					Term propertyTerm = getConstant(max.getProperty().asOWLObjectProperty().getIRI());
-					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
-					Term objectTerm = getConstant(object.asOWLClass().getIRI());					
+//					Term propertyTerm = getConstant(max.getProperty().asOWLObjectProperty().getIRI());
+//					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
+//					Term objectTerm = getConstant(object.asOWLClass().getIRI());					
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPLEQONE, 
+//							                            indiv1Term, indiv2Term, indiv3Term, subclassTerm, propertyTerm, objectTerm, contextTerm);
+//					Literal ovrsubs2 = getLiteral(true, CKRRewritingVocabulary.OVRSUPLEQONE, 
+//                                                        indiv1Term, indiv3Term, indiv2Term, subclassTerm, propertyTerm, objectTerm, contextTerm);					
+//					Literal neq = getLiteral(false, CKRRewritingVocabulary.EQ, 
+//                                                        indiv2Term, indiv3Term, contextTerm);
+//					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassTerm, contextTerm);
+//					Literal tripledy = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);					
+//					Literal tripledz = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                        indiv1Term, propertyTerm, indiv3Term, contextTerm);
+//					Literal instdBy = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv2Term, objectTerm, contextTerm);
+//					Literal instdBz = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv3Term, objectTerm, contextTerm);
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, neq, instdA, tripledy, tripledz, instdBy, instdBz, prec);
+//					addRule(ovrsubs2, neq, instdA, tripledy, tripledz, instdBy, instdBz, prec);
 
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPLEQONE, 
-							                            indiv1Term, indiv2Term, indiv3Term, subclassTerm, propertyTerm, objectTerm, contextTerm);
-					Literal ovrsubs2 = getLiteral(true, CKRRewritingVocabulary.OVRSUPLEQONE, 
-                                                        indiv1Term, indiv3Term, indiv2Term, subclassTerm, propertyTerm, objectTerm, contextTerm);					
-					Literal neq = getLiteral(false, CKRRewritingVocabulary.EQ, 
-                                                        indiv2Term, indiv3Term, contextTerm);
-					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassTerm, contextTerm);
-					Literal tripledy = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                        indiv1Term, propertyTerm, indiv2Term, contextTerm);					
-					Literal tripledz = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                        indiv1Term, propertyTerm, indiv3Term, contextTerm);
-					Literal instdBy = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv2Term, objectTerm, contextTerm);
-					Literal instdBz = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv3Term, objectTerm, contextTerm);
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, neq, instdA, tripledy, tripledz, instdBy, instdBz, prec);
-					addRule(ovrsubs2, neq, instdA, tripledy, tripledz, instdBy, instdBz, prec);
+					addFact(CKRRewritingVocabulary.DEF_SUPLEQONE, //
+							rewConceptName(subClass.asOWLClass()),//
+							max.getProperty().asOWLObjectProperty().getIRI());			    	
 			    }
 			    
 			// A subclass not(B)
+			//No more in normal form! 
 			} else if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_COMPLEMENT_OF) {
 
-				OWLObjectComplementOf not = (OWLObjectComplementOf) superClass;
-				IRI negatedClass = null;
-				
-				for (OWLClassExpression ce : not.getNestedClassExpressions()) {
-					if (!ce.isAnonymous()) negatedClass = ce.asOWLClass().getIRI();
-				}
-				
-				addFact(CKRRewritingVocabulary.SUP_NOT, //
-						subClass.asOWLClass().getIRI(),//
-						negatedClass,
-						contextID);
-
-				//add rule for overriding
-			    if(isDefeasible(axiom)){
-			    	//System.out.println("D( A \\subs \\not B ): " + axiom.getAxiomWithoutAnnotations());
-			    	
-					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
-					Term negatedTerm = getConstant(negatedClass);
-
-					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPNOT, 
-							                            indiv1Term, subclassTerm, negatedTerm, contextTerm);
-					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, subclassTerm, contextTerm);
-					Literal instdB = getLiteral(true, CKRRewritingVocabulary.INSTD, 
-                                                        indiv1Term, negatedTerm, contextTerm);
-					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-							                          contextTerm, globalTerm);
-					addRule(ovrsubs, instdA, instdB, prec);
-			    }
+//				OWLObjectComplementOf not = (OWLObjectComplementOf) superClass;
+//				IRI negatedClass = null;
+//				
+//				for (OWLClassExpression ce : not.getNestedClassExpressions()) {
+//					if (!ce.isAnonymous()) negatedClass = ce.asOWLClass().getIRI();
+//				}
+//				
+//				addFact(CKRRewritingVocabulary.SUP_NOT, //
+//						subClass.asOWLClass().getIRI(),//
+//						negatedClass,
+//						contextID);
+//
+//				//add rule for overriding
+//			    if(isDefeasible(axiom)){
+//			    	//System.out.println("D( A \\subs \\not B ): " + axiom.getAxiomWithoutAnnotations());
+//			    	
+//					Term subclassTerm = getConstant(subClass.asOWLClass().getIRI());
+//					Term negatedTerm = getConstant(negatedClass);
+//
+//					Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUPNOT, 
+//							                            indiv1Term, subclassTerm, negatedTerm, contextTerm);
+//					Literal instdA = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, subclassTerm, contextTerm);
+//					Literal instdB = getLiteral(true, CKRRewritingVocabulary.INSTD, 
+//                                                        indiv1Term, negatedTerm, contextTerm);
+//					Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//							                          contextTerm, globalTerm);
+//					addRule(ovrsubs, instdA, instdB, prec);
+//			    }
 
 			//if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_UNION_OF) {
 			//	throw new IllegalStateException();
@@ -564,8 +631,8 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 		}
 		
 		super.visit(axiom);
-	}		
-		
+	}
+	
 	//- - RBOX AXIOMS - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
 	@Override
@@ -586,21 +653,25 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( R \\subs S ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term role1Term = getConstant(axiom.getSubProperty().asOWLObjectProperty().getIRI());
-			Term role2Term = getConstant(axiom.getSuperProperty().asOWLObjectProperty().getIRI());
-			
-			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBROLE, 
-					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
-			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role2Term, indiv2Term, contextTerm);
-			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);			
-			addRule(ovrsubs, ntripled, tripled, prec);	
+//			Term role1Term = getConstant(axiom.getSubProperty().asOWLObjectProperty().getIRI());
+//			Term role2Term = getConstant(axiom.getSuperProperty().asOWLObjectProperty().getIRI());
+//			
+//			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBROLE, 
+//					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
+//			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role2Term, indiv2Term, contextTerm);
+//			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);			
+//			addRule(ovrsubs, ntripled, tripled, prec);	
+	    	
+			addFact(CKRRewritingVocabulary.DEF_SUBROLE, //
+					axiom.getSubProperty().asOWLObjectProperty().getIRI(),//
+					axiom.getSuperProperty().asOWLObjectProperty().getIRI());
 	    }
 	}
-
+	
 	@Override
 	//Rewrite R \circ S \subs T + DEFEASIBLE
 	public void visit(OWLSubPropertyChainOfAxiom axiom) {
@@ -628,21 +699,26 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( R o S \\subs T ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term role1Term = getConstant(r1);
-			Term role2Term = getConstant(r2);
-			Term role3Term = getConstant(axiom.getSuperProperty().asOWLObjectProperty().getIRI());
-
-			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBRCHAIN, 
-					                              indiv1Term, indiv2Term, indiv3Term, role1Term, role2Term, role3Term, contextTerm);
-			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role3Term, indiv3Term, contextTerm);
-			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
-			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv2Term, role2Term, indiv3Term, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);			
-			addRule(ovrsubs, ntripled, tripled1, tripled2, prec);	
+//			Term role1Term = getConstant(r1);
+//			Term role2Term = getConstant(r2);
+//			Term role3Term = getConstant(axiom.getSuperProperty().asOWLObjectProperty().getIRI());
+//
+//			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRSUBRCHAIN, 
+//					                              indiv1Term, indiv2Term, indiv3Term, role1Term, role2Term, role3Term, contextTerm);
+//			Literal ntripled = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role3Term, indiv3Term, contextTerm);
+//			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
+//			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv2Term, role2Term, indiv3Term, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);			
+//			addRule(ovrsubs, ntripled, tripled1, tripled2, prec);	
+	    	
+			addFact(CKRRewritingVocabulary.DEF_SUBRCHAIN, //
+					r1,//
+					r2,//
+					axiom.getSuperProperty().asOWLObjectProperty().getIRI());
 	    }
 	}
 	
@@ -659,29 +735,33 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( INV(R,S) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term role1Term = getConstant(axiom.getFirstProperty().asOWLObjectProperty().getIRI());
-			Term role2Term = getConstant(axiom.getSecondProperty().asOWLObjectProperty().getIRI());
-
-			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRINVROLE, 
-					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
-			Literal ntripled1 = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv2Term, role2Term, indiv1Term, contextTerm);
-			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
-			
-			Literal ntripled2 = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
-												  indiv1Term, role1Term, indiv2Term, contextTerm);
-			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                    							  indiv2Term, role2Term, indiv1Term, contextTerm);
-			
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);
-			
-			addRule(ovrsubs, ntripled1, tripled1, prec);
-			addRule(ovrsubs, ntripled2, tripled2, prec);
+//			Term role1Term = getConstant(axiom.getFirstProperty().asOWLObjectProperty().getIRI());
+//			Term role2Term = getConstant(axiom.getSecondProperty().asOWLObjectProperty().getIRI());
+//
+//			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRINVROLE, 
+//					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
+//			Literal ntripled1 = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv2Term, role2Term, indiv1Term, contextTerm);
+//			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
+//			
+//			Literal ntripled2 = getLiteral(false, CKRRewritingVocabulary.TRIPLED, 
+//												  indiv1Term, role1Term, indiv2Term, contextTerm);
+//			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                    							  indiv2Term, role2Term, indiv1Term, contextTerm);
+//			
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);
+//			
+//			addRule(ovrsubs, ntripled1, tripled1, prec);
+//			addRule(ovrsubs, ntripled2, tripled2, prec);
+	    	
+			addFact(CKRRewritingVocabulary.DEF_INVROLE, //
+					axiom.getFirstProperty().asOWLObjectProperty().getIRI(),
+					axiom.getSecondProperty().asOWLObjectProperty().getIRI());	    	
 	    }
 	}
-
+	
 	@Override
 	//Rewrite IRR(R) + DEFEASIBLE
 	public void visit(OWLIrreflexiveObjectPropertyAxiom axiom) {
@@ -694,15 +774,18 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( IRR(R) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term roleTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
-		
-			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRIRRROLE, 
-					                              indiv1Term, roleTerm, contextTerm);
-			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, roleTerm, indiv1Term, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);	
-			addRule(ovrsubs, tripled, prec);
+//			Term roleTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
+//		
+//			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRIRRROLE, 
+//					                              indiv1Term, roleTerm, contextTerm);
+//			Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, roleTerm, indiv1Term, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);	
+//			addRule(ovrsubs, tripled, prec);
+	    	
+			addFact(CKRRewritingVocabulary.DEF_IRRROLE, //
+					axiom.getProperty().asOWLObjectProperty().getIRI());	    	
 	    }
 	}
 	
@@ -724,21 +807,25 @@ public class RLGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( DIS(R,S) ): " + axiom.getAxiomWithoutAnnotations());
 	    	
-			Term role1Term = getConstant(r.get(0));
-			Term role2Term = getConstant(r.get(1));
-
-			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRDISROLE, 
-					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
-			//Literal ovrsubs2 = getLiteral(true, CKRRewritingVocabulary.OVRDISROLE, 
-            //                                      indiv1Term, indiv2Term, role2Term, role1Term, contextTerm);			
-			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
-			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
-                                                  indiv1Term, role2Term, indiv2Term, contextTerm);
-			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
-					                          contextTerm, globalTerm);
-			addRule(ovrsubs, tripled1, tripled2, prec);
-			//addRule(ovrsubs2, tripled1, tripled2, prec);
+//			Term role1Term = getConstant(r.get(0));
+//			Term role2Term = getConstant(r.get(1));
+//
+//			Literal ovrsubs = getLiteral(true, CKRRewritingVocabulary.OVRDISROLE, 
+//					                              indiv1Term, indiv2Term, role1Term, role2Term, contextTerm);
+//			//Literal ovrsubs2 = getLiteral(true, CKRRewritingVocabulary.OVRDISROLE, 
+//            //                                      indiv1Term, indiv2Term, role2Term, role1Term, contextTerm);			
+//			Literal tripled1 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role1Term, indiv2Term, contextTerm);
+//			Literal tripled2 = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                                                  indiv1Term, role2Term, indiv2Term, contextTerm);
+//			Literal prec = getLiteral(true, CKRRewritingVocabulary.PREC, 
+//					                          contextTerm, globalTerm);
+//			addRule(ovrsubs, tripled1, tripled2, prec);
+//			//addRule(ovrsubs2, tripled1, tripled2, prec);
+	    	
+			addFact(CKRRewritingVocabulary.DEF_DISROLE,
+					r.get(0),
+					r.get(1));
 	    }
 	}
 	

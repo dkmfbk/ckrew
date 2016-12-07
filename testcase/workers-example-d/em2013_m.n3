@@ -21,15 +21,14 @@
         ckr:hasEvalMeta :Em2012 ;
         rdfs:subClassOf :WorkingBefore .
     
-     :X a owl:Class ;
-        rdfs:subClassOf [
-            owl:complementOf :WorkingNow .
-        ] .
+     :notWorkingNow a owl:Class .
+     [ owl:intersectionOf ( :WorkingNow :notWorkingNow ) ] 
+         rdfs:subClassOf owl:Nothing .
 
     #-------------------------------------------------------------------------
     # ABox axioms #
 
-    :charlie a :X .
+    :charlie a :notWorkingNow .
 
     #------------------------------------------------------------------------- 
     ## TEST: Inferred axioms #

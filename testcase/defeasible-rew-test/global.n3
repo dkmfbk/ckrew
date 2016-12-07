@@ -26,49 +26,49 @@
     #-------------------------------------------------------------------------
     # Defeasibility #
 
-    # insta #
-    :C1 a owl:Class .
-    :C2 a owl:Class .    
-    :ax1 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :ind1 ;
-      owl:annotatedProperty rdf:type ;
-      owl:annotatedTarget :C1 .
-      
-    # triplea #
-    :R1 a owl:ObjectProperty .
-    :ax2 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :ind2 ;
-      owl:annotatedProperty :R1 ;
-      owl:annotatedTarget :ind3 .
+   # insta #
+   :C1 a owl:Class .
+   :C2 a owl:Class .    
+   :ax1 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource :ind1 ;
+     owl:annotatedProperty rdf:type ;
+     owl:annotatedTarget :C1 .         
+     
+   # triplea #
+   :R1 a owl:ObjectProperty .
+   :ax2 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource :ind2 ;
+     owl:annotatedProperty :R1 ;
+     owl:annotatedTarget :ind3 .
 
-    # -triplea #
-    :R3 a owl:ObjectProperty .
-    :npa a owl:NegativePropertyAssertion ;
-         ckr:hasAxiomType ckr:defeasible ;
-         owl:sourceIndividual :i_npa1 ; 
-         owl:assertionProperty :R3 ;
-         owl:targetIndividual :i_npa2 .
+   # -triplea #
+   :R3 a owl:ObjectProperty .
+   :npa a owl:NegativePropertyAssertion ;
+        ckr:hasAxiomType ckr:defeasible ;
+        owl:sourceIndividual :i_npa1 ; 
+        owl:assertionProperty :R3 ;
+        owl:targetIndividual :i_npa2 .
 
-    # subClass #
-    :C3 a owl:Class .
-    :C4 a owl:Class .    
-    :ax3 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :C3 ;
-      owl:annotatedProperty rdfs:subClassOf ;
-      owl:annotatedTarget :C4 .
+   # subClass #
+   :C3 a owl:Class .
+   :C4 a owl:Class .    
+   :ax3 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource :C3 ;
+     owl:annotatedProperty rdfs:subClassOf ;
+     owl:annotatedTarget :C4 .
 
-    # subConj #
-    :C5 a owl:Class.
-    :C6 a owl:Class.
-    :C7 a owl:Class.
-    :ax4 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource [ owl:intersectionOf ( :C5 :C6 ) ] ;
-      owl:annotatedProperty rdfs:subClassOf ;
-      owl:annotatedTarget :C7 .    
+   # subConj #
+   :C5 a owl:Class.                      
+   :C6 a owl:Class.
+   :C7 a owl:Class.
+   :ax4 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource [ owl:intersectionOf ( :C5 :C6 ) ] ;
+     owl:annotatedProperty rdfs:subClassOf ;
+     owl:annotatedTarget :C7 .    
 
     # subEx #
     :C8 a owl:Class.
@@ -132,14 +132,14 @@
             owl:onClass :C15 .
         ] .
 
-    # supNot #
-    :C16 a owl:Class.
-    :C17 a owl:Class.
-    :ax10 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :C16 ;
-      owl:annotatedProperty rdfs:subClassOf ;
-      owl:annotatedTarget [ owl:complementOf :C17 . ] . 
+#   # supNot #
+#   :C16 a owl:Class.
+#   :C17 a owl:Class.
+#   :ax10 rdf:type owl:Axiom ;
+#     ckr:hasAxiomType ckr:defeasible ;
+#     owl:annotatedSource :C16 ;
+#     owl:annotatedProperty rdfs:subClassOf ;
+#     owl:annotatedTarget [ owl:complementOf :C17 . ] . 
 
     # subRole #
     :R8 a owl:ObjectProperty .
@@ -150,15 +150,15 @@
       owl:annotatedProperty rdfs:subPropertyOf ;
       owl:annotatedTarget :R9 .
 
-    # subRChain #
-    :R10 a owl:ObjectProperty .
-    :R11 a owl:ObjectProperty .
-    :R12 a owl:ObjectProperty .
-    :ax12 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :R10 ;
-      owl:annotatedProperty owl:propertyChainAxiom ;
-      owl:annotatedTarget ( :R11 :R12 ) .
+   # subRChain #
+   :R10 a owl:ObjectProperty .
+   :R11 a owl:ObjectProperty .
+   :R12 a owl:ObjectProperty .
+   :ax12 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource :R10 ;
+     owl:annotatedProperty owl:propertyChainAxiom ;
+     owl:annotatedTarget ( :R11 :R12 ) .
 
     # inv #
     :R13 a owl:ObjectProperty .
@@ -172,7 +172,7 @@
     # dis #
     :R15 a owl:ObjectProperty .
     :R16 a owl:ObjectProperty .
-    :ax14 rdf:type owl:Axiom ;
+    :ax14 rdf:type owl:Axiom ;    
       ckr:hasAxiomType ckr:defeasible ;
       owl:annotatedSource :R15 ;
       owl:annotatedProperty owl:propertyDisjointWith ;

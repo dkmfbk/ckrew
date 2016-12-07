@@ -47,8 +47,8 @@ public class CKRProgram {
 	
 	//--- FIELDS ---------------------------------------------
 	
-	private static final String DEFAULT_DLV_PATH = "./localdlv/dlv";
-	private static final String DEFAULT_OUTPUT_FILENAME = "./testcase/output.dlv";
+	//private static final String DEFAULT_DLV_PATH = "./localdlv/dlv";
+	//private static final String DEFAULT_OUTPUT_FILENAME = "./testcase/output.dlv";
 	
 	private CKRKnowledgeBase inputCKR;
 	private OWLOntologyManager manager;
@@ -82,8 +82,8 @@ public class CKRProgram {
 		this.inputCKR = inputCKR;
 		this.manager = inputCKR.getGlobalOntology().getOWLOntologyManager();
 		
-		this.outputFilePath = DEFAULT_OUTPUT_FILENAME;
-		this.dlvPath = DEFAULT_DLV_PATH;
+		//this.outputFilePath = DEFAULT_OUTPUT_FILENAME;
+		//this.dlvPath = DEFAULT_DLV_PATH;
 		
 		this.globalModelComputationTime = 0;
 		this.rewritingTime = 0;

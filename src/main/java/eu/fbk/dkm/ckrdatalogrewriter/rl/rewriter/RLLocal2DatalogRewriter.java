@@ -12,7 +12,6 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLLogicalAxiom;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectAllValuesFrom;
-import org.semanticweb.owlapi.model.OWLObjectComplementOf;
 import org.semanticweb.owlapi.model.OWLObjectIntersectionOf;
 import org.semanticweb.owlapi.model.OWLObjectMaxCardinality;
 import org.semanticweb.owlapi.model.OWLObjectOneOf;
@@ -135,13 +134,13 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 			if ((metaClass != null) && (objectClass != null)){
 			    addFact(CKRRewritingVocabulary.SUB_EVAL_AT,
 			    		objectClass, metaClass,//
-						superClass.asOWLClass().getIRI(),
+			    		rewConceptName(superClass.asOWLClass()),
 						contextID);				
 			}
 			
 		    addFact(CKRRewritingVocabulary.SUB_CLASS, //
-					subClass.asOWLClass().getIRI(), 
-					superClass.asOWLClass().getIRI(),
+		    		rewConceptName(subClass.asOWLClass()), 
+		    		rewConceptName(superClass.asOWLClass()),
 					contextID);
 			//}
 		}
@@ -165,9 +164,9 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 				IRI[] params = new IRI[4];
 				int i = 0;
 				for (OWLClassExpression op : operands) {
-					params[i++] = op.asOWLClass().getIRI();
+					params[i++] = rewConceptName(op.asOWLClass());
 				}
-				params[2] = superClass.asOWLClass().getIRI();
+				params[2] = rewConceptName(superClass.asOWLClass());
 				params[3] = contextID;
 				
 				addFact(CKRRewritingVocabulary.SUB_CONJ, params);
@@ -186,8 +185,8 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 				// addFact(RewritingVocabulary.SUB_EX, r, a, b);
 				addFact(CKRRewritingVocabulary.SUB_EX,//
 						some.getProperty().asOWLObjectProperty().getIRI(),//
-						some.getFiller().asOWLClass().getIRI(),//
-						superClass.asOWLClass().getIRI(), 
+						rewConceptName(some.getFiller().asOWLClass()),//
+						rewConceptName(superClass.asOWLClass()), 
 						contextID);
 
 			} else if (subClass.getClassExpressionType() == ClassExpressionType.OBJECT_ONE_OF) {
@@ -199,7 +198,7 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 				// addFact(RewritingVocabulary.SUB_CLASS, c, a);
 				addFact(CKRRewritingVocabulary.INSTA, //
 						oneOf.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI(),//
-						superClass.asOWLClass().getIRI(),
+						rewConceptName(superClass.asOWLClass()),
 						contextID);
 
 			//} else if (subClass.getClassExpressionType() == ClassExpressionType.OBJECT_UNION_OF) {
@@ -229,7 +228,7 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 					OWLObjectOneOf object = (OWLObjectOneOf) some.getFiller();
 					
 					addFact(CKRRewritingVocabulary.SUP_EX, //
-							subClass.asOWLClass().getIRI(),//
+							rewConceptName(subClass.asOWLClass()),//
 							some.getProperty().asOWLObjectProperty().getIRI(),
 							object.getIndividuals().iterator().next().asOWLNamedIndividual().getIRI(),
 							contextID);
@@ -241,9 +240,9 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 				OWLClass object = (OWLClass) all.getFiller();
 				
 				addFact(CKRRewritingVocabulary.SUP_ALL, //
-						subClass.asOWLClass().getIRI(),//
+						rewConceptName(subClass.asOWLClass()),//
 						all.getProperty().asOWLObjectProperty().getIRI(),
-						object.asOWLClass().getIRI(),
+						rewConceptName(object.asOWLClass()),
 						contextID);
 				
 			// A subclass max(R, 1, B')
@@ -251,27 +250,27 @@ public class RLLocal2DatalogRewriter extends RLContext2DatalogRewriter {
 			} else if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_MAX_CARDINALITY) {
 				
 				OWLObjectMaxCardinality max = (OWLObjectMaxCardinality) superClass;
-				OWLClass object = (OWLClass) max.getFiller();
+				//OWLClass object = (OWLClass) max.getFiller();
 				
 				addFact(CKRRewritingVocabulary.SUP_LEQONE, //
-						subClass.asOWLClass().getIRI(),//
+						rewConceptName(subClass.asOWLClass()),//
 						max.getProperty().asOWLObjectProperty().getIRI(),
-						object.asOWLClass().getIRI(),
 						contextID);
 						
 			// A subclass not(B)
+		    //Not in normal form
 			} else if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_COMPLEMENT_OF) {
 
-				OWLObjectComplementOf not = (OWLObjectComplementOf) superClass;
-				IRI negatedClass = null;
-				for (OWLClassExpression ce : not.getNestedClassExpressions()) {
-					if (!ce.isAnonymous()) negatedClass = ce.asOWLClass().getIRI();
-				}
-				
-				addFact(CKRRewritingVocabulary.SUP_NOT, //
-						subClass.asOWLClass().getIRI(),//
-						negatedClass,
-						contextID);				
+//				OWLObjectComplementOf not = (OWLObjectComplementOf) superClass;
+//				IRI negatedClass = null;
+//				for (OWLClassExpression ce : not.getNestedClassExpressions()) {
+//					if (!ce.isAnonymous()) negatedClass = ce.asOWLClass().getIRI();
+//				}
+//				
+//				addFact(CKRRewritingVocabulary.SUP_NOT, //
+//						subClass.asOWLClass().getIRI(),//
+//						negatedClass,
+//						contextID);				
 
 			// (A -> or(B, C)) ~>
 			//if (superClass.getClassExpressionType() == ClassExpressionType.OBJECT_UNION_OF) {

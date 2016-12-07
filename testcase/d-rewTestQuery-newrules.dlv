@@ -1,0 +1,68 @@
+%------------------------------------------------------------------------- 
+%# TEST: Inferred axioms WITH OVERRIDING #
+%-------------------------------------------------------------------------
+
+pos(X,Y,C) :- instd(X,Y,C,"main").
+posr(X,R,Y,C) :- tripled(X,R,Y,C,"main").
+pose(X1,X2,C) :- eq(X1,X2,C,"main").
+
+%# :prop-inst
+%not pos("ind1", "C1", "c1") ?
+
+%# :prop-triple
+%not posr("ind2", "R1", "ind3", "c1") ?
+
+%# :prop-ntriple
+%posr("i_npa1", "R3", "i_npa2", "c1") ?
+
+%# :prop-subc
+%not pos("i_sc", "C4", "c1") ?
+%pos("i_sc", "C3", "c1") ?
+
+%# :prop-subcnj
+%not pos("i_scj", "C7", "c1") ?
+%pos("i_scj", "C5", "c1") ?
+
+%# :prop-subex 
+%not pos("i_sbx1", "C9", "c1") ?
+%pos("i_sbx3", "C9", "c1") ?
+
+%# :prop-supex
+%not posr("i_spx1", "R5", "obj_ex", "c1") ?
+%posr("i_spx2", "R5", "obj_ex", "c1") ?
+
+%# :prop-insta (oneOf)
+%not pos("ind2", "C11", "c1") ?
+
+%# :prl-supforall
+%not pos("i_sfl2", "C13", "c1") ?
+%pos("i_sfl4", "C13", "c1") ?
+
+%# :prl-supleqone
+%not pose("i_leq1", "i_leq2", "c1") ?
+%ovrSupLeqOne("i_leq", "i_leq1", "i_leq2", "C14", "R7", "c1") ?
+%ovrSupLeqOne("i_leq", "i_leq2", "i_leq1", "C14", "R7", "c1") ?
+%prova("i_leq1", "i_leq2", "c1") ?
+
+%# :prl-not
+%pos("i_not", "C17", "c1") ?
+
+%# :prl-subr 
+%not posr("i_sr1", "R9", "i_sr2", "c1") ?
+
+%# :prl-subrc 
+%not posr("i_src1", "R10", "i_src3", "c1") ?
+
+%# :prl-inv1
+%not posr("i_inv2", "R14", "i_inv1", "c1") ?
+
+%# :prl-dis
+%posr("i_dis1", "R16", "i_dis2", "c1") ?
+
+%# :prl-irr
+posr("i_irr", "R18", "i_irr", "c1") ?
+
+%#####################
+
+%-------------------------------------------------------------------------
+

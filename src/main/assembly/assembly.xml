@@ -69,6 +69,8 @@
 			  <exclude>/simple-el/**</exclude>
 			  <exclude>/simple-rl/**</exclude>
 			  <exclude>/simple-rl-d/**</exclude>
+			  <exclude>/ordering-test/**</exclude>
+			  <exclude>/trig-test/**</exclude>			  
 			  <exclude>*.bat</exclude>
 			  <exclude>*.marks</exclude>
 			  <exclude>*.txt</exclude>

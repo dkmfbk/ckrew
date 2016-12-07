@@ -1,957 +1,294 @@
-insta("m0", "Module", "g").
-insta("c8", "Context", "g").
-domain("hasAttribute", "Context", "g").
-triplea("c3", "hasModule", "m3", "g").
-insta("m2", "Module", "g").
-triplea("c1", "hasModule", "m1", "g").
-insta("c3", "Context", "g").
-insta("m9", "Module", "g").
-insta("strict", "AxiomType", "g").
-insta("c1", "Context", "g").
-triplea("c0", "hasModule", "m0", "g").
-range("hasModule", "Module", "g").
-triplea("c5", "hasModule", "m5", "g").
-insta("c6", "Context", "g").
-triplea("c7", "hasModule", "m7", "g").
-insta("c2", "Context", "g").
-insta("m4", "Module", "g").
-insta("m5", "Module", "g").
-triplea("c9", "hasModule", "m9", "g").
-insta("c0", "Context", "g").
-insta("m6", "Module", "g").
+subRChain("R11", "R12", "R10", "g").
+def_subrc("R11", "R12", "R10").
+subClass("C3", "C4", "g").
+def_subclass("C3", "C4").
+insta("ind1", "C1", "g", "main").
+def_insta("ind1", "C1").
+supForall("C12", "R6", "C13", "g").
+def_supforall("C12", "R6", "C13").
+insta("m1", "Module", "g", "main").
+irr("R18", "g").
+def_irr("R18").
+subConj("C5", "C6", "C7", "g").
+def_subcnj("C5", "C6", "C7").
+supLeqOne("C14", "R7", "g").
+def_supleqone("C14", "R7").
+supEx("C10", "R5", "obj_ex", "g").
+def_supex("C10", "R5", "obj_ex").
 domain("hasModule", "Context", "g").
-triplea("c2", "hasModule", "m2", "g").
-insta("m8", "Module", "g").
-insta("c9", "Context", "g").
-insta("c4", "Context", "g").
-insta("m7", "Module", "g").
-insta("c5", "Context", "g").
+domain("hasAttribute", "Context", "g").
+triplea("c1", "hasModule", "m1", "g", "main").
 range("hasAttribute", "AttributeValue", "g").
-insta("m3", "Module", "g").
-triplea("c6", "hasModule", "m6", "g").
-insta("m1", "Module", "g").
-triplea("c4", "hasModule", "m4", "g").
-triplea("c8", "hasModule", "m8", "g").
-insta("defeasible", "AxiomType", "g").
-insta("c7", "Context", "g").
-nom("a13", "g").
-nom("a12", "g").
-nom("a11", "g").
-nom("a10", "g").
-nom("a17", "g").
-nom("a16", "g").
-nom("strict", "g").
-nom("a15", "g").
-nom("a14", "g").
-nom("m9", "g").
-nom("a19", "g").
-nom("a18", "g").
-nom("a3", "g").
-nom("m5", "g").
-nom("a4", "g").
-nom("m6", "g").
-nom("c9", "g").
-nom("a1", "g").
-nom("m7", "g").
-nom("c8", "g").
-nom("c7", "g").
-nom("m8", "g").
-nom("a2", "g").
+dis("R15", "R16", "g").
+def_dis("R15", "R16").
+insta("strict", "AxiomType", "g", "main").
+range("hasModule", "Module", "g").
+ntriplea("i_npa1", "R3", "i_npa2", "g").
+def_ntriplea("i_npa1", "R3", "i_npa2").
+inv("R13", "R14", "g").
+def_inv("R13", "R14").
+subEx("R4", "C8", "C9", "g").
+def_subex("R4", "C8", "C9").
+insta("ind2", "C11", "g", "main").
+def_insta("ind2", "C11").
+insta("c1", "Context", "g", "main").
+triplea("ind2", "R1", "ind3", "g", "main").
+def_triplea("ind2", "R1", "ind3").
+insta("defeasible", "AxiomType", "g", "main").
+subRole("R8", "R9", "g").
+def_subr("R8", "R9").
 nom("m1", "g").
-nom("m2", "g").
-nom("a0", "g").
-nom("m3", "g").
-nom("m4", "g").
-nom("c2", "g").
+nom("i_npa2", "g").
+nom("i_npa1", "g").
 nom("c1", "g").
-nom("c0", "g").
-nom("a9", "g").
+nom("obj_ex", "g").
+nom("strict", "g").
 nom("defeasible", "g").
-nom("m0", "g").
-nom("a7", "g").
-nom("c6", "g").
-nom("c5", "g").
-nom("a8", "g").
-nom("a5", "g").
-nom("c4", "g").
-nom("a6", "g").
-nom("c3", "g").
-rol("R1", "g").
-rol("R0", "g").
-rol("R3", "g").
-rol("R2", "g").
-rol("R5", "g").
+nom("ind2", "g").
+nom("ind3", "g").
+nom("ind1", "g").
+rol("R16", "g").
+rol("R18", "g").
+rol("hasModule", "g").
 rol("R4", "g").
+rol("hasAttribute", "g").
+rol("R3", "g").
+rol("R1", "g").
+rol("R8", "g").
 rol("R7", "g").
 rol("R6", "g").
-rol("R8", "g").
-rol("hasAttribute", "g").
-rol("hasModule", "g").
+rol("R5", "g").
 rol("R9", "g").
-cls("A1", "g").
-cls("A2", "g").
-cls("A0", "g").
-cls("A5", "g").
+rol("R13", "g").
+rol("R12", "g").
+rol("R15", "g").
+rol("R14", "g").
+rol("R11", "g").
+rol("R10", "g").
+cls("C15", "g").
 cls("AttributeValue", "g").
-cls("A6", "g").
-cls("A3", "g").
-cls("A4", "g").
-cls("A9", "g").
-cls("A7", "g").
-cls("A8", "g").
+cls("C8", "g").
+cls("C9", "g").
+cls("C6", "g").
+cls("C10", "g").
+cls("C7", "g").
 cls("Module", "g").
+cls("C4", "g").
+cls("C12", "g").
+cls("C5", "g").
+cls("C11", "g").
+cls("C2", "g").
+cls("C14", "g").
+cls("C13", "g").
+cls("C3", "g").
+cls("C1", "g").
 cls("AxiomType", "g").
 cls("Context", "g").
-instd(X, Z, C) :- insta(X, Z, C).
--instd(X, Z, C) :- -insta(X, Z, C).
-tripled(X, R, Y, C) :- triplea(X, R, Y, C).
--tripled(X, R, Y, C) :- -triplea(X, R, Y, C).
-eq(X, X, C) :- nom(X, C).
-eq(Y, X, C) :- eq(X, Y, C).
-instd(Y, Z, C) :- eq(X, Y, C), instd(X, Z, C).
--instd(Y, Z, C) :- eq(X, Y, C), -instd(X, Z, C).
-tripled(Y, U, Z, C) :- eq(X, Y, C), tripled(X, U, Z, C).
--tripled(Y, U, Z, C) :- eq(X, Y, C), -tripled(X, U, Z, C).
-tripled(Z, U, Y, C) :- eq(X, Y, C), tripled(Z, U, X, C).
--tripled(Z, U, Y, C) :- eq(X, Y, C), -tripled(Z, U, X, C).
-eq(X, Z, C) :- eq(X, Y, C), eq(Y, Z, C).
-instd(X, "top", C) :- instd(X, Z, C).
-instd(X, Z, C) :- subClass(Y, Z, C), instd(X, Y, C).
--instd(X, Z, C) :- supNot(Y, Z, C), instd(X, Y, C).
-instd(X, Z, C) :- subConj(Y1, Y2, Z, C), instd(X, Y1, C), instd(X, Y2, C).
-instd(X, Z, C) :- subEx(V, Y, Z, C), tripled(X, V, XP, C), instd(XP, Y, C).
-tripled(X, R, X1, C) :- supEx(Y, R, X1, C), instd(X, Y, C).
-instd(Y, Z1, C) :- supForall(Z, R, Z1, C), instd(X, Z, C), tripled(X, R, Y, C).
-eq(X1, X2, C) :- supLeqOne(Z, R, Z1, C), instd(X, Z, C), tripled(X, R, X1, C), instd(X1, Z1, C), tripled(X, R, X2, C), instd(X2, Z1, C).
-tripled(X, W, X1, C) :- subRole(V, W, C), tripled(X, V, X1, C).
-tripled(X, W, Z, C) :- subRChain(U, V, W, C), tripled(X, U, Y, C), tripled(Y, V, Z, C).
--tripled(X, V, Y, C) :- dis(U, V, C), tripled(X, U, Y, C).
--tripled(X, U, Y, C) :- dis(U, V, C), tripled(X, V, Y, C).
-tripled(Y, V, X, C) :- inv(U, V, C), tripled(X, U, Y, C).
-tripled(Y, U, X, C) :- inv(U, V, C), tripled(X, V, Y, C).
--tripled(X, U, X, C) :- irr(U, C), nom(X, C).
-insta("a7", "A2", "c0").
-subRole("R2", "R3", "c0").
-insta("a2", "A3", "c0").
-domain("hasAttribute", "Context", "c0").
-insta("a9", "A4", "c0").
-subClass("A3", "A1", "c0").
-subClass("A2", "A0", "c0").
-triplea("a16", "R1", "a6", "c0").
-insta("strict", "AxiomType", "c0").
-insta("a18", "A2", "c0").
-subRole("R5", "R6", "c0").
-range("hasModule", "Module", "c0").
-insta("a4", "A1", "c0").
-triplea("a5", "R1", "a14", "c0").
-triplea("a19", "R4", "a13", "c0").
-subClass("A1", "A3", "c0").
-subClass("A2", "A2", "c0").
-triplea("a11", "R7", "a5", "c0").
-triplea("a9", "R4", "a19", "c0").
-subRole("R8", "R3", "c0").
-triplea("a16", "R4", "a11", "c0").
-subClass("A9", "A1", "c0").
-triplea("a5", "R3", "a11", "c0").
-domain("hasModule", "Context", "c0").
-insta("a15", "A7", "c0").
-triplea("a11", "R1", "a12", "c0").
-subClass("A3", "A5", "c0").
-triplea("a10", "R3", "a15", "c0").
-triplea("a4", "R4", "a13", "c0").
-range("hasAttribute", "AttributeValue", "c0").
-triplea("a19", "R8", "a14", "c0").
-subRole("R1", "R8", "c0").
-subRole("R4", "R5", "c0").
-subClass("A2", "A4", "c0").
-insta("defeasible", "AxiomType", "c0").
-subClass("A1", "A2", "c0").
-triplea("a18", "R6", "a12", "c0").
-triplea("a9", "R8", "a10", "c0").
-triplea("a10", "R4", "a9", "c0").
-nom("a13", "c0").
-nom("a12", "c0").
-nom("a11", "c0").
-nom("a10", "c0").
-nom("a16", "c0").
-nom("strict", "c0").
-nom("a15", "c0").
-nom("a14", "c0").
-nom("a19", "c0").
-nom("a18", "c0").
-nom("a4", "c0").
-nom("a2", "c0").
-nom("defeasible", "c0").
-nom("a9", "c0").
-nom("a7", "c0").
-nom("a5", "c0").
-nom("a6", "c0").
-rol("R1", "c0").
-rol("R3", "c0").
-rol("R2", "c0").
-rol("R5", "c0").
-rol("R4", "c0").
-rol("R7", "c0").
-rol("R6", "c0").
-rol("hasModule", "c0").
-rol("R8", "c0").
-rol("hasAttribute", "c0").
-cls("A1", "c0").
-cls("A2", "c0").
-cls("A0", "c0").
-cls("A5", "c0").
-cls("AttributeValue", "c0").
-cls("AxiomType", "c0").
-cls("A3", "c0").
-cls("A4", "c0").
-cls("A9", "c0").
-cls("A7", "c0").
-cls("Module", "c0").
-cls("Context", "c0").
-prec("c0", "g").
-subClass("A1", "A0", "c5").
-insta("a14", "A4", "c5").
-subRole("R4", "R0", "c5").
-insta("a3", "A0", "c5").
-domain("hasAttribute", "Context", "c5").
-subClass("A0", "A4", "c5").
-insta("a10", "A3", "c5").
-subClass("A8", "A6", "c5").
-subClass("A3", "A1", "c5").
-subRole("R8", "R5", "c5").
-subClass("A0", "A0", "c5").
-triplea("a7", "R0", "a10", "c5").
-insta("a8", "A2", "c5").
-insta("strict", "AxiomType", "c5").
-subClass("A4", "A4", "c5").
-insta("a1", "A4", "c5").
-range("hasModule", "Module", "c5").
--eq("a5", "b0", "c5").
-insta("a12", "A1", "c5").
-insta("a9", "A0", "c5").
-subRole("R7", "R3", "c5").
-triplea("a10", "R3", "a12", "c5").
-insta("a10", "A4", "c5").
-subRole("R1", "R1", "c5").
-insta("a3", "A4", "c5").
-triplea("a18", "R5", "a17", "c5").
-insta("a11", "A7", "c5").
-domain("hasModule", "Context", "c5").
-subClass("A1", "A1", "c5").
-subRole("R1", "R3", "c5").
-triplea("a8", "R2", "a8", "c5").
-range("hasAttribute", "AttributeValue", "c5").
-subClass("A7", "A6", "c5").
-insta("a12", "A7", "c5").
-insta("defeasible", "AxiomType", "c5").
-triplea("a14", "R5", "a15", "c5").
-subClass("A3", "A4", "c5").
-insta("a1", "A3", "c5").
-insta("a11", "A6", "c5").
-subClass("A0", "A1", "c5").
-insta("a15", "A6", "c5").
-nom("a12", "c5").
-nom("a11", "c5").
-nom("a10", "c5").
-nom("a17", "c5").
-nom("strict", "c5").
-nom("a15", "c5").
-nom("a14", "c5").
-nom("a18", "c5").
-nom("a3", "c5").
-nom("a1", "c5").
-nom("a9", "c5").
-nom("defeasible", "c5").
-nom("b0", "c5").
-nom("a7", "c5").
-nom("a8", "c5").
-nom("a5", "c5").
-rol("R1", "c5").
-rol("R0", "c5").
-rol("R3", "c5").
-rol("R2", "c5").
-rol("R5", "c5").
-rol("R4", "c5").
-rol("R7", "c5").
-rol("hasModule", "c5").
-rol("hasAttribute", "c5").
-rol("R8", "c5").
-cls("A1", "c5").
-cls("A2", "c5").
-cls("A0", "c5").
-cls("AttributeValue", "c5").
-cls("AxiomType", "c5").
-cls("A6", "c5").
-cls("A3", "c5").
-cls("A4", "c5").
-cls("A7", "c5").
-cls("Module", "c5").
-cls("A8", "c5").
-cls("Context", "c5").
-prec("c5", "g").
-insta("a14", "A4", "c6").
-triplea("a5", "R8", "a15", "c6").
-insta("a7", "A4", "c6").
-subRole("R3", "R4", "c6").
-subClass("A2", "A7", "c6").
-subRole("R2", "R3", "c6").
-triplea("a17", "R7", "a12", "c6").
-triplea("a17", "R3", "a3", "c6").
-domain("hasAttribute", "Context", "c6").
-subRole("R3", "R6", "c6").
-insta("a2", "A6", "c6").
-triplea("a7", "R4", "a16", "c6").
-triplea("a11", "R5", "a4", "c6").
-subClass("A2", "A0", "c6").
-insta("a3", "A3", "c6").
-subClass("A4", "A0", "c6").
-subClass("A0", "A7", "c6").
-insta("strict", "AxiomType", "c6").
-subRole("R5", "R0", "c6").
-triplea("a17", "R2", "a18", "c6").
-range("hasModule", "Module", "c6").
-insta("a11", "A1", "c6").
-subClass("A3", "A0", "c6").
-subClass("A7", "A5", "c6").
-subClass("A0", "A2", "c6").
-triplea("a13", "R4", "a8", "c6").
-subClass("A2", "A2", "c6").
-domain("hasModule", "Context", "c6").
-insta("a11", "A4", "c6").
-range("hasAttribute", "AttributeValue", "c6").
-triplea("a4", "R8", "a10", "c6").
-insta("a0", "A3", "c6").
-insta("a9", "A3", "c6").
-subClass("A1", "A4", "c6").
-insta("a15", "A4", "c6").
-triplea("a11", "R6", "a2", "c6").
-insta("defeasible", "AxiomType", "c6").
-insta("a7", "A1", "c6").
-subClass("A6", "A6", "c6").
-triplea("a19", "R6", "a6", "c6").
-subRole("R3", "R3", "c6").
-nom("a13", "c6").
-nom("a12", "c6").
-nom("a11", "c6").
-nom("a10", "c6").
-nom("a17", "c6").
-nom("a16", "c6").
-nom("strict", "c6").
-nom("a15", "c6").
-nom("a14", "c6").
-nom("a19", "c6").
-nom("a18", "c6").
-nom("a3", "c6").
-nom("a4", "c6").
-nom("a2", "c6").
-nom("a0", "c6").
-nom("defeasible", "c6").
-nom("a9", "c6").
-nom("a7", "c6").
-nom("a8", "c6").
-nom("a5", "c6").
-nom("a6", "c6").
-rol("R0", "c6").
-rol("R3", "c6").
-rol("R2", "c6").
-rol("R5", "c6").
-rol("R4", "c6").
-rol("R7", "c6").
-rol("R6", "c6").
-rol("hasModule", "c6").
-rol("R8", "c6").
-rol("hasAttribute", "c6").
-cls("A1", "c6").
-cls("A2", "c6").
-cls("A0", "c6").
-cls("A5", "c6").
-cls("AttributeValue", "c6").
-cls("AxiomType", "c6").
-cls("A6", "c6").
-cls("A3", "c6").
-cls("A4", "c6").
-cls("A7", "c6").
-cls("Module", "c6").
-cls("Context", "c6").
-prec("c6", "g").
-subClass("A1", "A0", "c4").
-insta("a4", "A5", "c4").
-insta("a13", "A7", "c4").
-insta("a13", "A2", "c4").
-insta("a12", "A2", "c4").
-subRole("R1", "R2", "c4").
-domain("hasAttribute", "Context", "c4").
-subRole("R4", "R2", "c4").
-subClass("A0", "A7", "c4").
-insta("strict", "AxiomType", "c4").
-triplea("a0", "R6", "a16", "c4").
-triplea("a8", "R8", "a3", "c4").
-subRole("R5", "R0", "c4").
-triplea("a9", "R5", "a18", "c4").
-triplea("a19", "R4", "a11", "c4").
-range("hasModule", "Module", "c4").
-triplea("a4", "R4", "a7", "c4").
-insta("a16", "A4", "c4").
-triplea("a5", "R8", "a9", "c4").
-subClass("A2", "A2", "c4").
-insta("a6", "A5", "c4").
-triplea("a16", "R4", "a11", "c4").
-insta("a17", "A2", "c4").
-insta("a14", "A6", "c4").
-subRole("R2", "R6", "c4").
-domain("hasModule", "Context", "c4").
-subClass("A9", "A3", "c4").
-range("hasAttribute", "AttributeValue", "c4").
-subClass("A3", "A2", "c4").
-subClass("A2", "A6", "c4").
-triplea("a13", "R5", "a12", "c4").
-subClass("A2", "A4", "c4").
-insta("defeasible", "AxiomType", "c4").
-subClass("A3", "A4", "c4").
-subClass("A1", "A2", "c4").
-insta("a9", "A1", "c4").
-triplea("a1", "R1", "a4", "c4").
-insta("a6", "A4", "c4").
-insta("a5", "A2", "c4").
-nom("a13", "c4").
-nom("a12", "c4").
-nom("a11", "c4").
-nom("a17", "c4").
-nom("strict", "c4").
-nom("a16", "c4").
-nom("a14", "c4").
-nom("a19", "c4").
-nom("a18", "c4").
-nom("a3", "c4").
-nom("a4", "c4").
-nom("a1", "c4").
-nom("a0", "c4").
-nom("defeasible", "c4").
-nom("a9", "c4").
-nom("a7", "c4").
-nom("a8", "c4").
-nom("a5", "c4").
-nom("a6", "c4").
-rol("R1", "c4").
-rol("R0", "c4").
-rol("R2", "c4").
-rol("R5", "c4").
-rol("R4", "c4").
-rol("R6", "c4").
-rol("hasModule", "c4").
-rol("R8", "c4").
-rol("hasAttribute", "c4").
-cls("A1", "c4").
-cls("A2", "c4").
-cls("A0", "c4").
-cls("A5", "c4").
-cls("AttributeValue", "c4").
-cls("A6", "c4").
-cls("A3", "c4").
-cls("A4", "c4").
-cls("A9", "c4").
-cls("A7", "c4").
-cls("Module", "c4").
-cls("AxiomType", "c4").
-cls("Context", "c4").
-prec("c4", "g").
-subClass("A5", "A1", "c1").
-subRole("R6", "R1", "c1").
-insta("a2", "A3", "c1").
-domain("hasAttribute", "Context", "c1").
-subClass("A4", "A2", "c1").
-subClass("A3", "A6", "c1").
-subRole("R0", "R3", "c1").
-insta("a4", "A3", "c1").
-insta("strict", "AxiomType", "c1").
-range("hasModule", "Module", "c1").
-subClass("A2", "A5", "c1").
-insta("a11", "A1", "c1").
-triplea("a11", "R5", "a17", "c1").
-triplea("a11", "R1", "a7", "c1").
-triplea("a8", "R3", "a2", "c1").
-insta("a9", "A0", "c1").
-subRole("R1", "R5", "c1").
-subClass("A2", "A2", "c1").
-triplea("a2", "R4", "a9", "c1").
-subRole("R3", "R5", "c1").
-insta("a13", "A3", "c1").
-insta("a10", "A8", "c1").
-domain("hasModule", "Context", "c1").
-triplea("a13", "R1", "a15", "c1").
-subRole("R5", "R4", "c1").
+instd(X, Z, C, T) :- insta(X, Z, C, T).
+tripled(X, R, Y, C, T) :- triplea(X, R, Y, C, T).
+unsat(T) :- ninsta(X, Z, C), instd(X, Z, C, T).
+unsat(T) :- ntriplea(X, R, Y, C), tripled(X, R, Y, C, T).
+unsat(T) :- eq(X, Y, C, T).
+instd(X, "top", C, "main") :- nom(X, C).
+unsat(T) :- instd(X, "bot", C, T).
+instd(X, Z, C, T) :- subClass(Y, Z, C), instd(X, Y, C, T).
+instd(X, Z, C, T) :- subConj(Y1, Y2, Z, C), instd(X, Y1, C, T), instd(X, Y2, C, T).
+instd(X, Z, C, T) :- subEx(V, Y, Z, C), tripled(X, V, XP, C, T), instd(XP, Y, C, T).
+tripled(X, R, X1, C, T) :- supEx(Y, R, X1, C), instd(X, Y, C, T).
+instd(Y, Z1, C, T) :- supForall(Z, R, Z1, C), instd(X, Z, C, T), tripled(X, R, Y, C, T).
+unsat(T) :- supLeqOne(Z, R, C), instd(X, Z, C, T), tripled(X, R, X1, C, T), tripled(X, R, X2, C, T), X1 != X2.
+tripled(X, W, X1, C, T) :- subRole(V, W, C), tripled(X, V, X1, C, T).
+tripled(X, W, Z, C, T) :- subRChain(U, V, W, C), tripled(X, U, Y, C, T), tripled(Y, V, Z, C, T).
+unsat(T) :- dis(U, V, C), tripled(X, U, Y, C, T), tripled(X, V, Y, C, T).
+tripled(Y, V, X, C, T) :- inv(U, V, C), tripled(X, U, Y, C, T).
+tripled(Y, U, X, C, T) :- inv(U, V, C), tripled(X, V, Y, C, T).
+unsat(T) :- irr(U, C), tripled(X, U, X, C, T).
+ :- unsat("main").
+insta("ind1", "notC1", "c1", "main").
+insta("i_sfl1", "C12", "c1", "main").
+subConj("C4", "notC4", "bot", "c1").
+insta("strict", "AxiomType", "c1", "main").
+ntriplea("i_spx1", "R5", "obj_ex", "c1").
+triplea("i_sbx3", "R4", "i_sbx4", "c1", "main").
+insta("ind2", "notC11", "c1", "main").
+triplea("i_leq", "R7", "i_leq2", "c1", "main").
+insta("i_sbx4", "C8", "c1", "main").
+triplea("i_irr", "R18", "i_irr", "c1", "main").
+insta("i_sbx1", "notC9", "c1", "main").
+ntriplea("i_inv2", "R14", "i_inv1", "c1").
+insta("i_sc", "C3", "c1", "main").
+triplea("i_sr1", "R8", "i_sr2", "c1", "main").
+subConj("C11", "notC11", "bot", "c1").
 range("hasAttribute", "AttributeValue", "c1").
-subClass("A4", "A3", "c1").
-subClass("A1", "A4", "c1").
-triplea("a19", "R4", "a2", "c1").
-insta("a12", "A7", "c1").
-triplea("a1", "R2", "a2", "c1").
-insta("defeasible", "AxiomType", "c1").
-insta("a1", "A3", "c1").
-triplea("a12", "R0", "a1", "c1").
-triplea("a8", "R0", "a14", "c1").
-triplea("a9", "R8", "a10", "c1").
-subClass("A4", "A5", "c1").
-insta("a6", "A4", "c1").
-nom("a13", "c1").
-nom("a12", "c1").
-nom("a11", "c1").
-nom("a10", "c1").
-nom("a17", "c1").
+subConj("C7", "notC7", "bot", "c1").
+insta("i_sc", "notC4", "c1", "main").
+insta("defeasible", "AxiomType", "c1", "main").
+triplea("i_src1", "R11", "i_src2", "c1", "main").
+triplea("i_inv1", "R13", "i_inv2", "c1", "main").
+ntriplea("i_src1", "R10", "i_src3", "c1").
+triplea("i_npa1", "R3", "i_npa2", "c1", "main").
+insta("i_scj", "notC7", "c1", "main").
+triplea("i_leq", "R7", "i_leq1", "c1", "main").
+insta("i_leq2", "C15", "c1", "main").
+triplea("i_dis1", "R15", "i_dis2", "c1", "main").
+insta("i_sfl2", "notC13", "c1", "main").
+insta("i_scj", "C5", "c1", "main").
+domain("hasAttribute", "Context", "c1").
+insta("i_spx2", "C10", "c1", "main").
+subConj("C9", "notC9", "bot", "c1").
+ntriplea("ind2", "R1", "ind3", "c1").
+triplea("i_src2", "R12", "i_src3", "c1", "main").
+insta("i_spx1", "C10", "c1", "main").
+range("hasModule", "Module", "c1").
+insta("i_sbx2", "C8", "c1", "main").
+triplea("i_sbx1", "R4", "i_sbx2", "c1", "main").
+subConj("C1", "notC1", "bot", "c1").
+insta("i_sfl3", "C12", "c1", "main").
+domain("hasModule", "Context", "c1").
+insta("i_scj", "C6", "c1", "main").
+triplea("i_sfl3", "R6", "i_sfl4", "c1", "main").
+insta("i_leq", "C14", "c1", "main").
+triplea("i_sfl1", "R6", "i_sfl2", "c1", "main").
+ntriplea("i_sr1", "R9", "i_sr2", "c1").
+insta("i_leq1", "C15", "c1", "main").
+subConj("C13", "notC13", "bot", "c1").
+triplea("i_dis1", "R16", "i_dis2", "c1", "main").
+nom("i_sbx3", "c1").
+nom("i_sbx2", "c1").
+nom("i_src3", "c1").
+nom("i_sbx1", "c1").
+nom("i_sbx4", "c1").
+nom("i_sfl4", "c1").
+nom("obj_ex", "c1").
 nom("strict", "c1").
-nom("a15", "c1").
-nom("a14", "c1").
-nom("a19", "c1").
-nom("a4", "c1").
-nom("a1", "c1").
-nom("a2", "c1").
-nom("a9", "c1").
+nom("i_sfl1", "c1").
+nom("i_sfl2", "c1").
+nom("i_src2", "c1").
+nom("i_sfl3", "c1").
+nom("i_src1", "c1").
+nom("i_inv2", "c1").
+nom("i_inv1", "c1").
 nom("defeasible", "c1").
-nom("a7", "c1").
-nom("a8", "c1").
-nom("a6", "c1").
-rol("R1", "c1").
-rol("R0", "c1").
-rol("R3", "c1").
-rol("R2", "c1").
-rol("R5", "c1").
-rol("R4", "c1").
-rol("R6", "c1").
+nom("i_leq", "c1").
+nom("i_spx1", "c1").
+nom("i_dis2", "c1").
+nom("i_leq2", "c1").
+nom("i_dis1", "c1").
+nom("i_leq1", "c1").
+nom("i_irr", "c1").
+nom("ind2", "c1").
+nom("ind3", "c1").
+nom("i_spx2", "c1").
+nom("ind1", "c1").
+nom("i_sr2", "c1").
+nom("i_scj", "c1").
+nom("i_sr1", "c1").
+nom("i_npa2", "c1").
+nom("i_sc", "c1").
+nom("i_npa1", "c1").
+rol("R16", "c1").
+rol("R18", "c1").
 rol("hasModule", "c1").
-rol("R8", "c1").
+rol("R4", "c1").
 rol("hasAttribute", "c1").
-cls("A1", "c1").
-cls("A2", "c1").
-cls("A0", "c1").
-cls("A5", "c1").
-cls("AttributeValue", "c1").
-cls("A6", "c1").
-cls("A3", "c1").
-cls("A4", "c1").
-cls("A7", "c1").
-cls("A8", "c1").
+rol("R3", "c1").
+rol("R1", "c1").
+rol("R8", "c1").
+rol("R7", "c1").
+rol("R6", "c1").
+rol("R5", "c1").
+rol("R9", "c1").
+rol("R13", "c1").
+rol("R12", "c1").
+rol("R15", "c1").
+rol("R14", "c1").
+rol("R11", "c1").
+rol("R10", "c1").
+cls("notC11", "c1").
+cls("notC13", "c1").
+cls("C8", "c1").
+cls("C9", "c1").
+cls("C6", "c1").
+cls("C7", "c1").
 cls("Module", "c1").
+cls("C4", "c1").
+cls("C5", "c1").
+cls("C3", "c1").
 cls("AxiomType", "c1").
+cls("notC1", "c1").
+cls("C15", "c1").
+cls("AttributeValue", "c1").
+cls("notC4", "c1").
+cls("notC9", "c1").
+cls("notC7", "c1").
+cls("C10", "c1").
+cls("bot", "c1").
+cls("C12", "c1").
+cls("C11", "c1").
+cls("C14", "c1").
+cls("C13", "c1").
+cls("C1", "c1").
 cls("Context", "c1").
 prec("c1", "g").
-subRole("R4", "R0", "c2").
-triplea("a8", "R0", "a11", "c2").
-triplea("a9", "R1", "a12", "c2").
-domain("hasAttribute", "Context", "c2").
-subClass("A3", "A6", "c2").
-triplea("a12", "R3", "a5", "c2").
-insta("a18", "A0", "c2").
-insta("strict", "AxiomType", "c2").
-insta("a17", "A6", "c2").
-subRole("R4", "R1", "c2").
-triplea("a10", "R8", "a13", "c2").
-range("hasModule", "Module", "c2").
-insta("a10", "A1", "c2").
-subClass("A2", "A5", "c2").
-insta("a11", "A1", "c2").
-triplea("a16", "R0", "a4", "c2").
-insta("a9", "A2", "c2").
-subClass("A1", "A3", "c2").
-insta("a0", "A0", "c2").
-domain("hasModule", "Context", "c2").
-subClass("A4", "A1", "c2").
-subRole("R4", "R3", "c2").
-subRole("R1", "R3", "c2").
-subRole("R2", "R4", "c2").
-subClass("A5", "A3", "c2").
-triplea("a2", "R1", "a13", "c2").
-range("hasAttribute", "AttributeValue", "c2").
-insta("a8", "A1", "c2").
-triplea("a10", "R2", "a6", "c2").
-insta("defeasible", "AxiomType", "c2").
-subClass("A6", "A1", "c2").
-triplea("a0", "R6", "a12", "c2").
-triplea("a2", "R0", "a15", "c2").
-subClass("A2", "A3", "c2").
-triplea("a9", "R7", "a2", "c2").
-subClass("A1", "A2", "c2").
-triplea("a5", "R3", "a6", "c2").
-insta("a11", "A2", "c2").
-insta("a18", "A4", "c2").
-nom("a13", "c2").
-nom("a12", "c2").
-nom("a11", "c2").
-nom("a10", "c2").
-nom("a17", "c2").
-nom("a16", "c2").
-nom("strict", "c2").
-nom("a15", "c2").
-nom("a18", "c2").
-nom("a4", "c2").
-nom("a2", "c2").
-nom("a0", "c2").
-nom("a9", "c2").
-nom("defeasible", "c2").
-nom("a8", "c2").
-nom("a5", "c2").
-nom("a6", "c2").
-rol("R1", "c2").
-rol("R0", "c2").
-rol("R3", "c2").
-rol("R2", "c2").
-rol("R4", "c2").
-rol("R7", "c2").
-rol("R6", "c2").
-rol("hasModule", "c2").
-rol("hasAttribute", "c2").
-rol("R8", "c2").
-cls("A1", "c2").
-cls("A2", "c2").
-cls("A0", "c2").
-cls("A5", "c2").
-cls("A6", "c2").
-cls("AttributeValue", "c2").
-cls("AxiomType", "c2").
-cls("A3", "c2").
-cls("A4", "c2").
-cls("Module", "c2").
-cls("Context", "c2").
-prec("c2", "g").
-triplea("a16", "R0", "a13", "c3").
-triplea("a4", "R3", "a13", "c3").
-triplea("a4", "R2", "a13", "c3").
-insta("a0", "A1", "c3").
-subClass("A6", "A3", "c3").
-triplea("a13", "R5", "a19", "c3").
-triplea("a5", "R8", "a12", "c3").
-domain("hasAttribute", "Context", "c3").
-subRole("R2", "R5", "c3").
-insta("a5", "A8", "c3").
-subRole("R6", "R3", "c3").
-subClass("A4", "A0", "c3").
-subClass("A0", "A0", "c3").
-insta("strict", "AxiomType", "c3").
-subRole("R0", "R7", "c3").
-range("hasModule", "Module", "c3").
-subRole("R4", "R6", "c3").
-triplea("a0", "R4", "a18", "c3").
-triplea("a17", "R1", "a10", "c3").
-insta("a18", "A5", "c3").
-insta("a9", "A2", "c3").
-subRole("R1", "R5", "c3").
-subClass("A2", "A2", "c3").
-triplea("a5", "R4", "a13", "c3").
-triplea("a4", "R9", "a7", "c3").
-triplea("a9", "R1", "a3", "c3").
-triplea("a8", "R4", "a3", "c3").
-domain("hasModule", "Context", "c3").
-subClass("A0", "A8", "c3").
-subClass("A1", "A1", "c3").
-subClass("A4", "A1", "c3").
-insta("a15", "A2", "c3").
-range("hasAttribute", "AttributeValue", "c3").
-insta("a10", "A2", "c3").
-subClass("A1", "A4", "c3").
-triplea("a1", "R0", "a15", "c3").
-subClass("A9", "A8", "c3").
-triplea("a16", "R1", "a3", "c3").
-insta("defeasible", "AxiomType", "c3").
-insta("a16", "A0", "c3").
-subClass("A2", "A3", "c3").
-nom("a13", "c3").
-nom("a12", "c3").
-nom("a10", "c3").
-nom("a17", "c3").
-nom("strict", "c3").
-nom("a16", "c3").
-nom("a15", "c3").
-nom("a19", "c3").
-nom("a18", "c3").
-nom("a3", "c3").
-nom("a4", "c3").
-nom("a1", "c3").
-nom("a0", "c3").
-nom("a9", "c3").
-nom("defeasible", "c3").
-nom("a7", "c3").
-nom("a8", "c3").
-nom("a5", "c3").
-rol("R1", "c3").
-rol("R0", "c3").
-rol("R3", "c3").
-rol("R2", "c3").
-rol("R5", "c3").
-rol("R4", "c3").
-rol("R7", "c3").
-rol("R6", "c3").
-rol("hasModule", "c3").
-rol("R8", "c3").
-rol("hasAttribute", "c3").
-rol("R9", "c3").
-cls("A1", "c3").
-cls("A2", "c3").
-cls("A0", "c3").
-cls("A5", "c3").
-cls("AttributeValue", "c3").
-cls("A6", "c3").
-cls("A3", "c3").
-cls("A4", "c3").
-cls("A9", "c3").
-cls("A8", "c3").
-cls("Module", "c3").
-cls("AxiomType", "c3").
-cls("Context", "c3").
-prec("c3", "g").
-subClass("A1", "A0", "c8").
-insta("a2", "A4", "c8").
-insta("a12", "A2", "c8").
-insta("a6", "A2", "c8").
-domain("hasAttribute", "Context", "c8").
-subClass("A0", "A4", "c8").
-subClass("A4", "A2", "c8").
-subClass("A3", "A6", "c8").
-triplea("a18", "R6", "a8", "c8").
-subClass("A3", "A1", "c8").
-insta("a13", "A0", "c8").
-subRole("R8", "R5", "c8").
-subClass("A0", "A7", "c8").
-insta("strict", "AxiomType", "c8").
-triplea("a16", "R1", "a2", "c8").
-insta("a18", "A2", "c8").
-range("hasModule", "Module", "c8").
-triplea("a11", "R4", "a17", "c8").
-triplea("a13", "R1", "a12", "c8").
-triplea("a7", "R2", "a3", "c8").
-triplea("a17", "R2", "a9", "c8").
-insta("a16", "A2", "c8").
-insta("a0", "A2", "c8").
-triplea("a11", "R2", "a10", "c8").
-triplea("a16", "R4", "a7", "c8").
-subClass("A2", "A8", "c8").
-insta("a5", "A1", "c8").
-domain("hasModule", "Context", "c8").
-insta("a1", "A2", "c8").
-subClass("A4", "A1", "c8").
-subRole("R5", "R4", "c8").
-subRole("R3", "R1", "c8").
-triplea("a1", "R2", "a9", "c8").
-range("hasAttribute", "AttributeValue", "c8").
-subClass("A3", "A2", "c8").
-insta("a8", "A1", "c8").
-subRole("R6", "R7", "c8").
-triplea("a6", "R2", "a0", "c8").
-subClass("A2", "A4", "c8").
-insta("defeasible", "AxiomType", "c8").
-subRole("R1", "R4", "c8").
-nom("a13", "c8").
-nom("a12", "c8").
-nom("a11", "c8").
-nom("a10", "c8").
-nom("a17", "c8").
-nom("strict", "c8").
-nom("a16", "c8").
-nom("a18", "c8").
-nom("a3", "c8").
-nom("a1", "c8").
-nom("a2", "c8").
-nom("a0", "c8").
-nom("defeasible", "c8").
-nom("a9", "c8").
-nom("a7", "c8").
-nom("a8", "c8").
-nom("a5", "c8").
-nom("a6", "c8").
-rol("R1", "c8").
-rol("R3", "c8").
-rol("R2", "c8").
-rol("R5", "c8").
-rol("R4", "c8").
-rol("R7", "c8").
-rol("R6", "c8").
-rol("hasModule", "c8").
-rol("hasAttribute", "c8").
-rol("R8", "c8").
-cls("A1", "c8").
-cls("A2", "c8").
-cls("A0", "c8").
-cls("A6", "c8").
-cls("AttributeValue", "c8").
-cls("AxiomType", "c8").
-cls("A3", "c8").
-cls("A4", "c8").
-cls("A7", "c8").
-cls("Module", "c8").
-cls("A8", "c8").
-cls("Context", "c8").
-prec("c8", "g").
-subClass("A5", "A1", "c9").
-insta("a6", "A7", "c9").
-triplea("a6", "R5", "a5", "c9").
-domain("hasAttribute", "Context", "c9").
-subRole("R4", "R2", "c9").
-subRole("R6", "R3", "c9").
-triplea("a2", "R1", "a15", "c9").
-subClass("A5", "A4", "c9").
-triplea("a15", "R8", "a9", "c9").
-subClass("A0", "A0", "c9").
-insta("strict", "AxiomType", "c9").
-triplea("a3", "R1", "a14", "c9").
-range("hasModule", "Module", "c9").
-triplea("a16", "R0", "a4", "c9").
-triplea("a0", "R3", "a1", "c9").
-subClass("A1", "A3", "c9").
-triplea("a11", "R7", "a9", "c9").
-triplea("a12", "R2", "a12", "c9").
-triplea("a5", "R4", "a15", "c9").
-insta("a19", "A0", "c9").
-triplea("a2", "R1", "a1", "c9").
-subClass("A3", "A7", "c9").
-insta("a16", "A5", "c9").
-subClass("A5", "A0", "c9").
-triplea("a15", "R1", "a0", "c9").
-domain("hasModule", "Context", "c9").
-triplea("a8", "R5", "a19", "c9").
-triplea("a4", "R1", "a19", "c9").
-subRole("R2", "R8", "c9").
-subRole("R2", "R4", "c9").
-range("hasAttribute", "AttributeValue", "c9").
-subClass("A5", "A5", "c9").
-subClass("A1", "A4", "c9").
-triplea("a9", "R7", "a4", "c9").
-subClass("A0", "A3", "c9").
-insta("a18", "A6", "c9").
-triplea("a18", "R5", "a0", "c9").
-triplea("a19", "R4", "a12", "c9").
-insta("defeasible", "AxiomType", "c9").
-nom("a12", "c9").
-nom("a11", "c9").
-nom("strict", "c9").
-nom("a16", "c9").
-nom("a15", "c9").
-nom("a14", "c9").
-nom("a19", "c9").
-nom("a18", "c9").
-nom("a3", "c9").
-nom("a4", "c9").
-nom("a1", "c9").
-nom("a2", "c9").
-nom("a0", "c9").
-nom("a9", "c9").
-nom("defeasible", "c9").
-nom("a8", "c9").
-nom("a5", "c9").
-nom("a6", "c9").
-rol("R1", "c9").
-rol("R0", "c9").
-rol("R3", "c9").
-rol("R2", "c9").
-rol("R5", "c9").
-rol("R4", "c9").
-rol("R7", "c9").
-rol("R6", "c9").
-rol("hasModule", "c9").
-rol("R8", "c9").
-rol("hasAttribute", "c9").
-cls("A1", "c9").
-cls("A0", "c9").
-cls("A5", "c9").
-cls("A6", "c9").
-cls("AttributeValue", "c9").
-cls("AxiomType", "c9").
-cls("A3", "c9").
-cls("A4", "c9").
-cls("A7", "c9").
-cls("Module", "c9").
-cls("Context", "c9").
-prec("c9", "g").
-triplea("a17", "R1", "a9", "c7").
-insta("a9", "A9", "c7").
-triplea("a4", "R1", "a15", "c7").
-triplea("a1", "R1", "a5", "c7").
-domain("hasAttribute", "Context", "c7").
-subRole("R2", "R7", "c7").
-insta("a11", "A0", "c7").
-triplea("a9", "R1", "a0", "c7").
-subRole("R4", "R1", "c7").
-insta("strict", "AxiomType", "c7").
-subClass("A3", "A3", "c7").
-range("hasModule", "Module", "c7").
-triplea("a2", "R5", "a8", "c7").
-triplea("a2", "R1", "a17", "c7").
-triplea("a11", "R4", "a12", "c7").
-subClass("A6", "A7", "c7").
-subClass("A9", "A4", "c7").
-insta("a14", "A0", "c7").
-subRole("R1", "R5", "c7").
-insta("a16", "A2", "c7").
-insta("a12", "A3", "c7").
-insta("a13", "A3", "c7").
-domain("hasModule", "Context", "c7").
-insta("a2", "A2", "c7").
-triplea("a6", "R8", "a11", "c7").
-subRole("R5", "R7", "c7").
-range("hasAttribute", "AttributeValue", "c7").
-subClass("A3", "A2", "c7").
-triplea("a13", "R4", "a12", "c7").
-subClass("A1", "A4", "c7").
-subRole("R1", "R6", "c7").
-subClass("A2", "A1", "c7").
-insta("defeasible", "AxiomType", "c7").
-subClass("A2", "A3", "c7").
-subClass("A1", "A2", "c7").
-insta("a18", "A4", "c7").
-nom("a13", "c7").
-nom("a12", "c7").
-nom("a11", "c7").
-nom("a17", "c7").
-nom("a16", "c7").
-nom("strict", "c7").
-nom("a15", "c7").
-nom("a14", "c7").
-nom("a18", "c7").
-nom("a4", "c7").
-nom("a1", "c7").
-nom("a2", "c7").
-nom("a0", "c7").
-nom("a9", "c7").
-nom("defeasible", "c7").
-nom("a8", "c7").
-nom("a5", "c7").
-nom("a6", "c7").
-rol("R1", "c7").
-rol("R2", "c7").
-rol("R5", "c7").
-rol("R4", "c7").
-rol("R7", "c7").
-rol("R6", "c7").
-rol("hasModule", "c7").
-rol("R8", "c7").
-rol("hasAttribute", "c7").
-cls("A1", "c7").
-cls("A2", "c7").
-cls("A0", "c7").
-cls("A6", "c7").
-cls("AttributeValue", "c7").
-cls("AxiomType", "c7").
-cls("A3", "c7").
-cls("A4", "c7").
-cls("A9", "c7").
-cls("A7", "c7").
-cls("Module", "c7").
-cls("Context", "c7").
-prec("c7", "g").
-instd(X, B, C) :- subEval(A, C1, B, C), instd(CP, C1, G), instd(X, A, CP).
-tripled(X, T, Y, C) :- subEvalR(R, C1, T, C), instd(CP, C1, G), tripled(X, R, Y, CP).
-eq(X, Y, C) :- nom(X, C), eq(X, Y, C1).
-instd(X, Z, C) :- insta(X, Z, G), prec(C, G), not ovrInsta(X, Z, C).
-tripled(X, R, Y, C) :- triplea(X, R, Y, G), prec(C, G), not ovrTriplea(X, R, Y, C).
--tripled(X, R, Y, C) :- -triplea(X, R, Y, G), prec(C, G), not ovrNTriplea(X, R, Y, C).
-instd(X, Z, C) :- subClass(Y, Z, G), instd(X, Y, C), prec(C, G), not ovrSubClass(X, Y, Z, C).
--instd(X, Z, C) :- supNot(Y, Z, G), instd(X, Y, C), prec(C, G), not ovrSupNot(X, Y, Z, C).
-instd(X, Z, C) :- subConj(Y1, Y2, Z, G), instd(X, Y1, C), instd(X, Y2, C), prec(C, G), not ovrSubConj(X, Y1, Y2, Z, C).
-instd(X, Z, C) :- subEx(V, Y, Z, G), tripled(X, V, X1, C), instd(X1, Y, C), prec(C, G), not ovrSubEx(X, V, Y, Z, C).
-tripled(X, R, X1, C) :- supEx(Y, R, X1, G), instd(X, Y, C), prec(C, G), not ovrSupEx(X, Y, R, X1, C).
-instd(Y, Z1, C) :- supForall(Z, R, Z1, G), instd(X, Z, C), tripled(X, R, Y, C), prec(C, G), not ovrSupAll(X, Y, Z, R, Z1, C).
-eq(X1, X2, C) :- supLeqOne(Z, R, Z1, G), instd(X, Z, C), tripled(X, R, X1, C), instd(X1, Z1, C), tripled(X, R, X2, C), instd(X2, Z1, C), prec(C, G), not ovrSupLeqOne(X, X1, X2, Z, R, Z1, C).
-tripled(X, W, X1, C) :- subRole(V, W, G), tripled(X, V, X1, C), prec(C, G), not ovrSubRole(X, X1, V, W, C).
-tripled(X, W, Z, C) :- subRChain(U, V, W, G), tripled(X, U, Y, C), tripled(Y, V, Z, C), prec(C, G), not ovrSubRChain(X, Y, Z, U, V, W, C).
--tripled(X, V, Y, C) :- dis(U, V, G), tripled(X, U, Y, C), prec(C, G), not ovrDis(X, Y, U, V, C).
--tripled(X, U, Y, C) :- dis(U, V, G), tripled(X, V, Y, C), prec(C, G), not ovrDis(X, Y, U, V, C).
-tripled(Y, V, X, C) :- inv(U, V, G), tripled(X, U, Y, C), prec(C, G), not ovrInv(X, Y, U, V, C).
-tripled(Y, U, X, C) :- inv(U, V, G), tripled(X, V, Y, C), prec(C, G), not ovrInv(X, Y, U, V, C).
--tripled(X, U, X, C) :- irr(U, G), nom(X, C), prec(C, G), not ovrIrr(X, U, C).
+instd(X, B, C, T) :- subEval(A, C1, B, C), instd(CP, C1, G, T), instd(X, A, CP, T).
+tripled(X, S, Y, C, T) :- subEvalR(R, C1, S, C), instd(CP, C1, G, T), tripled(X, R, Y, CP, T).
+instd(X, Z, C, T) :- insta(X, Z, G, T), prec(C, G), not ovrInsta(X, Z, C).
+tripled(X, R, Y, C, T) :- triplea(X, R, Y, G, T), prec(C, G), not ovrTriplea(X, R, Y, C).
+unsat(T) :- ninsta(X, Z, G), instd(X, Z, C, T), prec(C, G), not ovrNinsta(X, Z, C).
+unsat(T) :- ntriplea(X, R, Y, G), tripled(X, R, Y, C, T), prec(C, G), not ovrNtriplea(X, R, Y, C).
+instd(X, Z, C, T) :- subClass(Y, Z, G), instd(X, Y, C, T), prec(C, G), not ovrSubClass(X, Y, Z, C).
+instd(X, Z, C, T) :- subConj(Y1, Y2, Z, G), instd(X, Y1, C, T), instd(X, Y2, C, T), prec(C, G), not ovrSubConj(X, Y1, Y2, Z, C).
+instd(X, Z, C, T) :- subEx(V, Y, Z, G), tripled(X, V, X1, C, T), instd(X1, Y, C, T), prec(C, G), not ovrSubEx(X, V, Y, Z, C).
+tripled(X, R, X1, C, T) :- supEx(Y, R, X1, G), instd(X, Y, C, T), prec(C, G), not ovrSupEx(X, Y, R, X1, C).
+instd(Y, Z1, C, T) :- supForall(Z, R, Z1, G), instd(X, Z, C, T), tripled(X, R, Y, C, T), prec(C, G), not ovrSupAll(X, Y, Z, R, Z1, C).
+unsat(T) :- supLeqOne(Z, R, G), instd(X, Z, C, T), tripled(X, R, X1, C, T), tripled(X, R, X2, C, T), X1 != X2, prec(C, G), not ovrSupLeqOne(X, X1, X2, Z, R, C).
+tripled(X, W, X1, C, T) :- subRole(V, W, G), tripled(X, V, X1, C, T), prec(C, G), not ovrSubRole(X, X1, V, W, C).
+tripled(X, W, Z, C, T) :- subRChain(U, V, W, G), tripled(X, U, Y, C, T), tripled(Y, V, Z, C, T), prec(C, G), not ovrSubRChain(X, Y, Z, U, V, W, C).
+unsat(T) :- dis(U, V, G), tripled(X, U, Y, C, T), tripled(X, V, Y, C, T), prec(C, G), not ovrDis(X, Y, U, V, C).
+tripled(Y, V, X, C, T) :- inv(U, V, G), tripled(X, U, Y, C, T), prec(C, G), not ovrInv(X, Y, U, V, C).
+tripled(X, U, Y, C, T) :- inv(U, V, G), tripled(Y, V, X, C, T), prec(C, G), not ovrInv(X, Y, U, V, C).
+unsat(T) :- irr(U, G), tripled(X, U, X, C, T), prec(C, G), not ovrIrr(X, U, C).
+ovrInsta(X, Y, C) :- def_insta(X, Y), prec(C, "g"), not test_fails(nlit(X, Y, C)).
+ovrTriplea(X, R, Y, C) :- def_triplea(X, R, Y), prec(C, "g"), not test_fails(nrel(X, R, Y, C)).
+ovrNinsta(X, Z, C) :- def_ninsta(X, Z), prec(C, "g"), instd(X, Z, C, "main").
+ovrNtriplea(X, R, Y, C) :- def_ntriplea(X, R, Y), prec(C, "g"), tripled(X, R, Y, C, "main").
+ovrSubClass(X, Y, Z, C) :- def_subclass(Y, Z), prec(C, "g"), instd(X, Y, C, "main"), not test_fails(nlit(X, Z, C)).
+ovrSubConj(X, Y1, Y2, Z, C) :- def_subcnj(Y1, Y2, Z), prec(C, "g"), instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), not test_fails(nlit(X, Z, C)).
+ovrSubEx(X, R, Y, Z, C) :- def_subex(R, Y, Z), prec(C, "g"), tripled(X, R, W, C, "main"), instd(W, Y, C, "main"), not test_fails(nlit(X, Z, C)).
+ovrSupEx(X, Y, R, W, C) :- def_supex(Y, R, W), prec(C, "g"), instd(X, Y, C, "main"), not test_fails(nrel(X, R, W, C)).
+ovrSupAll(X, Y, Z, R, W, C) :- def_supforall(Z, R, W), prec(C, "g"), instd(X, Z, C, "main"), tripled(X, R, Y, C, "main"), not test_fails(nlit(Y, W, C)).
+ovrSupLeqOne(X, X1, X2, Z, R, C) :- def_supleqone(Z, R), prec(C, "g"), instd(X, Z, C, "main"), tripled(X, R, X1, C, "main"), tripled(X, R, X2, C, "main"), X1 != X2.
+ovrSubRole(X, Y, R, S, C) :- def_subr(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), not test_fails(nrel(X, S, Y, C)).
+ovrSubRChain(X, Y, Z, R, S, T, C) :- def_subrc(R, S, T), prec(C, "g"), tripled(X, R, Y, C, "main"), tripled(Y, S, Z, C, "main"), not test_fails(nrel(X, T, Z, C)).
+ovrDis(X, Y, R, S, C) :- def_dis(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), tripled(X, S, Y, C, "main").
+ovrInv(X, Y, R, S, C) :- def_inv(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), not test_fails(nrel(Y, S, X, C)).
+ovrInv(X, Y, R, S, C) :- def_inv(R, S), prec(C, "g"), tripled(Y, S, X, C, "main"), not test_fails(nrel(X, R, Y, C)).
+ovrIrr(X, R, C) :- def_irr(R), prec(C, "g"), tripled(X, R, X, C, "main").
+test(nlit(X, Y, C)) :- def_insta(X, Y), prec(C, "g").
+ :- test_fails(nlit(X, Y, C)), ovrInsta(X, Y, C).
+test(nrel(X, R, Y, C)) :- def_triplea(X, R, Y), prec(C, "g").
+ :- test_fails(nrel(X, R, Y, C)), ovrTriplea(X, R, Y, C).
+test(nlit(X, Z, C)) :- def_subclass(Y, Z), instd(X, Y, C, "main"), prec(C, "g").
+ :- test_fails(nlit(X, Z, C)), ovrSubClass(X, Y, Z, C).
+test(nlit(X, Z, C)) :- def_subcnj(Y1, Y2, Z), instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), prec(C, "g").
+ :- test_fails(nlit(X, Z, C)), ovrSubConj(X, Y1, Y2, Z, C).
+test(nlit(X, Z, C)) :- def_subex(R, Y, Z), tripled(X, R, W, C, "main"), instd(W, Y, C, "main"), prec(C, "g").
+ :- test_fails(nlit(X, Z, C)), ovrSubEx(X, V, Y, Z, C).
+test(nrel(X, R, W, C)) :- def_supex(Y, R, W), instd(X, Y, C, "main"), prec(C, "g").
+ :- test_fails(nrel(X, R, W, C)), ovrSupEx(X, Y, R, W, C).
+test(nlit(Y, W, C)) :- def_supforall(Z, R, W), instd(X, Z, C, "main"), tripled(X, R, Y, C, "main"), prec(C, "g").
+ :- test_fails(nlit(Y, W, C)), ovrSupAll(X, Y, Z, R, W, C).
+test(nrel(X, S, Y, C)) :- def_subr(R, S), tripled(X, R, Y, C, "main"), prec(C, "g").
+ :- test_fails(nrel(X, S, Y, C)), ovrSubRole(X, Y, R, S, C).
+test(nrel(X, T, Z, C)) :- def_subrc(R, S, T), tripled(X, R, Y, C, "main"), tripled(Y, S, Z, C, "main"), prec(C, "g").
+ :- test_fails(nrel(X, T, Z, C)), ovrSubRChain(X, Y, Z, R, S, T, C).
+test(nrel(Y, S, X, C)) :- def_inv(R, S), tripled(X, R, Y, C, "main"), prec(C, "g").
+test(nrel(Y, R, X, C)) :- def_inv(R, S), tripled(X, S, Y, C, "main"), prec(C, "g").
+ :- test_fails(nrel(X, S, Y, C)), ovrInv(X, Y, R, S, C).
+ :- test_fails(nrel(X, R, Y, C)), ovrInv(X, Y, R, S, C).
+test_fails(nlit(X, Z, C)) :- instd(X, Z, C, nlit(X, Z, C)), not unsat(nlit(X, Z, C)).
+test_fails(nrel(X, R, Y, C)) :- tripled(X, R, Y, C, nrel(X, R, Y, C)), not unsat(nrel(X, R, Y, C)).
+instd(X, Z, C, nlit(X, Z, C)) :- test(nlit(X, Z, C)).
+tripled(X, R, Y, C, nrel(X, R, Y, C)) :- test(nrel(X, R, Y, C)).
+instd(X1, Y1, C, Z) :- instd(X1, Y1, C, "main"), test(Z).
+tripled(X1, R, Y1, C, Z) :- tripled(X1, R, Y1, C, "main"), test(Z).

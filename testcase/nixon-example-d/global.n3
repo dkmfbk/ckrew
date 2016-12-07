@@ -40,13 +40,20 @@
       owl:annotatedProperty rdfs:subClassOf ;
       owl:annotatedTarget :Pacifist .
 
-    :ax2 rdf:type owl:Axiom ;
-      ckr:hasAxiomType ckr:defeasible ;
-      owl:annotatedSource :Republican ;
-      owl:annotatedProperty rdfs:subClassOf ;
-      owl:annotatedTarget [
-            owl:complementOf :Pacifist .
-        ] .    
+    # :ax2 rdf:type owl:Axiom ;
+    #   ckr:hasAxiomType ckr:defeasible ;
+    #   owl:annotatedSource :Republican ;
+    #   owl:annotatedProperty rdfs:subClassOf ;
+    #   owl:annotatedTarget [
+    #         owl:complementOf :Pacifist .
+    #     ] .    
+
+     :ax2 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasible ;
+     owl:annotatedSource [ owl:intersectionOf ( :Republican :Pacifist ) ] ;
+     owl:annotatedProperty rdfs:subClassOf ;
+     owl:annotatedTarget owl:Nothing .          
+
 
     #------------------------------------------------------------------------- 
     # TEST: Inferred axioms #

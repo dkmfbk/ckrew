@@ -22,17 +22,24 @@ public class CKRRewritingVocabulary {
 	//--- INSTANCE LEVEL PREDICATES -----------------------------------------------------
 	
 	//public final static NormalPredicate INST = manager.getPredicate("inst", 3);
-	public final static NormalPredicate INSTA = manager.getPredicate("insta", 3);
-	public final static NormalPredicate INSTD = manager.getPredicate("instd", 3);	
+	//public final static NormalPredicate INSTA = manager.getPredicate("insta", 3);
+	//public final static NormalPredicate INSTD = manager.getPredicate("instd", 3);
+	public final static NormalPredicate INSTA = manager.getPredicate("insta", 4);
+	public final static NormalPredicate INSTD = manager.getPredicate("instd", 4);
+	public final static NormalPredicate NINSTA = manager.getPredicate("ninsta", 3);
 	
 	//public final static NormalPredicate TRIPLE = CacheManager.getInstance().getPredicate("triple", 4);
-	public final static NormalPredicate TRIPLEA = manager.getPredicate("triplea", 4);
-	public final static NormalPredicate TRIPLED = manager.getPredicate("tripled", 4);	
+//	public final static NormalPredicate TRIPLEA = manager.getPredicate("triplea", 4);
+//	public final static NormalPredicate TRIPLED = manager.getPredicate("tripled", 4);	
+	public final static NormalPredicate TRIPLEA = manager.getPredicate("triplea", 5);
+	public final static NormalPredicate TRIPLED = manager.getPredicate("tripled", 5);
+	public final static NormalPredicate NTRIPLEA = manager.getPredicate("ntriplea", 4);
 	
-	//public final static NormalPredicate NEGTRIPLE = CacheManager.getInstance().getPredicate("negtriple", 4);
-	
-	public final static NormalPredicate EQ  = manager.getPredicate("eq", 3);
-	public final static NormalPredicate NEQ = manager.getPredicate("neq", 3);
+	//public final static NormalPredicate NEGTRIPLE = CacheManager.getInstance().getPredicate("negtriple", 4);	
+//	public final static NormalPredicate EQ  = manager.getPredicate("eq", 3);
+//	public final static NormalPredicate NEQ = manager.getPredicate("neq", 3);
+	public final static NormalPredicate EQ  = manager.getPredicate("eq", 4);
+	public final static NormalPredicate NEQ  = manager.getPredicate("neq", 3);
 	
 	//--- CLASS AXIOMS PREDICATES -------------------------------------------------------
 	
@@ -42,7 +49,7 @@ public class CKRRewritingVocabulary {
 	
 	public final static NormalPredicate SUP_EX     = manager.getPredicate("supEx", 4);
 	public final static NormalPredicate SUP_ALL    = manager.getPredicate("supForall", 4);
-	public final static NormalPredicate SUP_LEQONE = manager.getPredicate("supLeqOne", 4);
+	public final static NormalPredicate SUP_LEQONE = manager.getPredicate("supLeqOne", 3);
 	public final static NormalPredicate SUP_NOT    = manager.getPredicate("supNot", 3);
 	
 	//--- PROPERTY AXIOMS PREDICATES ----------------------------------------------------
@@ -85,8 +92,33 @@ public class CKRRewritingVocabulary {
 	public final static NormalPredicate OVRINVROLE = manager.getPredicate("ovrInv", 5);
 	public final static NormalPredicate OVRIRRROLE = manager.getPredicate("ovrIrr", 3);
 	public final static NormalPredicate OVRDISROLE = manager.getPredicate("ovrDis", 5);
+
+	//--- DEFEASIBLE PREDICATES ---------------------------------------------------------	
+	
+	public final static NormalPredicate DEF_INSTA = manager.getPredicate("def_insta", 2);
+	public final static NormalPredicate DEF_TRIPLEA = manager.getPredicate("def_triplea", 3);
+	public final static NormalPredicate DEF_NTRIPLEA = manager.getPredicate("def_ntriplea", 3);
+	
+	public final static NormalPredicate DEF_SUBCLASS = manager.getPredicate("def_subclass", 2);
+	public final static NormalPredicate DEF_SUBCONJ = manager.getPredicate("def_subcnj", 3);
+	public final static NormalPredicate DEF_SUBEX = manager.getPredicate("def_subex", 3);
+
+	public final static NormalPredicate DEF_SUPEX = manager.getPredicate("def_supex", 3);
+	public final static NormalPredicate DEF_SUPALL = manager.getPredicate("def_supforall", 3);
+	public final static NormalPredicate DEF_SUPLEQONE = manager.getPredicate("def_supleqone", 2);	
+
+	public final static NormalPredicate DEF_SUBROLE = manager.getPredicate("def_subr", 2);
+	public final static NormalPredicate DEF_SUBRCHAIN = manager.getPredicate("def_subrc", 3);
+	public final static NormalPredicate DEF_INVROLE = manager.getPredicate("def_inv", 2);
+	public final static NormalPredicate DEF_IRRROLE = manager.getPredicate("def_irr", 1);
+	public final static NormalPredicate DEF_DISROLE = manager.getPredicate("def_dis", 2);	
+	
+	//XXX: ###########################
 	
 	public final static NormalPredicate PREC = manager.getPredicate("prec", 2);
+	
+	//public final static NormalPredicate UNSAT = manager.getPredicate("unsat", 2);
+	public final static NormalPredicate UNSAT = manager.getPredicate("unsat", 1);
 	
 	//-----------------------------------------------------------------------------------
 	

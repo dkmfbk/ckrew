@@ -3,7 +3,7 @@ package eu.fbk.dkm.ckrdatalogrewriter.rl.cli;
 import it.unical.mat.wrapper.DLVInputProgram;
 import it.unical.mat.wrapper.DLVInvocationException;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
 
 import org.semanticweb.drew.dlprogram.parser.ParseException;
@@ -13,11 +13,12 @@ import org.semanticweb.owlapi.profiles.OWLProfileReport;
 
 import eu.fbk.dkm.ckrdatalogrewriter.cli.CommandLine;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.ckr.CKRKnowledgeBase;
+import eu.fbk.dkm.ckrdatalogrewriter.rl.ckr.CKRModule;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.ckr.CKRProgram;
 
 /** 
  * @author Loris 
- * @version 1.3
+ * @version 1.4
  * 
  * Command line interface for CKR Datalog Rewriter (for OWL-RL).
  * (Extended from DreW CLI).
@@ -26,22 +27,24 @@ public class CKRDReWRLCLI extends CommandLine {
 
 	//--- FIELDS -----------------------------------------------
 	
+	private static final String DEFAULT_DLV_PATH = "./localdlv/dlv";
+	private static final String DEFAULT_OUTPUT_FILENAME = "./testcase/output.dlv";
+	
     private CKRKnowledgeBase inputCKR;
     private CKRProgram outputCKRProgram;
     	
 	private String dlvPath = null;
 	private String outputFilePath = null;
+	
 	private boolean verbose = false;
 	private boolean trigInput = false;	
 
 	private String[] args;
-
 	
 	//--- CONSTRUCTOR ------------------------------------------
 	
 	public CKRDReWRLCLI(String[] args) {
 		this.args = args;
-//		this.dlvPath = "./localdlv/dlv.exe"; //DLV distributed with demo
 	}
 	
 	//--- MAIN THREAD ------------------------------------------
@@ -51,19 +54,36 @@ public class CKRDReWRLCLI extends CommandLine {
 	 */
 	@Override
 	public void go() {
-		//System.setProperty("entityExpansionLimit", "512000");
 		
 		//Create a new CKR knowledge base to manage input ontologies
 		inputCKR = new CKRKnowledgeBase();
 		
 		//Parse input for global and local (modules) ontologies
+		printBanner();
 		if (!parseArgs(args)) {
 			printUsage();
 			System.exit(1);
 		}
-				
+		
+		//Check global input file existence
+		File ontofile = new File(inputCKR.getGlobalOntologyFilename());
+		if(!ontofile.exists()){
+			System.err.println("[!] Input global ontology file does not exists.");
+			System.exit(1);
+		}
+		
 		//Manage TRIG files.
 		if(trigInput) parseTrigFile();
+
+		//Check local input file existence
+		for(CKRModule mod : inputCKR.getLocalModule()){
+			File modfile = new File(mod.getModuleFilename());
+			
+			if(!modfile.exists()){
+				System.err.println("[!] Input local ontology file does not exist: " + mod.getModuleFilename());
+				System.exit(1);
+			}		
+		}	
 		
 		//Load ontology files.
 		try {
@@ -99,14 +119,24 @@ public class CKRDReWRLCLI extends CommandLine {
 		//Create new program for the input CKR.
 		outputCKRProgram = new CKRProgram(ckr);
 		
-		//Set possibly custom DLV and output file path
+		//Set possibly custom DLV path
 		if(dlvPath != null) 
 			outputCKRProgram.setDlvPath(dlvPath);
+		else{
+			dlvPath = DEFAULT_DLV_PATH;
+			outputCKRProgram.setDlvPath(dlvPath);			
+		}
+		
+		//Set possibly custom output file path
 		if(outputFilePath != null) 
 			outputCKRProgram.setOutputFilePath(outputFilePath);
+		else{
+			outputFilePath = DEFAULT_OUTPUT_FILENAME;
+			outputCKRProgram.setOutputFilePath(outputFilePath);			
+		}
 		
 		//Rewrite the program.
-		if(verbose) System.out.println("Rewriting program.");
+		if(verbose) System.out.println("Rewriting program...");
 		outputCKRProgram.rewrite();
 		
 		if(verbose) {
@@ -124,25 +154,21 @@ public class CKRDReWRLCLI extends CommandLine {
 			
 			System.out.println("Program size (number of statements): " + outputCKRProgram.getProgramSize());
 		}
-
+		
 		//Store the program to file.
 		try {
 			outputCKRProgram.storeToFile();
+			if(verbose) System.out.println("CKR program saved in: " + outputCKRProgram.getOutputFilePath() + "\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("CKR program saved in: " + outputCKRProgram.getOutputFilePath());
+		System.out.println("CKRew: process complete.");
 	}
 	
 	@Override
 	public void handleCQ(OWLOntology ontology, DLVInputProgram inputProgram) {
 		//CQ not managed in this version of CKRew 
 		return;
-	}
-	
-	String parseCQ() throws FileNotFoundException {
-		//CQ not managed in this version of CKRew
-		return null;
 	}
 
 	@Override
@@ -153,26 +179,32 @@ public class CKRDReWRLCLI extends CommandLine {
 	 * */
 	public boolean parseArgs(String[] args) {
 		
-		if (args.length == 0) {
-			
-			System.err.println("Missing argument: <global-context-file>\n");
+		if (args.length == 0) {			
+			System.err.println("[!] Missing argument: <global-context-file>\n");
 			System.err.println();			
 			return false;
-		} else {
 			
+		} else {
 			inputCKR.setGlobalOntologyFilename(args[0]);
 			if(verbose) System.out.println("Global ontology: " + inputCKR.getGlobalOntologyFilename());
 			
-			for (int i = 1; i < args.length; i++) {
-				
+			for (int i = 1; i < args.length; i++) {				
 				switch (args[i]) {
 				case "-dlv":
-					if(i+1 < args.length)
+					if(i+1 < args.length && !args[i+1].startsWith("-"))
 					   dlvPath = args[++i];
+					else {
+						System.err.println("[!] Missing argument: <dlv-path>");						
+						return false;
+					}					
 					break;
 				case "-out":
-					if(i+1 < args.length)
+					if(i+1 < args.length && !args[i+1].startsWith("-"))
 					   outputFilePath = args[++i];
+					else {
+						System.err.println("[!] Missing argument: <output-file>");						
+						return false;
+					}					
 					break;
 				case "-v":
 				    verbose = true;
@@ -193,7 +225,7 @@ public class CKRDReWRLCLI extends CommandLine {
 			return true;
 		}
 	}
-
+	
 	/**
 	 * Split and uses the TRIG file in input. 
 	 * 
@@ -237,7 +269,6 @@ public class CKRDReWRLCLI extends CommandLine {
 
 	/**
 	 * Prints usage of the command line and exits.
-	 * 
 	 */
 	void printUsage() {
 
@@ -266,12 +297,19 @@ public class CKRDReWRLCLI extends CommandLine {
 
 		System.out.println(usage);
 	}
+	
+	/**
+	 * Prints initial banner and version.
+	 */
+	void printBanner(){
+		String banner = "=== CKRew v.1.4 ===\n";
+		System.out.println(banner);
+	}
 
 	//--- OUTPUT INFORMATION METHODS --------------------------------
 
 	/**
 	 * Returns the time in milliseconds for the DLV computation time of global model.
-	 * 
 	 */
 	public long getGlobalModelComputationTime(){
 		return outputCKRProgram.getGlobalModelComputationTime();
@@ -279,7 +317,6 @@ public class CKRDReWRLCLI extends CommandLine {
 	
 	/**
 	 * Returns the time in milliseconds for the complete rewriting of the CKR program.
-	 * 
 	 */
 	public long getRewritingTime(){
 		return outputCKRProgram.getRewritingTime();
@@ -287,7 +324,6 @@ public class CKRDReWRLCLI extends CommandLine {
 
 	/**
 	 * Returns the size of the input CKR in terms of logical axioms.
-	 * 
 	 */
 	public int getCKRSize(){
 		return inputCKR.getCKRSize();
@@ -295,7 +331,6 @@ public class CKRDReWRLCLI extends CommandLine {
 	
 	/**
 	 * Returns the size of the output CKR program in terms of number of statements.
-	 * 
 	 */
 	public int getProgramSize(){
 		return outputCKRProgram.getProgramSize();
@@ -348,7 +383,7 @@ public class CKRDReWRLCLI extends CommandLine {
 		//		"./testcase/simple-rl-d/mB.n3"};
 
 		//***Defeasible Rewriting Test (only global)***
-		//String[] argtest = {"./testcase/defeasible-rew-test/global.n3"};
+		//String[] argtest = {"./testcase/defeasible-rew-test/global.n3", "-v"};
 
 		//***Defeasible Rewriting Test complete***
 		//String[] argtest = {"./testcase/defeasible-rew-test/global.n3", 
@@ -393,6 +428,8 @@ public class CKRDReWRLCLI extends CommandLine {
 		
 		//new CKRDReWRLCLI(argtest).go();
 	}
+	
+	//XXX: #####################
 	
 }
 //=======================================================================

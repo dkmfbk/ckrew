@@ -49,7 +49,7 @@ import org.semanticweb.owlapi.util.OWLAxiomVisitorAdapter;
 
 /**
  * @author Loris
- * @version 1.3
+ * @version 1.4
  * 
  * General class for translation to Datalog of a contextual ontology.
  * 
@@ -57,7 +57,11 @@ import org.semanticweb.owlapi.util.OWLAxiomVisitorAdapter;
 public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 		OWLEntityVisitor {
 	
-	protected static final String CKR_SCHEMA_URI = "http://dkm.fbk.eu/ckr/meta#"; 
+	protected static final String CKR_SCHEMA_URI = "http://dkm.fbk.eu/ckr/meta#";
+	
+	protected static final String MAIN = "main";
+	protected static final String TOP = "top";
+	protected static final String BOT = "bot";
 	
 	protected OWLOntology ontology;
 	protected OWLDataFactory factory;
@@ -138,12 +142,13 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 		// addFact(RewritingVocabulary.SUB_CLASS, a, c);
 
 		IRI individualIRI = axiom.getIndividual().asOWLNamedIndividual().getIRI(); 
-		IRI classIRI = axiom.getClassExpression().asOWLClass().getIRI();
+		IRI classIRI = rewConceptName(axiom.getClassExpression().asOWLClass());
 		
 		addFact(CKRRewritingVocabulary.INSTA,//
 				individualIRI, //
 				classIRI,
-				contextID);
+				contextID,
+				IRI.create(MAIN));
 	}
 		
 	@Override
@@ -162,7 +167,8 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 				axiom.getSubject().asOWLNamedIndividual().getIRI(), //
 				axiom.getProperty().asOWLObjectProperty().getIRI(), //
 				axiom.getObject().asOWLNamedIndividual().getIRI(),
-				contextID//
+				contextID,
+				IRI.create(MAIN)//
 		);
 	}
 	
@@ -210,11 +216,30 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 //				axiom.getObject().asOWLNamedIndividual().getIRI(),
 //				contextID//
 //		);
-		addNegativeFact(CKRRewritingVocabulary.TRIPLEA, //
+//		addNegativeFact(CKRRewritingVocabulary.TRIPLEA, //
+//				axiom.getSubject().asOWLNamedIndividual().getIRI(), //
+//				axiom.getProperty().asOWLObjectProperty().getIRI(), //
+//				axiom.getObject().asOWLNamedIndividual().getIRI(),
+//				contextID//
+//		);
+		
+//		Constant ind1 = getConstant(axiom.getSubject().asOWLNamedIndividual().getIRI());
+//		Constant roleTerm = getConstant(axiom.getProperty().asOWLObjectProperty().getIRI());
+//		Constant ind2 = getConstant(axiom.getObject().asOWLNamedIndividual().getIRI());
+//		
+//		Literal unsat = getLiteral(true, CKRRewritingVocabulary.UNSAT, 
+//                getConstant(contextID), getVariable("T"));
+//		
+//		Literal tripled = getLiteral(true, CKRRewritingVocabulary.TRIPLED, 
+//                ind1, roleTerm, ind2, getConstant(contextID), getVariable("T"));
+//
+//		addRule(unsat, tripled);
+		
+		addFact(CKRRewritingVocabulary.NTRIPLEA, //
 				axiom.getSubject().asOWLNamedIndividual().getIRI(), //
 				axiom.getProperty().asOWLObjectProperty().getIRI(), //
 				axiom.getObject().asOWLNamedIndividual().getIRI(),
-				contextID//
+				contextID
 		);
 	}
 	
@@ -250,20 +275,40 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 		addFact(CKRRewritingVocabulary.EQ, //
 				axiom.getIndividualsAsList().get(0).asOWLNamedIndividual().getIRI(), //
 				axiom.getIndividualsAsList().get(1).asOWLNamedIndividual().getIRI(), //
-				contextID//
+				contextID,
+				IRI.create(MAIN)//
 		);
 	}
-	
+		
 	@Override
 	//Rewrite (a \neq b)
 	//### ASSUME N=2! ###
 	public void visit(OWLDifferentIndividualsAxiom axiom) {
 		
-		addNegativeFact(CKRRewritingVocabulary.EQ, //
-				axiom.getIndividualsAsList().get(0).asOWLNamedIndividual().getIRI(), //
-				axiom.getIndividualsAsList().get(1).asOWLNamedIndividual().getIRI(), //
-				contextID//
-		);
+//		addNegativeFact(CKRRewritingVocabulary.EQ, //
+//				axiom.getIndividualsAsList().get(0).asOWLNamedIndividual().getIRI(), //
+//				axiom.getIndividualsAsList().get(1).asOWLNamedIndividual().getIRI(), //
+//				contextID//
+//		);
+
+//		Constant ind1 = getConstant(axiom.getIndividualsAsList().get(0).asOWLNamedIndividual().getIRI());
+//		Constant ind2 = getConstant(axiom.getIndividualsAsList().get(1).asOWLNamedIndividual().getIRI());
+//		
+//		Literal unsat = getLiteral(true, CKRRewritingVocabulary.UNSAT, 
+//                getConstant(contextID), getVariable("T"));
+//		
+//		Literal peq = getLiteral(true, CKRRewritingVocabulary.EQ, 
+//                ind1, ind2, getConstant(contextID), getVariable("T"));
+//
+//		addRule(unsat, peq);		
+		
+		
+		//Add nothing, we already consider UNA
+		//addFact(CKRRewritingVocabulary.NEQ, //
+		//				axiom.getIndividualsAsList().get(0).asOWLNamedIndividual().getIRI(), //
+		//				axiom.getIndividualsAsList().get(1).asOWLNamedIndividual().getIRI(), //
+		//				contextID//
+		//);
 	}
 	
 	//- - TBOX AXIOMS - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -339,7 +384,7 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 		// addFact(RewritingVocabulary.DOMAIN, p, d);
 		addFact(CKRRewritingVocabulary.DOMAIN, //
 				axiom.getProperty().asOWLObjectProperty().getIRI(),//
-				axiom.getDomain().asOWLClass().getIRI(), contextID);
+				rewConceptName(axiom.getDomain().asOWLClass()), contextID);
 
 	}
 
@@ -352,7 +397,7 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 		// addFact(RewritingVocabulary.RANGE, p, r);
 		addFact(CKRRewritingVocabulary.RANGE, //
 				axiom.getProperty().asOWLObjectProperty().getIRI(),//
-				axiom.getRange().asOWLClass().getIRI(),
+				rewConceptName(axiom.getRange().asOWLClass()),
 				contextID);
 
 	}
@@ -405,7 +450,7 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 	public void visit(OWLClass cls) {
 		// int c = iriEncoder.encode(cls.getIRI());
 		// addFact(RewritingVocabulary.CLASS, c);
-		addFact(CKRRewritingVocabulary.CLS, cls.getIRI(), contextID);
+		addFact(CKRRewritingVocabulary.CLS, rewConceptName(cls), contextID);
 	}
 
 	@Override
@@ -440,6 +485,25 @@ public class RLContext2DatalogRewriter extends OWLAxiomVisitorAdapter implements
 	public void visit(OWLAnnotationProperty property) {
 		// do nothing
 	}
+	
+	//--- REWRITE CONCEPT NAMES --------------------------------------------------
+	/**
+	 * Rewrites top and bottom as constants used in the program.
+	 * Returns IRI of input concept if not a top or bottom concept.
+	 * 
+	 * @param c concept name to be rewritten
+	 */
+	protected IRI rewConceptName(OWLClass c){
+		
+		if(c.isOWLThing())
+			return IRI.create(TOP);
+		else if (c.isOWLNothing())
+			return IRI.create(BOT);
+		else 
+			return c.getIRI();
+	}
+	
+	//XXX: ###################
 	
 	//--- ADD FACT METHODS -------------------------------------------------------
 

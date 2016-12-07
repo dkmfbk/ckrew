@@ -55,8 +55,8 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<em class="jxr_comment">//--- FIELDS ---------------------------------------------</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DEFAULT_DLV_PATH = <span class="jxr_string">"./localdlv/dlv"</span>;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DEFAULT_OUTPUT_FILENAME = <span class="jxr_string">"./testcase/output.dlv"</span>;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<em class="jxr_comment">//private static final String DEFAULT_DLV_PATH = "./localdlv/dlv";</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<em class="jxr_comment">//private static final String DEFAULT_OUTPUT_FILENAME = "./testcase/output.dlv";</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../eu/fbk/dkm/ckrdatalogrewriter/rl/ckr/CKRKnowledgeBase.html">CKRKnowledgeBase</a> inputCKR;
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">private</strong> OWLOntologyManager manager;
@@ -90,8 +90,8 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  		<strong class="jxr_keyword">this</strong>.inputCKR = inputCKR;
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  		<strong class="jxr_keyword">this</strong>.manager = inputCKR.getGlobalOntology().getOWLOntologyManager();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  		
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<strong class="jxr_keyword">this</strong>.outputFilePath = DEFAULT_OUTPUT_FILENAME;
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		<strong class="jxr_keyword">this</strong>.dlvPath = DEFAULT_DLV_PATH;
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		<em class="jxr_comment">//this.outputFilePath = DEFAULT_OUTPUT_FILENAME;</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		<em class="jxr_comment">//this.dlvPath = DEFAULT_DLV_PATH;</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">this</strong>.globalModelComputationTime = 0;
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">this</strong>.rewritingTime = 0;

@@ -1,0 +1,54 @@
+-classpath
+'C:/Users/bozzato/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar;C:/Users/bozzato/.m2/repository/com/dlvsystem/DLVWrapper/4.2/DLVWrapper-4.2.jar;C:/Users/bozzato/.m2/repository/org/semanticweb/drew/drew/0.3-beta-3/drew-0.3-beta-3.jar;C:/Users/bozzato/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar;C:/Users/bozzato/.m2/repository/net/sourceforge/owlapi/owlapi-parsers/3.4/owlapi-parsers-3.4.jar;C:/Users/bozzato/.m2/repository/org/apache/httpcomponents/httpclient/4.5.1/httpclient-4.5.1.jar;C:/Users/bozzato/.m2/repository/net/sourceforge/owlapi/owlapi-api/3.4/owlapi-api-3.4.jar;C:/Users/bozzato/.m2/repository/net/sourceforge/owlapi/owlapi-tools/3.4/owlapi-tools-3.4.jar;C:/Users/bozzato/.m2/repository/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3.jar;C:/Users/bozzato/.m2/repository/com/google/inject/guice/2.0/guice-2.0.jar;C:/Users/bozzato/.m2/repository/com/googlecode/sli4j/sli4j-core/2.0/sli4j-core-2.0.jar;C:/Users/bozzato/.m2/repository/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar;C:/Users/bozzato/.m2/repository/org/apache/jena/jena-arq/2.9.3/jena-arq-2.9.3.jar;C:/Users/bozzato/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar;C:/Users/bozzato/.m2/repository/net/sourceforge/owlapi/owlapi-impl/3.4/owlapi-impl-3.4.jar;C:/Users/bozzato/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar;C:/Users/bozzato/.m2/repository/net/sourceforge/owlapi/owlapi-apibinding/3.4/owlapi-apibinding-3.4.jar;C:/Users/bozzato/.m2/repository/com/google/guava/guava/13.0.1/guava-13.0.1.jar;C:/Users/bozzato/.m2/repository/xerces/xercesImpl/2.10.0/xercesImpl-2.10.0.jar;C:/Users/bozzato/.m2/repository/com/googlecode/sli4j/sli4j-slf4j-log4j/2.0/sli4j-slf4j-log4j-2.0.jar;C:/Users/bozzato/.m2/repository/org/apache/jena/jena-core/2.7.3/jena-core-2.7.3.jar;C:/Users/bozzato/.m2/repository/org/slf4j/slf4j-log4j12/1.5.10/slf4j-log4j12-1.5.10.jar;C:/Users/bozzato/.m2/repository/commons-codec/commons-codec/1.5/commons-codec-1.5.jar;C:/Users/bozzato/.m2/repository/org/apache/jena/jena-iri/0.9.3/jena-iri-0.9.3.jar'
+-encoding
+'UTF-8'
+-protected
+-quiet
+-sourcepath
+'C:/Files/Progetti/CKR2/03_Code/ckr-datalog-rewriter-d/src/main/java'
+-Xdoclint:none
+-author
+-bottom
+'Copyright &#169; 2015&#x2013;2016 <a href="http://dkm.fbk.eu">FBK - DKM unit</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Files/Progetti/CKR2/03_Code/ckr-datalog-rewriter-d/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CKRew 1.4 API'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-link
+'http://junit.sourceforge.net/javadoc'
+-link
+'http://docs.guava-libraries.googlecode.com/git-history/release/javadoc'
+-link
+'http://openrdf.callimachus.net/sesame/2.7/apidocs'
+-link
+'http://hadoop.apache.org/docs/r1.0.4/api'
+-link
+'http://hbase.apache.org/0.94/apidocs'
+-link
+'http://commons.apache.org/proper/commons-configuration/apidocs'
+-link
+'http://www.slf4j.org/apidocs'
+-linkoffline
+'http://docs.oracle.com/javase/7/docs/api' 'C:/Files/Progetti/CKR2/03_Code/ckr-datalog-rewriter-d/target/javadoc-bundle-options'
+-tag
+"apiviz.uses:X"
+-tag
+"apiviz.has:X"
+-tag
+"apiviz.owns:X"
+-tag
+"apiviz.exclude:X"
+-tag
+"apiviz.landmark:X"
+-tag
+"apiviz.stereotype:X"
+-use
+-version
+-windowtitle
+'CKRew 1.4 API'

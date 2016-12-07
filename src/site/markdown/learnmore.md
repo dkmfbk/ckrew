@@ -1,8 +1,10 @@
 CKRew datalog translation
 ===
 
-[processo di CKRew con disegno]
+Under construction.
 
-[Tipi di regole (con ref a Krotsch)]
+<!-- [processo di CKRew con disegno] -->
 
-[Translation process]
+<!-- [Tipi di regole (con ref a Krotsch)] -->
+
+<!-- [Translation process] -->

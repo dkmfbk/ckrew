@@ -1,8 +1,11 @@
 #CKRew download and installation
 
 ##Download
-An archive containing the latest version of CKRew (1.3) can be downloaded at:  
-http://dkm.fbk.eu/resources/ckr/ckr-datalog-rewriter-d-1.3.zip
+An archive containing the latest version of CKRew (1.4) can be downloaded at:  
+http://dkm.fbk.eu/resources/ckr/ckr-datalog-rewriter-d-1.4.zip
+
+See also [CKRew GitHub releases page](https://github.com/dkmfbk/ckrew/releases) for current and previous releases.  
+The [source code](https://github.com/dkmfbk/ckrew) is distributed as a Maven project: binaries can be built executing `mvn assembly:assembly` from the main project directory.
 
 ##Requirements
 

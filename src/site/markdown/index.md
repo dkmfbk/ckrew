@@ -37,5 +37,6 @@ and provides a command line utility for the translation of CKRs represented as R
 
 ### News
 
+- 2016-12-07: CKRew 1.4 package released
 - 2015-12-14: CKRew 1.3 package released
 - 2015-11-11: CKRew site launched

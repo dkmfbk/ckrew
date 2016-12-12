@@ -14,6 +14,8 @@ closure computation with respect to the number and size of contexts of a CKR.
 [TS1.2](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS1/testset1.2_161108.zip) |
 [TS1.3](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS1/testset1.3_161108.zip)  
 
+**Note:** `Nctx` folders contain sets of CKRs having `N` contexts; inside each of these folders, `Mcls` corresponds to a CKR having `M` base classes.   
+
 ## TS2: Defeasibility evaluation
 
 Testset for the evaluation of amount of time requested for inference closure computation 
@@ -24,5 +26,6 @@ with respect to the percentage of global defeasible axioms and their overridings
 [TS2.1](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS2/testset2.1_161125.zip) |
 [TS2.2](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS2/testset2.2_161125.zip) |
 [TS2.3](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS2/testset2.3_161125.zip) |
-[TS2.4](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS2/testset2.4_161125.zip) |
+[TS2.4](http://dkm.fbk.eu/resources/ckr/ckrew-testsets/TS2/testset2.4_161125.zip) 
 
+**Note:** `Nctx` folders contain sets of CKRs having percentage `N` of defeasible axioms (context number is fixed); inside each of them, `Mcls` corresponds to a CKR having percebtage `M` of overriding.

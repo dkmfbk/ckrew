@@ -4,11 +4,11 @@
 
 = INTRODUCTION = 
 The files presented in this demo represent an implementation for examples
-introduced in recent CKR publications [1, 2, 3]. Their goal is to demonstrate
-the functionality of the CKR rewriter prototype and provide an intuitive 
-interpretation for its output.
+introduced in recent CKR related publications [1, 2, 3, 4, 5]. Their goal is 
+to demonstrate the functionality of the CKR rewriter prototype and provide 
+an intuitive interpretation for its output.
 
-The four examples included in this demo correspond to the .bat (and .sh) files
+The five examples included in this demo correspond to the .bat (and .sh) files
 contained in this folder.
 By running one of these shell files, the prototype is executed using the 
 corresponding RDF files in the "../testcase" folder and the output program is 
@@ -56,7 +56,7 @@ Champions League 2011, where such team is then classified as :Winner.
 --------------------------------------------------------------------------------
 = EXAMPLE 2: TOURISTS PREFERRED TEAMS =
 
-Reference: [2]
+Reference: [2, 4]
 Shell file: tourism-demo
 Query file: preferredTeamQuery.dlv
 
@@ -87,7 +87,7 @@ defined for all :SportiveTourists, also the two :TopTeams
 --------------------------------------------------------------------------------
 = EXAMPLE 3: INTERESTING TOURISM EVENTS =
 
-Reference: [3]
+Reference: [3, 4]
 Shell file: tourism-example-d
 Query file: interestingQuery.dlv
 
@@ -116,7 +116,7 @@ instantiated for the :market instance, which is in fact returned as an
 --------------------------------------------------------------------------------
 = EXAMPLE 4: CURRENT WORKERS =
 
-Reference: [3]
+Reference: [3, 4]
 Shell file: workers-example-d
 Query file: workingNowQuery.dlv
 
@@ -142,6 +142,35 @@ the local negative assertion about :charlie overrides the instance of the
 defeasible inclusion for this individual.
 
 --------------------------------------------------------------------------------
+= EXAMPLE 5: DEPARTMENT MEMBERS =
+
+Reference: [5]
+Shell file: department-example-d
+Query file: hasCourseQuery.dlv
+
+In this example we demonstrate the option for rewriting DLliteR defeasible
+knowledge bases (DKBs) and the possibility of reasoning on defeasible 
+existential axioms.
+We consider the scenario of the organization of an university research
+department: using a defeasible axiom, we specify that "in general, department
+members need to teach at least a course". This is represented as an axiom of
+the kind D(:DeptMember \isa \exists :hasCourse).
+Moreover, each :Professor and each :PhDStudent is a :DeptMember. 
+However, a :PhDStudent can not hold a course, i.e. we have a strict axiom
+:PhDStudent \isa \not \exists :hasCourse.
+In the example DKB we have two members: :alice is a :Professor and :bob is a
+:PhDStudent.
+
+The query in hasCourseQuery.dlv asks for members for which it is known that
+they teach at least a course.
+By the interpretation of the defeasible axiom, we have that the axiom is 
+disregarded in the case of :bob. This is due to the fact that the strict
+axiom for :PhDStudent allows to derive a justification for the overriding 
+of the :bob instance. On the other hand, the axiom is applied to the instance
+of :alice, since no overriding can be derived: thus :alice is the only
+instance that is returned by the query.
+
+--------------------------------------------------------------------------------
 = REFERENCES =
 
 [1] Bozzato, L., Corcoglioniti, F., Homola, M., Joseph, M., Serafini, L.: 
@@ -155,5 +184,13 @@ defeasible inclusion for this individual.
 [3] Bozzato, L., Eiter, T., Serafini, L.: 
     Defeasibility in contextual reasoning with CKR. 
     In: ARCOE-13 (2013)
+
+[4] Bozzato, L., Eiter, T., Serafini, L.: 
+    Enhancing context knowledge repositories with justifiable exceptions.
+    In: Artificial Intelligence 257:72-126 (2018)
+
+[5] Bozzato, L., Eiter, T., Serafini, L.: 
+    Reasoning on DL-Lite_R with Defeasibility in ASP.
+    In: RuleML+RR 2019 (2019)
 
 ================================================================================

@@ -1,0 +1,2 @@
+hasCourse(X) :- tripled(X, "hasCourse", Y).
+hasCourse(X) ?

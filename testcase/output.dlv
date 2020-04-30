@@ -1,161 +1,54 @@
-subClass("WorkingBefore", "WorkingNow", "g").
-def_subclass("WorkingBefore", "WorkingNow").
-triplea("employees2012", "hasModule", "em2012_m", "g", "main").
-domain("hasAttribute", "Context", "g").
-domain("hasModule", "Context", "g").
-insta("employees2012", "Context", "g", "main").
-range("hasAttribute", "AttributeValue", "g").
-insta("strict", "AxiomType", "g", "main").
-insta("employees2012", "Em2012", "g", "main").
-range("hasModule", "Module", "g").
-insta("em2012_m", "Module", "g", "main").
-subClass("Em2012", "Context", "g").
-insta("employees2013", "Context", "g", "main").
-triplea("employees2013", "hasModule", "em2013_m", "g", "main").
-insta("em2013_m", "Module", "g", "main").
-insta("defeasible", "AxiomType", "g", "main").
-nom("em2013_m", "g").
-nom("strict", "g").
-nom("defeasible", "g").
-nom("employees2012", "g").
-nom("employees2013", "g").
-nom("em2012_m", "g").
-rol("hasAttribute", "g").
-rol("hasModule", "g").
-cls("AttributeValue", "g").
-cls("AxiomType", "g").
-cls("Em2012", "g").
-cls("WorkingNow", "g").
-cls("Module", "g").
-cls("WorkingBefore", "g").
-cls("Context", "g").
-instd(X, Z, C, T) :- insta(X, Z, C, T).
-tripled(X, R, Y, C, T) :- triplea(X, R, Y, C, T).
-unsat(T) :- ninsta(X, Z, C), instd(X, Z, C, T).
-unsat(T) :- ntriplea(X, R, Y, C), tripled(X, R, Y, C, T).
-unsat(T) :- eq(X, Y, C, T).
-instd(X, "top", C, "main") :- nom(X, C).
-unsat(T) :- instd(X, "bot", C, T).
-instd(X, Z, C, T) :- subClass(Y, Z, C), instd(X, Y, C, T).
-instd(X, Z, C, T) :- subConj(Y1, Y2, Z, C), instd(X, Y1, C, T), instd(X, Y2, C, T).
-instd(X, Z, C, T) :- subEx(V, Y, Z, C), tripled(X, V, XP, C, T), instd(XP, Y, C, T).
-tripled(X, R, X1, C, T) :- supEx(Y, R, X1, C), instd(X, Y, C, T).
-instd(Y, Z1, C, T) :- supForall(Z, R, Z1, C), instd(X, Z, C, T), tripled(X, R, Y, C, T).
-unsat(T) :- supLeqOne(Z, R, C), instd(X, Z, C, T), tripled(X, R, X1, C, T), tripled(X, R, X2, C, T), X1 != X2.
-tripled(X, W, X1, C, T) :- subRole(V, W, C), tripled(X, V, X1, C, T).
-tripled(X, W, Z, C, T) :- subRChain(U, V, W, C), tripled(X, U, Y, C, T), tripled(Y, V, Z, C, T).
-unsat(T) :- dis(U, V, C), tripled(X, U, Y, C, T), tripled(X, V, Y, C, T).
-tripled(Y, V, X, C, T) :- inv(U, V, C), tripled(X, U, Y, C, T).
-tripled(Y, U, X, C, T) :- inv(U, V, C), tripled(X, V, Y, C, T).
-unsat(T) :- irr(U, C), tripled(X, U, X, C, T).
- :- unsat("main").
-range("hasAttribute", "AttributeValue", "employees2012").
-insta("alice", "WorkingNow", "employees2012", "main").
-insta("strict", "AxiomType", "employees2012", "main").
-insta("charlie", "WorkingNow", "employees2012", "main").
-range("hasModule", "Module", "employees2012").
-domain("hasAttribute", "Context", "employees2012").
-domain("hasModule", "Context", "employees2012").
-insta("defeasible", "AxiomType", "employees2012", "main").
-insta("bob", "WorkingNow", "employees2012", "main").
-nom("strict", "employees2012").
-nom("defeasible", "employees2012").
-nom("charlie", "employees2012").
-nom("bob", "employees2012").
-nom("alice", "employees2012").
-rol("hasModule", "employees2012").
-rol("hasAttribute", "employees2012").
-cls("AxiomType", "employees2012").
-cls("AttributeValue", "employees2012").
-cls("WorkingNow", "employees2012").
-cls("Module", "employees2012").
-cls("WorkingBefore", "employees2012").
-cls("Context", "employees2012").
-prec("employees2012", "g").
-range("hasAttribute", "AttributeValue", "employees2013").
-insta("strict", "AxiomType", "employees2013", "main").
-range("hasModule", "Module", "employees2013").
-domain("hasAttribute", "Context", "employees2013").
-domain("hasModule", "Context", "employees2013").
-subEval("WorkingNow", "Em2012", "WorkingBefore", "employees2013").
-subClass("C_ev", "WorkingBefore", "employees2013").
-insta("defeasible", "AxiomType", "employees2013", "main").
-subConj("WorkingNow", "notWorkingNow", "bot", "employees2013").
-insta("charlie", "notWorkingNow", "employees2013", "main").
-nom("strict", "employees2013").
-nom("charlie", "employees2013").
-nom("defeasible", "employees2013").
-rol("hasModule", "employees2013").
-rol("hasAttribute", "employees2013").
-cls("C_ev", "employees2013").
-cls("AxiomType", "employees2013").
-cls("AttributeValue", "employees2013").
-cls("WorkingNow", "employees2013").
-cls("notWorkingNow", "employees2013").
-cls("Module", "employees2013").
-cls("WorkingBefore", "employees2013").
-cls("bot", "employees2013").
-cls("Context", "employees2013").
-prec("employees2013", "g").
-instd(X, B, C, T) :- subEval(A, C1, B, C), instd(CP, C1, G, T), instd(X, A, CP, T).
-tripled(X, S, Y, C, T) :- subEvalR(R, C1, S, C), instd(CP, C1, G, T), tripled(X, R, Y, CP, T).
-instd(X, Z, C, T) :- insta(X, Z, G, T), prec(C, G), not ovrInsta(X, Z, C).
-tripled(X, R, Y, C, T) :- triplea(X, R, Y, G, T), prec(C, G), not ovrTriplea(X, R, Y, C).
-unsat(T) :- ninsta(X, Z, G), instd(X, Z, C, T), prec(C, G), not ovrNinsta(X, Z, C).
-unsat(T) :- ntriplea(X, R, Y, G), tripled(X, R, Y, C, T), prec(C, G), not ovrNtriplea(X, R, Y, C).
-instd(X, Z, C, T) :- subClass(Y, Z, G), instd(X, Y, C, T), prec(C, G), not ovrSubClass(X, Y, Z, C).
-instd(X, Z, C, T) :- subConj(Y1, Y2, Z, G), instd(X, Y1, C, T), instd(X, Y2, C, T), prec(C, G), not ovrSubConj(X, Y1, Y2, Z, C).
-instd(X, Z, C, T) :- subEx(V, Y, Z, G), tripled(X, V, X1, C, T), instd(X1, Y, C, T), prec(C, G), not ovrSubEx(X, V, Y, Z, C).
-tripled(X, R, X1, C, T) :- supEx(Y, R, X1, G), instd(X, Y, C, T), prec(C, G), not ovrSupEx(X, Y, R, X1, C).
-instd(Y, Z1, C, T) :- supForall(Z, R, Z1, G), instd(X, Z, C, T), tripled(X, R, Y, C, T), prec(C, G), not ovrSupAll(X, Y, Z, R, Z1, C).
-unsat(T) :- supLeqOne(Z, R, G), instd(X, Z, C, T), tripled(X, R, X1, C, T), tripled(X, R, X2, C, T), X1 != X2, prec(C, G), not ovrSupLeqOne(X, X1, X2, Z, R, C).
-tripled(X, W, X1, C, T) :- subRole(V, W, G), tripled(X, V, X1, C, T), prec(C, G), not ovrSubRole(X, X1, V, W, C).
-tripled(X, W, Z, C, T) :- subRChain(U, V, W, G), tripled(X, U, Y, C, T), tripled(Y, V, Z, C, T), prec(C, G), not ovrSubRChain(X, Y, Z, U, V, W, C).
-unsat(T) :- dis(U, V, G), tripled(X, U, Y, C, T), tripled(X, V, Y, C, T), prec(C, G), not ovrDis(X, Y, U, V, C).
-tripled(Y, V, X, C, T) :- inv(U, V, G), tripled(X, U, Y, C, T), prec(C, G), not ovrInv(X, Y, U, V, C).
-tripled(X, U, Y, C, T) :- inv(U, V, G), tripled(Y, V, X, C, T), prec(C, G), not ovrInv(X, Y, U, V, C).
-unsat(T) :- irr(U, G), tripled(X, U, X, C, T), prec(C, G), not ovrIrr(X, U, C).
-ovrInsta(X, Y, C) :- def_insta(X, Y), prec(C, "g"), not test_fails(nlit(X, Y, C)).
-ovrTriplea(X, R, Y, C) :- def_triplea(X, R, Y), prec(C, "g"), not test_fails(nrel(X, R, Y, C)).
-ovrNinsta(X, Z, C) :- def_ninsta(X, Z), prec(C, "g"), instd(X, Z, C, "main").
-ovrNtriplea(X, R, Y, C) :- def_ntriplea(X, R, Y), prec(C, "g"), tripled(X, R, Y, C, "main").
-ovrSubClass(X, Y, Z, C) :- def_subclass(Y, Z), prec(C, "g"), instd(X, Y, C, "main"), not test_fails(nlit(X, Z, C)).
-ovrSubConj(X, Y1, Y2, Z, C) :- def_subcnj(Y1, Y2, Z), prec(C, "g"), instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), not test_fails(nlit(X, Z, C)).
-ovrSubEx(X, R, Y, Z, C) :- def_subex(R, Y, Z), prec(C, "g"), tripled(X, R, W, C, "main"), instd(W, Y, C, "main"), not test_fails(nlit(X, Z, C)).
-ovrSupEx(X, Y, R, W, C) :- def_supex(Y, R, W), prec(C, "g"), instd(X, Y, C, "main"), not test_fails(nrel(X, R, W, C)).
-ovrSupAll(X, Y, Z, R, W, C) :- def_supforall(Z, R, W), prec(C, "g"), instd(X, Z, C, "main"), tripled(X, R, Y, C, "main"), not test_fails(nlit(Y, W, C)).
-ovrSupLeqOne(X, X1, X2, Z, R, C) :- def_supleqone(Z, R), prec(C, "g"), instd(X, Z, C, "main"), tripled(X, R, X1, C, "main"), tripled(X, R, X2, C, "main"), X1 != X2.
-ovrSubRole(X, Y, R, S, C) :- def_subr(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), not test_fails(nrel(X, S, Y, C)).
-ovrSubRChain(X, Y, Z, R, S, T, C) :- def_subrc(R, S, T), prec(C, "g"), tripled(X, R, Y, C, "main"), tripled(Y, S, Z, C, "main"), not test_fails(nrel(X, T, Z, C)).
-ovrDis(X, Y, R, S, C) :- def_dis(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), tripled(X, S, Y, C, "main").
-ovrInv(X, Y, R, S, C) :- def_inv(R, S), prec(C, "g"), tripled(X, R, Y, C, "main"), not test_fails(nrel(Y, S, X, C)).
-ovrInv(X, Y, R, S, C) :- def_inv(R, S), prec(C, "g"), tripled(Y, S, X, C, "main"), not test_fails(nrel(X, R, Y, C)).
-ovrIrr(X, R, C) :- def_irr(R), prec(C, "g"), tripled(X, R, X, C, "main").
-test(nlit(X, Y, C)) :- def_insta(X, Y), prec(C, "g").
- :- test_fails(nlit(X, Y, C)), ovrInsta(X, Y, C).
-test(nrel(X, R, Y, C)) :- def_triplea(X, R, Y), prec(C, "g").
- :- test_fails(nrel(X, R, Y, C)), ovrTriplea(X, R, Y, C).
-test(nlit(X, Z, C)) :- def_subclass(Y, Z), instd(X, Y, C, "main"), prec(C, "g").
- :- test_fails(nlit(X, Z, C)), ovrSubClass(X, Y, Z, C).
-test(nlit(X, Z, C)) :- def_subcnj(Y1, Y2, Z), instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), prec(C, "g").
- :- test_fails(nlit(X, Z, C)), ovrSubConj(X, Y1, Y2, Z, C).
-test(nlit(X, Z, C)) :- def_subex(R, Y, Z), tripled(X, R, W, C, "main"), instd(W, Y, C, "main"), prec(C, "g").
- :- test_fails(nlit(X, Z, C)), ovrSubEx(X, V, Y, Z, C).
-test(nrel(X, R, W, C)) :- def_supex(Y, R, W), instd(X, Y, C, "main"), prec(C, "g").
- :- test_fails(nrel(X, R, W, C)), ovrSupEx(X, Y, R, W, C).
-test(nlit(Y, W, C)) :- def_supforall(Z, R, W), instd(X, Z, C, "main"), tripled(X, R, Y, C, "main"), prec(C, "g").
- :- test_fails(nlit(Y, W, C)), ovrSupAll(X, Y, Z, R, W, C).
-test(nrel(X, S, Y, C)) :- def_subr(R, S), tripled(X, R, Y, C, "main"), prec(C, "g").
- :- test_fails(nrel(X, S, Y, C)), ovrSubRole(X, Y, R, S, C).
-test(nrel(X, T, Z, C)) :- def_subrc(R, S, T), tripled(X, R, Y, C, "main"), tripled(Y, S, Z, C, "main"), prec(C, "g").
- :- test_fails(nrel(X, T, Z, C)), ovrSubRChain(X, Y, Z, R, S, T, C).
-test(nrel(Y, S, X, C)) :- def_inv(R, S), tripled(X, R, Y, C, "main"), prec(C, "g").
-test(nrel(Y, R, X, C)) :- def_inv(R, S), tripled(X, S, Y, C, "main"), prec(C, "g").
- :- test_fails(nrel(X, S, Y, C)), ovrInv(X, Y, R, S, C).
- :- test_fails(nrel(X, R, Y, C)), ovrInv(X, Y, R, S, C).
-test_fails(nlit(X, Z, C)) :- instd(X, Z, C, nlit(X, Z, C)), not unsat(nlit(X, Z, C)).
-test_fails(nrel(X, R, Y, C)) :- tripled(X, R, Y, C, nrel(X, R, Y, C)), not unsat(nrel(X, R, Y, C)).
-instd(X, Z, C, nlit(X, Z, C)) :- test(nlit(X, Z, C)).
-tripled(X, R, Y, C, nrel(X, R, Y, C)) :- test(nrel(X, R, Y, C)).
-instd(X1, Y1, C, Z) :- instd(X1, Y1, C, "main"), test(Z).
-tripled(X1, R, Y1, C, Z) :- tripled(X1, R, Y1, C, "main"), test(Z).
+supNot("notExHasCourse", "ExHasCourse").
+supEx("ExHasCourse", "hasCourse", "aux-ExHasCourse-hasCourse").
+insta("bob", "PhDStudent").
+subClass("Professor", "DeptMember").
+insta("alice", "Professor").
+subEx("hasCourse", "ExHasCourse").
+def_subclass("DeptMember", "ExHasCourse").
+subClass("PhDStudent", "DeptMember").
+subClass("PhDStudent", "notExHasCourse").
+nom("bob").
+nom("alice").
+rol("hasCourse").
+cls("top").
+cls("PhDStudent").
+cls("ExHasCourse").
+cls("DeptMember").
+cls("notExHasCourse").
+cls("Professor").
+const("aux-ExHasCourse-hasCourse").
+const("bob").
+const("alice").
+first("aux-ExHasCourse-hasCourse").
+next("aux-ExHasCourse-hasCourse", "bob").
+next("bob", "alice").
+last("alice").
+instd(X, Z) :- insta(X, Z).
+tripled(X, R, Y) :- triplea(X, R, Y).
+instd(X, Z) :- subClass(Y, Z), instd(X, Y).
+-instd(X, Z) :- supNot(Y, Z), instd(X, Y).
+instd(X, Z) :- subEx(V, Z), tripled(X, V, XP).
+tripled(X, R, X1) :- supEx(Y, R, X1), instd(X, Y).
+tripled(X, W, X1) :- subRole(V, W), tripled(X, V, X1).
+-tripled(X, V, Y) :- dis(U, V), tripled(X, U, Y).
+-tripled(X, U, Y) :- dis(U, V), tripled(X, V, Y).
+tripled(Y, V, X) :- inv(U, V), tripled(X, U, Y).
+tripled(Y, U, X) :- inv(U, V), tripled(X, V, Y).
+-tripled(X, U, X) :- irr(U), const(X).
+-tripled(X, R, Y) :- ntriplea(X, R, Y).
+-instd(X, Y) :- subClass(Y, Z), -instd(X, Z).
+instd(X, Y) :- supNot(Y, Z), -instd(X, Z).
+-tripled(X, V, XP) :- subEx(V, Z), const(XP), -instd(X, Z).
+-instd(X, Y) :- supEx(Y, R, X1), const(X), allNRel(X, R).
+-tripled(X, V, X1) :- subRole(V, W), -tripled(X, W, X1).
+-tripled(Y, V, X) :- inv(U, V), -tripled(X, U, Y).
+-tripled(Y, U, X) :- inv(U, V), -tripled(X, V, Y).
+allNRelStep(X, R, Y) :- first(Y), -tripled(X, R, Y).
+allNRelStep(X, R, Y) :- allNRelStep(X, R, YP), next(YP, Y), -tripled(X, R, Y).
+allNRel(X, R) :- last(Y), allNRelStep(X, R, Y).
+instd(X, Z) :- def_subclass(Y, Z), instd(X, Y), not ovrSubClass(X, Y, Z).
+-instd(X, Y) :- def_subclass(Y, Z), -instd(X, Z), not ovrSubClass(X, Y, Z).
+tripled(X, W, X1) :- def_subr(V, W), tripled(X, V, X1), not ovrSubRole(X, X1, V, W).
+-tripled(X, V, X1) :- def_subr(V, W), -tripled(X, W, X1), not ovrSubRole(X, X1, V, W).
+ovrSubClass(X, Y, Z) :- def_subclass(Y, Z), instd(X, Y), -instd(X, Z).
+ovrSubRole(X, Y, R, S) :- def_subr(R, S), tripled(X, R, Y), -tripled(X, S, Y).

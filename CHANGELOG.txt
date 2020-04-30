@@ -2,6 +2,9 @@
   CKRew: ckr-datalog-rewriter - CHANGELOG
 ##############################
 
+* v.1.5.:
+- Rewriting for DLliteR defeasible knowledge bases.
+
 * v.1.4.:
 - New version of rules with test environments.
 

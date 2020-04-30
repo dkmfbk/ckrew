@@ -18,7 +18,7 @@ import eu.fbk.dkm.ckrdatalogrewriter.rl.ckr.CKRProgram;
 
 /** 
  * @author Loris 
- * @version 1.4
+ * @version 1.5
  * 
  * Command line interface for CKR Datalog Rewriter (for OWL-RL).
  * (Extended from DreW CLI).
@@ -37,7 +37,9 @@ public class CKRDReWRLCLI extends CommandLine {
 	private String outputFilePath = null;
 	
 	private boolean verbose = false;
-	private boolean trigInput = false;	
+	private boolean trigInput = false;
+	
+	private boolean isDLlite = false; //option for DLliteR input
 
 	private String[] args;
 	
@@ -95,13 +97,15 @@ public class CKRDReWRLCLI extends CommandLine {
 		
 		if(verbose) System.out.println("Number of input logical axioms: " + inputCKR.getCKRSize());
 		
-		//Check if profile of ontologies is in the correct fragment.
-		OWLProfileReport report = inputCKR.checkProfiles();
-		if (!report.isInProfile()) {
-			System.err.println(report);
-			System.exit(1);
-		} 
-		if(verbose) System.out.println("Global and local ontologies in OWL-RL.");
+		if(!isDLlite){//TODO: check profile for OWL-QL ontologies
+			//Check if profile of ontologies is in the correct fragment.
+			OWLProfileReport report = inputCKR.checkProfiles();
+			if (!report.isInProfile()) {
+				System.err.println(report);
+				System.exit(1);
+			} 
+			if(verbose) System.out.println("Global and local ontologies in OWL-RL.");
+		}
 		
 		//Handle translation of input CKR
 		handleOntology(inputCKR);
@@ -134,12 +138,18 @@ public class CKRDReWRLCLI extends CommandLine {
 			outputFilePath = DEFAULT_OUTPUT_FILENAME;
 			outputCKRProgram.setOutputFilePath(outputFilePath);			
 		}
+				
 		
 		//Rewrite the program.
 		if(verbose) System.out.println("Rewriting program...");
-		outputCKRProgram.rewrite();
+		if(isDLlite)
+			outputCKRProgram.rewriteDLR(); //option: DLliteR DKB
+		else
+			outputCKRProgram.rewrite(); //default: CKR on OWL-RL
+
+		//XXX: #####################
 		
-		if(verbose) {
+		if(verbose && !isDLlite) {
 			System.out.println("Global model computation time: " + outputCKRProgram.getGlobalModelComputationTime() + " ms.");
 			
 			System.out.println("Set of contexts and modules associations computed:");
@@ -212,6 +222,10 @@ public class CKRDReWRLCLI extends CommandLine {
 				case "-trig":
 				    trigInput = true;
 					break;
+				case "-dllite":
+				    isDLlite = true;
+				    if(verbose) System.out.println("DLliteR input mode.");
+					break;					
 				default:
 					if(trigInput) {
 						return false; //more arguments than expected... 
@@ -287,6 +301,8 @@ public class CKRDReWRLCLI extends CommandLine {
 				+ //
 				"Options:\n"
 				+ //
+				" -dllite: interprets global ontology as (single context) DLliteR defeasible KB\n"
+				+ //
 				" -v: verbose (prints more information about loading and rewriting process)\n"
 				+ //
 				" -out <output-file>: specifies the path to the output program file (default: output.dlv)\n"
@@ -302,7 +318,7 @@ public class CKRDReWRLCLI extends CommandLine {
 	 * Prints initial banner and version.
 	 */
 	void printBanner(){
-		String banner = "=== CKRew v.1.4 ===\n";
+		String banner = "=== CKRew v.1.5 ===\n";
 		System.out.println(banner);
 	}
 
@@ -396,9 +412,15 @@ public class CKRDReWRLCLI extends CommandLine {
 		//***Workers Example***
 		//String[] argtest = {"./testcase/workers-example-d/global.n3",
 		//		"./testcase/workers-example-d/em2012_m.n3",
-		//		"./testcase/workers-example-d/em2013_m.n3"};
+		//		"./testcase/workers-example-d/em2013_m.n3", "-v"};
 		
-		//Paths test
+		//***Simple DLliteR TEST ***
+		//String[] argtest = {"./testcase/simple-dl-lite-d/dkb.n3", "-v", "-dllite"};        
+
+		//***Department Example ***
+		//String[] argtest = {"./testcase/department-example-d/dkb.n3", "-v", "-dllite"};        		
+		
+        //Paths test
 		//String[] argtest = {"./testcase/simple-rl-d/global.n3",
 		//		            "./testcase/simple-rl-d/m1.n3",
 		//		            "-dlv", "./localdlv/dlv",
@@ -425,7 +447,7 @@ public class CKRDReWRLCLI extends CommandLine {
 		//		"./testcase/tourism-demo/m_trento_latina_130203.n3",
 		//		"./testcase/tourism-demo/m_sportive_tourist.n3",
 		//		"./testcase/tourism-demo/m_volley_fan_01.n3"};
-		
+        		
 		//new CKRDReWRLCLI(argtest).go();
 	}
 	

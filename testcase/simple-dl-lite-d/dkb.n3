@@ -1,0 +1,144 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/simple-dllite#> .
+@base           <http://dkm.fbk.eu/ckr/test/simple-dllite#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/simple-dllite#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+
+    :D a owl:Class .
+    :R_1 a owl:ObjectProperty .
+
+    # subClass #
+    :C_1 a owl:Class ;
+        rdfs:subClassOf :D .
+       
+   # subEx #
+   :C_4 a owl:Class.
+   # :C_ex a owl:Class ;
+   #      rdfs:subClassOf :D , [
+   #          a owl:Restriction ;
+   #          owl:onProperty :R_1 ;
+   #          owl:someValuesFrom :C_4
+   #      ] .
+     [ a owl:Restriction ;
+           owl:onProperty :R_1 ;
+           owl:someValuesFrom owl:Thing # TEST!
+     ] rdfs:subClassOf :D .      
+   :i_3 :R_1 :i_4 .    
+   # :i_4 a :C_4 .
+      
+   # supEx #      
+   :R_ex a owl:ObjectProperty .
+   :C_ex2 a owl:Class ; # TEST!
+       rdfs:subClassOf [
+           a owl:Restriction ;
+           owl:onProperty :R_ex ;
+           # owl:hasValue :obj_ex .
+           owl:someValuesFrom owl:Thing
+       ] .
+   :i_ex2 a :C_ex2 .
+    
+    # supNot #
+    :C_not a owl:Class ; # TEST! #
+        rdfs:subClassOf [
+            owl:complementOf :C_4 .
+        ] .
+#    :C_not a owl:Class ; # TEST! #
+#        rdfs:subClassOf [
+#            owl:complementOf :D .
+#        ] .
+    :i_not a :C_not .
+    #:i_not a :C_4 .                                                                  
+
+    # subRole #
+    :R_3 a owl:ObjectProperty .
+    :R_4 a owl:ObjectProperty .
+    :R_2 a owl:ObjectProperty ;
+        rdfs:subPropertyOf :R_1 .
+    :i_4 :R_2 :i_3 .
+    
+    # inv #
+    :R_inv1 a owl:ObjectProperty .
+    :R_inv2 a owl:ObjectProperty;
+            owl:inverseOf :R_inv1 .
+    :i_inv1 :R_inv1 :i_inv2 . 
+   
+    # dis #
+    :R_dis1 a owl:ObjectProperty .
+    :R_dis2 a owl:ObjectProperty ;
+            owl:propertyDisjointWith :R_dis1. 
+    :i_dis1 :R_dis1 :i_dis2 .
+    #:i_dis1 :R_dis2 :i_dis2 .
+   
+    # irr #
+    :R_irr a owl:ObjectProperty ;
+           a owl:IrreflexiveProperty . 
+    #:i_irr :R_irr :i_irr .
+
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    :i_1 a :C_1 .
+         
+    # ntriple #
+    :R_npa a owl:ObjectProperty .
+    :npa a owl:NegativePropertyAssertion ;
+         owl:sourceIndividual :i_npa1 ; 
+         owl:assertionProperty :R_npa ;
+         owl:targetIndividual :i_npa2 .
+    # :i_npa1 :R_npa :i_npa2 . 
+             
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    # Def. subclass #
+    :C3 a owl:Class .
+    :C4 a owl:Class .    
+    :ax3 rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :C3 ;
+      owl:annotatedProperty rdfs:subClassOf ;   
+      owl:annotatedTarget :C4 .
+ 
+    # Overriding test #
+    :notC4 a owl:Class ;
+        rdfs:subClassOf [ owl:complementOf :C4 .] .
+    # [ owl:intersectionOf ( :C4 :notC4 ) ] 
+    #      rdfs:subClassOf owl:Nothing .    
+    :i_sc a :notC4 .
+    :i_sc a :C3.
+    # :i_sd a :C3.
+ 
+    # Def. subProperty #
+    :Rd a owl:ObjectProperty .
+    :Sd a owl:ObjectProperty .
+    :axr rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :Rd ;
+      owl:annotatedProperty rdfs:subPropertyOf ;   
+      owl:annotatedTarget :Sd .
+    :i_sc1 :Rd :i_sc2 .
+    # :dpax a owl:NegativePropertyAssertion ;
+    #      owl:sourceIndividual :i_sc1 ; 
+    #      owl:assertionProperty :Sd ;
+    #      owl:targetIndividual :i_sc2 .
+
+
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

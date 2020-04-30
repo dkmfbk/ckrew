@@ -1,0 +1,27 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/same-indiv-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/same-indiv-d#> .
+#=============================================================================
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+    
+    :Changed a owl:Class .
+    :PlayingNow a owl:Class .
+    :PlayingBefore a owl:Class .
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+
+    :C_ev0 a owl:Class ;
+        ckr:hasEvalObject :PlayingNow ;         
+        ckr:hasEvalMeta :S0 ;
+        rdfs:subClassOf :PlayingBefore .
+
+
+#=============================================================================

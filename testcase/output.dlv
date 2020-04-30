@@ -1,88 +1,33 @@
-subRChain("R11", "R12", "R10", "g").
-def_subrc("R11", "R12", "R10").
-subClass("C3", "C4", "g").
-def_subclass("C3", "C4").
-insta("ind1", "C1", "g", "main").
-def_insta("ind1", "C1").
-supForall("C12", "R6", "C13", "g").
-def_supforall("C12", "R6", "C13").
-insta("m1", "Module", "g", "main").
-irr("R18", "g").
-def_irr("R18").
-subConj("C5", "C6", "C7", "g").
-def_subcnj("C5", "C6", "C7").
-supLeqOne("C14", "R7", "g").
-def_supleqone("C14", "R7").
-supEx("C10", "R5", "obj_ex", "g").
-def_supex("C10", "R5", "obj_ex").
-domain("hasModule", "Context", "g").
+subClass("WorkingBefore", "WorkingNow", "g").
+def_subclass("WorkingBefore", "WorkingNow").
+triplea("employees2012", "hasModule", "em2012_m", "g", "main").
 domain("hasAttribute", "Context", "g").
-triplea("c1", "hasModule", "m1", "g", "main").
+domain("hasModule", "Context", "g").
+insta("employees2012", "Context", "g", "main").
 range("hasAttribute", "AttributeValue", "g").
-dis("R15", "R16", "g").
-def_dis("R15", "R16").
 insta("strict", "AxiomType", "g", "main").
+insta("employees2012", "Em2012", "g", "main").
 range("hasModule", "Module", "g").
-ntriplea("i_npa1", "R3", "i_npa2", "g").
-def_ntriplea("i_npa1", "R3", "i_npa2").
-inv("R13", "R14", "g").
-def_inv("R13", "R14").
-subEx("R4", "C8", "C9", "g").
-def_subex("R4", "C8", "C9").
-insta("ind2", "C11", "g", "main").
-def_insta("ind2", "C11").
-insta("c1", "Context", "g", "main").
-triplea("ind2", "R1", "ind3", "g", "main").
-def_triplea("ind2", "R1", "ind3").
+insta("em2012_m", "Module", "g", "main").
+subClass("Em2012", "Context", "g").
+insta("employees2013", "Context", "g", "main").
+triplea("employees2013", "hasModule", "em2013_m", "g", "main").
+insta("em2013_m", "Module", "g", "main").
 insta("defeasible", "AxiomType", "g", "main").
-subRole("R8", "R9", "g").
-def_subr("R8", "R9").
-nom("m1", "g").
-nom("i_npa2", "g").
-nom("i_npa1", "g").
-nom("c1", "g").
-nom("obj_ex", "g").
+nom("em2013_m", "g").
 nom("strict", "g").
 nom("defeasible", "g").
-nom("ind2", "g").
-nom("ind3", "g").
-nom("ind1", "g").
-rol("R16", "g").
-rol("R18", "g").
-rol("hasModule", "g").
-rol("R4", "g").
+nom("employees2012", "g").
+nom("employees2013", "g").
+nom("em2012_m", "g").
 rol("hasAttribute", "g").
-rol("R3", "g").
-rol("R1", "g").
-rol("R8", "g").
-rol("R7", "g").
-rol("R6", "g").
-rol("R5", "g").
-rol("R9", "g").
-rol("R13", "g").
-rol("R12", "g").
-rol("R15", "g").
-rol("R14", "g").
-rol("R11", "g").
-rol("R10", "g").
-cls("C15", "g").
+rol("hasModule", "g").
 cls("AttributeValue", "g").
-cls("C8", "g").
-cls("C9", "g").
-cls("C6", "g").
-cls("C10", "g").
-cls("C7", "g").
-cls("Module", "g").
-cls("C4", "g").
-cls("C12", "g").
-cls("C5", "g").
-cls("C11", "g").
-cls("C2", "g").
-cls("C14", "g").
-cls("C13", "g").
-cls("C3", "g").
-cls("C1", "g").
 cls("AxiomType", "g").
+cls("Em2012", "g").
+cls("WorkingNow", "g").
+cls("Module", "g").
+cls("WorkingBefore", "g").
 cls("Context", "g").
 instd(X, Z, C, T) :- insta(X, Z, C, T).
 tripled(X, R, Y, C, T) :- triplea(X, R, Y, C, T).
@@ -104,132 +49,54 @@ tripled(Y, V, X, C, T) :- inv(U, V, C), tripled(X, U, Y, C, T).
 tripled(Y, U, X, C, T) :- inv(U, V, C), tripled(X, V, Y, C, T).
 unsat(T) :- irr(U, C), tripled(X, U, X, C, T).
  :- unsat("main").
-insta("ind1", "notC1", "c1", "main").
-insta("i_sfl1", "C12", "c1", "main").
-subConj("C4", "notC4", "bot", "c1").
-insta("strict", "AxiomType", "c1", "main").
-ntriplea("i_spx1", "R5", "obj_ex", "c1").
-triplea("i_sbx3", "R4", "i_sbx4", "c1", "main").
-insta("ind2", "notC11", "c1", "main").
-triplea("i_leq", "R7", "i_leq2", "c1", "main").
-insta("i_sbx4", "C8", "c1", "main").
-triplea("i_irr", "R18", "i_irr", "c1", "main").
-insta("i_sbx1", "notC9", "c1", "main").
-ntriplea("i_inv2", "R14", "i_inv1", "c1").
-insta("i_sc", "C3", "c1", "main").
-triplea("i_sr1", "R8", "i_sr2", "c1", "main").
-subConj("C11", "notC11", "bot", "c1").
-range("hasAttribute", "AttributeValue", "c1").
-subConj("C7", "notC7", "bot", "c1").
-insta("i_sc", "notC4", "c1", "main").
-insta("defeasible", "AxiomType", "c1", "main").
-triplea("i_src1", "R11", "i_src2", "c1", "main").
-triplea("i_inv1", "R13", "i_inv2", "c1", "main").
-ntriplea("i_src1", "R10", "i_src3", "c1").
-triplea("i_npa1", "R3", "i_npa2", "c1", "main").
-insta("i_scj", "notC7", "c1", "main").
-triplea("i_leq", "R7", "i_leq1", "c1", "main").
-insta("i_leq2", "C15", "c1", "main").
-triplea("i_dis1", "R15", "i_dis2", "c1", "main").
-insta("i_sfl2", "notC13", "c1", "main").
-insta("i_scj", "C5", "c1", "main").
-domain("hasAttribute", "Context", "c1").
-insta("i_spx2", "C10", "c1", "main").
-subConj("C9", "notC9", "bot", "c1").
-ntriplea("ind2", "R1", "ind3", "c1").
-triplea("i_src2", "R12", "i_src3", "c1", "main").
-insta("i_spx1", "C10", "c1", "main").
-range("hasModule", "Module", "c1").
-insta("i_sbx2", "C8", "c1", "main").
-triplea("i_sbx1", "R4", "i_sbx2", "c1", "main").
-subConj("C1", "notC1", "bot", "c1").
-insta("i_sfl3", "C12", "c1", "main").
-domain("hasModule", "Context", "c1").
-insta("i_scj", "C6", "c1", "main").
-triplea("i_sfl3", "R6", "i_sfl4", "c1", "main").
-insta("i_leq", "C14", "c1", "main").
-triplea("i_sfl1", "R6", "i_sfl2", "c1", "main").
-ntriplea("i_sr1", "R9", "i_sr2", "c1").
-insta("i_leq1", "C15", "c1", "main").
-subConj("C13", "notC13", "bot", "c1").
-triplea("i_dis1", "R16", "i_dis2", "c1", "main").
-nom("i_sbx3", "c1").
-nom("i_sbx2", "c1").
-nom("i_src3", "c1").
-nom("i_sbx1", "c1").
-nom("i_sbx4", "c1").
-nom("i_sfl4", "c1").
-nom("obj_ex", "c1").
-nom("strict", "c1").
-nom("i_sfl1", "c1").
-nom("i_sfl2", "c1").
-nom("i_src2", "c1").
-nom("i_sfl3", "c1").
-nom("i_src1", "c1").
-nom("i_inv2", "c1").
-nom("i_inv1", "c1").
-nom("defeasible", "c1").
-nom("i_leq", "c1").
-nom("i_spx1", "c1").
-nom("i_dis2", "c1").
-nom("i_leq2", "c1").
-nom("i_dis1", "c1").
-nom("i_leq1", "c1").
-nom("i_irr", "c1").
-nom("ind2", "c1").
-nom("ind3", "c1").
-nom("i_spx2", "c1").
-nom("ind1", "c1").
-nom("i_sr2", "c1").
-nom("i_scj", "c1").
-nom("i_sr1", "c1").
-nom("i_npa2", "c1").
-nom("i_sc", "c1").
-nom("i_npa1", "c1").
-rol("R16", "c1").
-rol("R18", "c1").
-rol("hasModule", "c1").
-rol("R4", "c1").
-rol("hasAttribute", "c1").
-rol("R3", "c1").
-rol("R1", "c1").
-rol("R8", "c1").
-rol("R7", "c1").
-rol("R6", "c1").
-rol("R5", "c1").
-rol("R9", "c1").
-rol("R13", "c1").
-rol("R12", "c1").
-rol("R15", "c1").
-rol("R14", "c1").
-rol("R11", "c1").
-rol("R10", "c1").
-cls("notC11", "c1").
-cls("notC13", "c1").
-cls("C8", "c1").
-cls("C9", "c1").
-cls("C6", "c1").
-cls("C7", "c1").
-cls("Module", "c1").
-cls("C4", "c1").
-cls("C5", "c1").
-cls("C3", "c1").
-cls("AxiomType", "c1").
-cls("notC1", "c1").
-cls("C15", "c1").
-cls("AttributeValue", "c1").
-cls("notC4", "c1").
-cls("notC9", "c1").
-cls("notC7", "c1").
-cls("C10", "c1").
-cls("bot", "c1").
-cls("C12", "c1").
-cls("C11", "c1").
-cls("C14", "c1").
-cls("C13", "c1").
-cls("C1", "c1").
-cls("Context", "c1").
-prec("c1", "g").
+range("hasAttribute", "AttributeValue", "employees2012").
+insta("alice", "WorkingNow", "employees2012", "main").
+insta("strict", "AxiomType", "employees2012", "main").
+insta("charlie", "WorkingNow", "employees2012", "main").
+range("hasModule", "Module", "employees2012").
+domain("hasAttribute", "Context", "employees2012").
+domain("hasModule", "Context", "employees2012").
+insta("defeasible", "AxiomType", "employees2012", "main").
+insta("bob", "WorkingNow", "employees2012", "main").
+nom("strict", "employees2012").
+nom("defeasible", "employees2012").
+nom("charlie", "employees2012").
+nom("bob", "employees2012").
+nom("alice", "employees2012").
+rol("hasModule", "employees2012").
+rol("hasAttribute", "employees2012").
+cls("AxiomType", "employees2012").
+cls("AttributeValue", "employees2012").
+cls("WorkingNow", "employees2012").
+cls("Module", "employees2012").
+cls("WorkingBefore", "employees2012").
+cls("Context", "employees2012").
+prec("employees2012", "g").
+range("hasAttribute", "AttributeValue", "employees2013").
+insta("strict", "AxiomType", "employees2013", "main").
+range("hasModule", "Module", "employees2013").
+domain("hasAttribute", "Context", "employees2013").
+domain("hasModule", "Context", "employees2013").
+subEval("WorkingNow", "Em2012", "WorkingBefore", "employees2013").
+subClass("C_ev", "WorkingBefore", "employees2013").
+insta("defeasible", "AxiomType", "employees2013", "main").
+subConj("WorkingNow", "notWorkingNow", "bot", "employees2013").
+insta("charlie", "notWorkingNow", "employees2013", "main").
+nom("strict", "employees2013").
+nom("charlie", "employees2013").
+nom("defeasible", "employees2013").
+rol("hasModule", "employees2013").
+rol("hasAttribute", "employees2013").
+cls("C_ev", "employees2013").
+cls("AxiomType", "employees2013").
+cls("AttributeValue", "employees2013").
+cls("WorkingNow", "employees2013").
+cls("notWorkingNow", "employees2013").
+cls("Module", "employees2013").
+cls("WorkingBefore", "employees2013").
+cls("bot", "employees2013").
+cls("Context", "employees2013").
+prec("employees2013", "g").
 instd(X, B, C, T) :- subEval(A, C1, B, C), instd(CP, C1, G, T), instd(X, A, CP, T).
 tripled(X, S, Y, C, T) :- subEvalR(R, C1, S, C), instd(CP, C1, G, T), tripled(X, R, Y, CP, T).
 instd(X, Z, C, T) :- insta(X, Z, G, T), prec(C, G), not ovrInsta(X, Z, C).

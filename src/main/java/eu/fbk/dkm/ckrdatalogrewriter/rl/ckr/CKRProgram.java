@@ -31,6 +31,8 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
+import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DLRDeductionRuleset;
+import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DLRGlobal2DatalogRewriter;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DeductionRuleset;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.RLGlobal2DatalogRewriter;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.RLLocal2DatalogRewriter;
@@ -139,6 +141,20 @@ public class CKRProgram {
 	public Set<String[]> getHasModuleAssociations() {
 		return hasModuleAssociations;
 	}	
+
+	/**
+	 * @return the datalogCKR
+	 */
+	public DLProgram getDatalogCKR() {
+		return datalogCKR;
+	}	
+
+	/**
+	 * @return the inputCKR
+	 */
+	public CKRKnowledgeBase getInputCKR() {
+		return inputCKR;
+	}	
 	
 	/**
 	 * @param outputFilePath the outputFilePath to set
@@ -220,6 +236,31 @@ public class CKRProgram {
 		//	e.printStackTrace();
 		//}
 	}
+	
+	//--- REWRITING: option for DLliteR ------------------------
+	
+	/**
+	 * Rewrites the global file as a single-context DLliteR DKB
+	 */
+	public void rewriteDLR(){
+		
+		long startTime = System.currentTimeMillis();
+		
+		//Rewriting for global context.
+		DLRGlobal2DatalogRewriter globalrewriter = new DLRGlobal2DatalogRewriter();
+		datalogGlobal = globalrewriter.rewrite(inputCKR.getGlobalOntology());
+		
+		long endTime = System.currentTimeMillis();
+		rewritingTime = endTime - startTime;
+		
+		//Compute DKB Program.
+		datalogCKR = new DLProgram();
+	
+		datalogCKR.addAll(datalogGlobal.getStatements());
+
+		//Add local propagation rules.
+		datalogCKR.addAll(DLRDeductionRuleset.getPd()); //TODO: update rules
+	}	
 	
 	//--- REWRITING: DLV INTERACTION ------------------------------
 	
@@ -378,7 +419,7 @@ public class CKRProgram {
 						CKRModule mod = inputCKR.getLocalModule(a[1]);
 					
 						if (mod == null) {
-							//System.err.println("[!] Warning: no ontology associated to module " + a[1]);
+							System.err.println("[!] Warning: no ontology associated to module " + a[1]);
 						} else {
 							manager.addAxioms(contextOntology, 
 									//inputCKR.getLocalOntology().get(moduleIndex).getAxioms()

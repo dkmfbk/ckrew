@@ -1,0 +1,62 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/department-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/department-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/department-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+    
+    :DeptMember a owl:Class .
+    :Professor a owl:Class .
+    :PhDStudent a owl:Class .
+    
+    :hasCourse a owl:ObjectProperty .
+    
+    :Professor rdfs:subClassOf :DeptMember .
+    :PhDStudent rdfs:subClassOf :DeptMember .
+    
+    :PhDStudent rdfs:subClassOf :notExHasCourse .
+    
+    :ExHasCourse a owl:Class .    
+     [ a owl:Restriction ;
+           owl:onProperty :hasCourse ;
+           owl:someValuesFrom owl:Thing
+     ] rdfs:subClassOf :ExHasCourse .      
+
+    :ExHasCourse rdfs:subClassOf [
+           a owl:Restriction ;
+           owl:onProperty :hasCourse ;
+           owl:someValuesFrom owl:Thing ] .
+
+    :notExHasCourse a owl:Class ;
+        rdfs:subClassOf [ owl:complementOf :ExHasCourse ] .
+
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :alice a :Professor.
+    :bob a :PhDStudent.
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    :ax rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :DeptMember ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :ExHasCourse .
+
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

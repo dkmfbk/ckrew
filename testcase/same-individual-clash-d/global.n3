@@ -1,0 +1,72 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/same-indiv-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/same-indiv-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/workers-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    :Player a owl:Class .
+
+    # (global object knowledge) #    
+    :Changed a owl:Class .
+    :Unchanged a owl:Class .
+    
+    :PlayingBefore a owl:Class .
+    :PlayingNow a owl:Class .
+        
+     [ owl:intersectionOf ( :Changed :Unchanged ) ] 
+         rdfs:subClassOf owl:Nothing .
+         
+     [ owl:intersectionOf ( :PlayingBefore :Unchanged ) ] 
+         rdfs:subClassOf :PlayingNow .     
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :S0 a owl:Class .
+    :S1 a owl:Class .
+    :S2 a owl:Class .
+    
+    :s0 a ckr:Context , :S0 .
+    :s1 a ckr:Context , :S1 .
+    :s2 a ckr:Context , :S2 .
+    :s3 a ckr:Context .
+    
+    :s0 ckr:hasModule :m0 .
+    :s1 ckr:hasModule :m1 .
+    :s2 ckr:hasModule :m2 .
+    :s3 ckr:hasModule :m3 .
+
+    :m0 a ckr:Module .
+    :m1 a ckr:Module .
+    :m2 a ckr:Module .
+    :m3 a ckr:Module .
+    
+    :p a :Player .
+    :p1 a :Player .
+    :p2 a :Player .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+    
+    :ax rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :Player ;
+      owl:annotatedProperty rdfs:subClassOf ;
+      owl:annotatedTarget :Unchanged .
+
+    #------------------------------------------------------------------------- 
+
+#=============================================================================

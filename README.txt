@@ -23,6 +23,7 @@ Usage: ckrew <global-context-file> [<local-module-file> | <options>]
 Example: ckrew global.n3 m1.n3 m2.n3
 
 Options:
+ -dllite: interprets global ontology as (single context) DLliteR defeasible KB
  -v: verbose (prints more information about loading and rewriting process)
  -out <output-file>: specifies the path to the output program file 
                      (default: output.dlv)
@@ -50,6 +51,9 @@ Please refer to "/demo/DEMO_README.txt" for usage examples.
 
 - [!] Input ontologies have to be in the SROIQ-RL Normal Form: currently, the
       normal form is only recognized and no tranformation is applied.
+
+- [!] For input DLliteR defeasible knowledge bases: currently the input ontology
+      need to be in Normal Form and no check on language is applied.
       
 - [!] As part of the normal form and for the definition of "ckr:hasEvalMeta" and 
       "ckr:hasEvalObject", eval expression can only be expressed on named 

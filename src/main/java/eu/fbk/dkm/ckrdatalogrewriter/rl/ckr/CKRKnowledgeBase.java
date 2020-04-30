@@ -52,6 +52,10 @@ public class CKRKnowledgeBase {
 	public OWLOntology getGlobalOntology() {
 		return globalModule.getModuleOntology();
 	}
+
+	public CKRModule getGlobalModule() {
+		return globalModule;
+	}	
 	
 	public LinkedList<CKRModule> getLocalModule(){
 		return localModule;
@@ -78,6 +82,10 @@ public class CKRKnowledgeBase {
 	
 	public void setGlobalOntologyFilename(String globalOntologyFilename) {
 		this.globalModule.setModuleFilename(globalOntologyFilename);
+	}
+	
+	public void setGlobalModule(CKRModule mod){
+		this.globalModule = mod;
 	}
 
 	//--- MODULE SEARCH BY NAME ----------------------------------

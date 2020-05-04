@@ -1,7 +1,7 @@
 #CKRew download and installation
 
 ##Download
-An archive containing the latest version of CKRew (1.4) can be downloaded at:  
+An archive containing the latest version of CKRew (1.5) can be downloaded at:  
 http://dkm.fbk.eu/resources/ckr/ckr-datalog-rewriter-d-1.4.zip
 
 See also [CKRew GitHub releases page](https://github.com/dkmfbk/ckrew/releases) for current and previous releases.  
@@ -35,6 +35,7 @@ The [source code](https://github.com/dkmfbk/ckrew) is distributed as a Maven pro
 **Example:** `ckrew global.n3 m1.n3 m2.n3`  
 
 **Options:**  
+ **`-dllite`:** interprets global ontology as (single context) DL-LiteR defeasible KB
  **`-v`:** verbose (prints more information about loading and rewriting process)  
  **`-out <output-file>`:** specifies the path to the output program file (default: `output.dlv`)  
  **`-trig`:** specifies that the input is provided as a single TRIG file   

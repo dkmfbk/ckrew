@@ -29,6 +29,7 @@ and provides a command line utility for the translation of CKRs represented as R
 ### Features
 
 - CKR expressible in [OWL2-RL](http://www.w3.org/TR/owl2-profiles/#OWL_2_RL)
+- Option for defeasible KB in DL-Lite_R ([OWL2 QL](https://www.w3.org/TR/owl2-profiles/#OWL_2_QL))
 - Input as [N3](http://www.w3.org/TeamSubmission/n3/) or [TRIG](http://www.w3.org/TR/trig/) files.
 - Datalog translation based on [DReW](https://github.com/ghxiao/drew) rewriter.
 - Permits expression of defeasible global axioms (OWL axioms annotated with `ckr:defeasible`).
@@ -37,6 +38,7 @@ and provides a command line utility for the translation of CKRs represented as R
 
 ### News
 
+- 2020-05-04: CKRew 1.5 package released
 - 2016-12-07: CKRew 1.4 package released
 - 2015-12-14: CKRew 1.3 package released
 - 2015-11-11: CKRew site launched

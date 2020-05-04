@@ -5,12 +5,12 @@ of the CKRew installation archive (see [download page](installation.html)).
 
 ##Introduction
 The files presented in this demo represent an implementation for examples
-introduced in recent CKR publications [[1](#ref1), [2](#ref2), [3](#ref3)].   
+introduced in recent CKR publications [[1](#ref1), [2](#ref2), [3](#ref3), [4](#ref4), [5](#ref5)].   
 Their goal is to demonstrate
 the functionality of the CKR rewriter prototype and provide an intuitive 
 interpretation for its output.
 
-The four examples included in this demo correspond to the `.bat` (and `.sh`) files
+The five examples included in this demo correspond to the `.bat` (and `.sh`) files
 contained in folder `/demo`.  
 By running one of these shell files, the prototype is executed using the 
 corresponding RDF files in the `../testcase` folder and the output program is 
@@ -56,7 +56,7 @@ Champions League 2011, where such team is then classified as `:Winner`.
 
 ## Example 2: Tourists preferred teams
 
-**Reference:** [[2](#ref2)]  
+**Reference:** [[2](#ref2), [4](#ref4)]  
 **Shell file:** `tourism-demo`  
 **Query file:** `preferredTeamQuery.dlv`  
 
@@ -86,7 +86,7 @@ defined for all `:SportiveTourists`, also the two `:TopTeams`
 
 ## Example 3: Interesting tourism events
 
-**Reference:** [[3](#ref3)]  
+**Reference:** [[3](#ref3), [4](#ref4)]  
 **Shell file:** `tourism-example-d`  
 **Query file:** `interestingQuery.dlv`  
 
@@ -114,7 +114,7 @@ instantiated for the `:market` instance, which is in fact returned as an
 
 ## Example 4: Current workers
 
-**Reference:** [[3](#ref3)]  
+**Reference:** [[3](#ref3), [4](#ref4)]  
 **Shell file:** `workers-example-d`  
 **Query file:** `workingNowQuery.dlv`  
 
@@ -139,6 +139,34 @@ Following from the eval expression, `:alice`, `:bob` and `:charlie` are imported
 the local negative assertion about `:charlie` overrides the instance of the 
 defeasible inclusion for this individual.
 
+## Example 5: Department members
+
+**Reference:** [[5](#ref5)]  
+**Shell file:** `department-example-d`  
+**Query file:** `hasCourseQuery.dlv` 
+
+In this example we demonstrate the option for rewriting DL-Lite_R defeasible
+knowledge bases (DKBs) and the possibility of reasoning on defeasible 
+existential axioms.   
+We consider the scenario of the organization of an university research
+department: using a defeasible axiom, we specify that "in general, department
+members need to teach at least a course". This is represented as an axiom of
+the kind D(`:DeptMember` \isa \exists `:hasCourse`).   
+Moreover, each `:Professor` and each `:PhDStudent` is a `:DeptMember`.    
+However, a `:PhDStudent` can not hold a course, i.e. we have a strict axiom
+`:PhDStudent` \isa \not \exists `:hasCourse`.   
+In the example DKB we have two members: `:alice` is a `:Professor` and `:bob` is a
+`:PhDStudent`.
+
+The query in `hasCourseQuery.dlv` asks for members for which it is known that
+they teach at least a course.   
+By the interpretation of the defeasible axiom, we have that the axiom is 
+disregarded in the case of `:bob`. This is due to the fact that the strict
+axiom for `:PhDStudent` allows to derive a justification for the overriding 
+of the `:bob` instance. On the other hand, the axiom is applied to the instance
+of `:alice`, since no overriding can be derived: thus `:alice` is the only
+instance that is returned by the query.
+
 ***
 
 ## References
@@ -158,5 +186,13 @@ Bozzato, L., Eiter, T., Serafini, L.:
 *Defeasibility in contextual reasoning with CKR.*   
 In: ARCOE-13 (2013)([notes](http://www.arcoe.org/2013/notes.html))
 
+<a id="ref4">[4]</a>
+Bozzato, L., Eiter, T., Serafini, L.:    
+*Enhancing context knowledge repositories with justifiable exceptions.*   
+In: Artificial Intelligence 257:72-126 (2018)([paper](https://doi.org/10.1016/j.artint.2017.12.005))
 
+<a id="ref5">[5]</a>
+Bozzato, L., Eiter, T., Serafini, L.:   
+*Reasoning on DL-Lite_R with Defeasibility in ASP.*   
+In: RuleML+RR 2019 (2019)([paper](https://doi.org/10.1007/978-3-030-31095-0_2))
 

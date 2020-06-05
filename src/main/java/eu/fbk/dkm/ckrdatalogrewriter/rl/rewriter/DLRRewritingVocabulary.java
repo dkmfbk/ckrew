@@ -51,6 +51,9 @@ public class DLRRewritingVocabulary {
 	
 	public final static NormalPredicate DEF_SUBROLE = manager.getPredicate("def_subr", 2);
 	
+	public final static NormalPredicate DEF_INVROLE = manager.getPredicate("def_inv", 2);
+	public final static NormalPredicate DEF_IRRROLE = manager.getPredicate("def_irr", 1);
+	
 	//--- CONSTANTS ---------------------------------------------------------------------
 	
 	public final static NormalPredicate CONST = manager.getPredicate("const", 1);

@@ -134,6 +134,28 @@
     #      owl:assertionProperty :Sd ;
     #      owl:targetIndividual :i_sc2 .
 
+    # Def. inv #
+    :Rdinv a owl:ObjectProperty .
+    :Sdinv a owl:ObjectProperty .
+    :axrinv rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :Rdinv ;
+      owl:annotatedProperty owl:inverseOf ;   
+      owl:annotatedTarget :Sdinv .
+    :i_sc3 :Rdinv :i_sc4 .
+    # :dpax2 a owl:NegativePropertyAssertion ;
+    #      owl:sourceIndividual :i_sc4 ; 
+    #      owl:assertionProperty :Sdinv ;
+    #      owl:targetIndividual :i_sc3 .
+
+    # Def. irr #
+    :Rdirr a owl:ObjectProperty .
+    :axrirr rdf:type owl:Axiom ;
+      ckr:hasAxiomType ckr:defeasible ;
+      owl:annotatedSource :Rdirr ;
+      owl:annotatedProperty rdf:type ;   
+      owl:annotatedTarget owl:IrreflexiveProperty .
+    # :i_sc3 :Rdirr :i_sc3 .
 
     #------------------------------------------------------------------------- 
     # TEST: Inferred axioms #

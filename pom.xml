@@ -21,7 +21,7 @@
     
     <groupId>eu.fbk.dkm.ckrdatalogrewriter</groupId>
     <artifactId>ckr-datalog-rewriter-d</artifactId>
-    <version>1.5</version>
+    <version>1.5.1</version>
 
     <name>CKRew</name>
     <description>CKR datalog rewriter</description>

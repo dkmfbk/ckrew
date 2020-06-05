@@ -384,41 +384,49 @@ public class DLRGlobal2DatalogRewriter extends RLContext2DatalogRewriter {
 	}
 		
 	@Override
-	//Rewrite INV(R, S)
+	//Rewrite INV(R, S) + DEFEASIBLE
 	public void visit(OWLInverseObjectPropertiesAxiom axiom) {
-		
-		addFact(DLRRewritingVocabulary.INV_ROLE, //
-				axiom.getFirstProperty().asOWLObjectProperty().getIRI(),
-				axiom.getSecondProperty().asOWLObjectProperty().getIRI()
-				//contextID
-		);
 		
 		//add rule for overriding
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( INV(R,S) ): " + axiom.getAxiomWithoutAnnotations());
 	    		    	
-			//addFact(CKRRewritingVocabulary.DEF_INVROLE, //
-			//		axiom.getFirstProperty().asOWLObjectProperty().getIRI(),
-			//		axiom.getSecondProperty().asOWLObjectProperty().getIRI());	    	
+			addFact(CKRRewritingVocabulary.DEF_INVROLE, //
+					axiom.getFirstProperty().asOWLObjectProperty().getIRI(),
+					axiom.getSecondProperty().asOWLObjectProperty().getIRI()
+			);
+			
+	    } else {
+		
+	    	addFact(DLRRewritingVocabulary.INV_ROLE, //
+	    			axiom.getFirstProperty().asOWLObjectProperty().getIRI(),
+	    			axiom.getSecondProperty().asOWLObjectProperty().getIRI()
+	    			//contextID
+	    	); 
+		
 	    }
+		
 	}
 	
 	@Override
-	//Rewrite IRR(R)
+	//Rewrite IRR(R) + DEFEASIBLE
 	public void visit(OWLIrreflexiveObjectPropertyAxiom axiom) {
-		
-		addFact(DLRRewritingVocabulary.IRR_ROLE, //
-				axiom.getProperty().asOWLObjectProperty().getIRI()
-				//contextID
-		);
 		
 		//add rule for overriding
 	    if(isDefeasible(axiom)){
 	    	//System.out.println("D( IRR(R) ): " + axiom.getAxiomWithoutAnnotations());
 	    		    	
-			//addFact(CKRRewritingVocabulary.DEF_IRRROLE, //
-			//		axiom.getProperty().asOWLObjectProperty().getIRI());	    	
-	    }
+			addFact(CKRRewritingVocabulary.DEF_IRRROLE, //
+					axiom.getProperty().asOWLObjectProperty().getIRI()
+			);
+			
+	    } else {
+		
+	    	addFact(DLRRewritingVocabulary.IRR_ROLE, //
+	    			axiom.getProperty().asOWLObjectProperty().getIRI()
+	    			//contextID
+	    	);
+	    }		
 	}
 	
 	@Override

@@ -318,7 +318,7 @@ public class CKRDReWRLCLI extends CommandLine {
 	 * Prints initial banner and version.
 	 */
 	void printBanner(){
-		String banner = "=== CKRew v.1.5 ===\n";
+		String banner = "=== CKRew v.1.5.1 ===\n";
 		System.out.println(banner);
 	}
 

@@ -1,3 +1,3 @@
-java -jar ./lib/ckr-datalog-rewriter-d-1.5.jar %*
+java -jar ./lib/ckr-datalog-rewriter-d-1.5.1.jar %*
 
 pause

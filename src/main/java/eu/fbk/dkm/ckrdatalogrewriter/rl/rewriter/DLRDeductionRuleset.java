@@ -69,10 +69,18 @@ public class DLRDeductionRuleset {
 			"tripled(X, W, X1) :- def_subr(V, W), tripled(X, V, X1), not ovrSubRole(X, X1, V, W).\n" +			
 			"-tripled(X, V, X1) :- def_subr(V, W), -tripled(X, W, X1), not ovrSubRole(X, X1, V, W).\n" +			
 			// # Roles properties propagation #
+			"tripled(Y, V, X) :- def_inv(U, V), tripled(X, U, Y), not ovrInv(X, Y, U, V).\n" +
+			"tripled(X, U, Y) :- def_inv(U, V), tripled(Y, V, X), not ovrInv(X, Y, U, V).\n" +
+			"-tripled(X, U, X) :- def_irr(U), const(X), not ovrIrr(X, U).\n" +
+			"-tripled(Y, V, X) :- def_inv(U, V), -tripled(X, U, Y), not ovrInv(X, Y, U, V).\n" +
+			"-tripled(X, U, Y) :- def_inv(U, V), -tripled(Y, V, X), not ovrInv(X, Y, U, V).\n" +
 			
 			// # OVR rules #
 			"ovrSubClass(X, Y, Z) :- def_subclass(Y,Z), instd(X, Y), -instd(X, Z).\n" +
 			"ovrSubRole(X, Y, R, S) :- def_subr(R,S), tripled(X, R, Y), -tripled(X, S, Y).\n" +
+			"ovrInv(X, Y, R, S) :- def_inv(R,S), tripled(X, R, Y), -tripled(Y, S, X).\n" +
+			"ovrInv(X, Y, R, S) :- def_inv(R,S), tripled(Y, S, X), -tripled(X, R, Y).\n" +
+			"ovrIrr(X, R) :- def_irr(R), tripled(X, R, X).\n" +
 			// # TEST rules #
 			"";	
 	

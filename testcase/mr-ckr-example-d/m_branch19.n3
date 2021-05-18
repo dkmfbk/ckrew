@@ -1,0 +1,53 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+#=============================================================================
+
+#:m_branch19 {
+
+    #-------------------------------------------------------------------------
+    
+    #<http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> a owl:Ontology ;                         
+    #              owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+    
+    ckr:hasAxiomType a owl:AnnotationProperty .
+        
+    #ckr:defeasibleTime a ckr:AxiomType .
+    #ckr:defeasibleCovers a ckr:AxiomType .
+
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+   
+    #os \and or \subs \bot    
+     :Supervisor a owl:Class .
+
+     :OnSite a owl:Class .
+     :OnRemote a owl:Class .
+     [ owl:intersectionOf ( :OnSite :OnRemote ) ] 
+         rdfs:subClassOf owl:Nothing .
+   
+    #D_t(s \subs os)
+    :ax2 rdf:type owl:Axiom ;
+    ckr:hasAxiomType ckr:defeasibleTime ;
+    owl:annotatedSource :Supervisor ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget :OnSite .
+    
+    #------------------------------------------------------------------------- 
+    ## TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+#}
+
+#=============================================================================

@@ -40,7 +40,8 @@ public class CKRDReWRLCLI extends CommandLine {
 	private boolean trigInput = false;
 	
 	private boolean isDLlite = false; //option for DLliteR input
-
+	private boolean isMRCKR = false; //option for MR-CKR input
+	
 	private String[] args;
 	
 	//--- CONSTRUCTOR ------------------------------------------
@@ -67,6 +68,12 @@ public class CKRDReWRLCLI extends CommandLine {
 			System.exit(1);
 		}
 		
+		//Check compatibility of options
+		if(isDLlite && isMRCKR) {
+			System.err.println("[!] Incompatible options: -dllite, -mrckr");
+			System.exit(1);			
+		}		
+		
 		//Check global input file existence
 		File ontofile = new File(inputCKR.getGlobalOntologyFilename());
 		if(!ontofile.exists()){
@@ -88,16 +95,26 @@ public class CKRDReWRLCLI extends CommandLine {
 		}	
 		
 		//Load ontology files.
-		try {
+		//TODO: unify MR-CKR case in loadOntologies (kept separated for debugging)
+		if(isMRCKR) 
+			try {
+			inputCKR.loadOntologiesMR();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+		} else 
+			try {
 			inputCKR.loadOntologies();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+
+		
 		if(verbose) System.out.println("Global and local ontologies loaded.");
 		
 		if(verbose) System.out.println("Number of input logical axioms: " + inputCKR.getCKRSize());
 		
 		if(!isDLlite){//TODO: check profile for OWL-QL ontologies
+			
 			//Check if profile of ontologies is in the correct fragment.
 			OWLProfileReport report = inputCKR.checkProfiles();
 			if (!report.isInProfile()) {
@@ -106,7 +123,7 @@ public class CKRDReWRLCLI extends CommandLine {
 			} 
 			if(verbose) System.out.println("Global and local ontologies in OWL-RL.");
 		}
-		
+				
 		//Handle translation of input CKR
 		handleOntology(inputCKR);
 	}
@@ -122,7 +139,7 @@ public class CKRDReWRLCLI extends CommandLine {
 		
 		//Create new program for the input CKR.
 		outputCKRProgram = new CKRProgram(ckr);
-		
+				
 		//Set possibly custom DLV path
 		if(dlvPath != null) 
 			outputCKRProgram.setDlvPath(dlvPath);
@@ -138,19 +155,28 @@ public class CKRDReWRLCLI extends CommandLine {
 			outputFilePath = DEFAULT_OUTPUT_FILENAME;
 			outputCKRProgram.setOutputFilePath(outputFilePath);			
 		}
-				
 		
 		//Rewrite the program.
 		if(verbose) System.out.println("Rewriting program...");
 		if(isDLlite)
 			outputCKRProgram.rewriteDLR(); //option: DLliteR DKB
+		else if(isMRCKR)
+			outputCKRProgram.rewriteMRCKR(); //option: MR-CKR on OWL-RL
 		else
 			outputCKRProgram.rewrite(); //default: CKR on OWL-RL
-
-		//XXX: #####################
 		
+		//XXX: #####################
+		//TODO: ### Work su CKRProgram per gestire translation MR-CKR! ###
+		
+//		if(verbose && isMRCKR) {
+//			System.out.println("MR-CKR test complete.");
+//			System.exit(0);			
+//		}
+			
 		if(verbose && !isDLlite) {
-			System.out.println("Global model computation time: " + outputCKRProgram.getGlobalModelComputationTime() + " ms.");
+			
+			if(!isMRCKR)
+				System.out.println("Global model computation time: " + outputCKRProgram.getGlobalModelComputationTime() + " ms.");
 			
 			System.out.println("Set of contexts and modules associations computed:");
 			for (String s : outputCKRProgram.getContextsSet()) {
@@ -226,6 +252,10 @@ public class CKRDReWRLCLI extends CommandLine {
 				    isDLlite = true;
 				    if(verbose) System.out.println("DLliteR input mode.");
 					break;					
+				case "-mrckr":
+				    isMRCKR = true;
+				    if(verbose) System.out.println("MR-CKR input mode.");
+					break;										
 				default:
 					if(trigInput) {
 						return false; //more arguments than expected... 
@@ -239,7 +269,7 @@ public class CKRDReWRLCLI extends CommandLine {
 			return true;
 		}
 	}
-	
+		
 	/**
 	 * Split and uses the TRIG file in input. 
 	 * 
@@ -301,6 +331,8 @@ public class CKRDReWRLCLI extends CommandLine {
 				+ //
 				"Options:\n"
 				+ //
+				" -mrckr: interprets input as multi-relational sCKR\n"
+				+ //
 				" -dllite: interprets global ontology as (single context) DLliteR defeasible KB\n"
 				+ //
 				" -v: verbose (prints more information about loading and rewriting process)\n"
@@ -318,7 +350,7 @@ public class CKRDReWRLCLI extends CommandLine {
 	 * Prints initial banner and version.
 	 */
 	void printBanner(){
-		String banner = "=== CKRew v.1.5.1 ===\n";
+		String banner = "=== CKRew v.1.6 ===\n";
 		System.out.println(banner);
 	}
 
@@ -420,6 +452,21 @@ public class CKRDReWRLCLI extends CommandLine {
 		//***Department Example ***
 		//String[] argtest = {"./testcase/department-example-d/dkb.n3", "-v", "-dllite"};        		
 		
+		//***MR-CKR TEST ***                                                      
+		//String[] argtest = {"./testcase/mr-ckr-simple-d/global.n3",
+		//	  "./testcase/mr-ckr-simple-d/m1.n3",	
+		//	  "-v", 
+		//	  "-mrckr"};
+
+		//***MR-CKR 3x3 Example ***                                                      
+		//String[] argtest = {"./testcase/mr-ckr-example-d/global.n3",
+		//	  "./testcase/mr-ckr-example-d/m_world19.n3",
+		//	  "./testcase/mr-ckr-example-d/m_branch19.n3",
+		//	  "./testcase/mr-ckr-example-d/m_branch20.n3",
+		//	  "./testcase/mr-ckr-example-d/m_local19.n3",
+		//	  "-v", 
+		//	  "-mrckr"};
+				
         //Paths test
 		//String[] argtest = {"./testcase/simple-rl-d/global.n3",
 		//		            "./testcase/simple-rl-d/m1.n3",
@@ -450,8 +497,8 @@ public class CKRDReWRLCLI extends CommandLine {
         		
 		//new CKRDReWRLCLI(argtest).go();
 	}
-	
+		
 	//XXX: #####################
-	
+
 }
 //=======================================================================

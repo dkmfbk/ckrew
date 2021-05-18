@@ -1,0 +1,57 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+#=============================================================================
+
+#:m_branch20 {
+
+    #-------------------------------------------------------------------------
+    
+    #<http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> a owl:Ontology ;                         
+    #              owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+    
+    ckr:hasAxiomType a owl:AnnotationProperty .
+        
+    #ckr:defeasibleTime a ckr:AxiomType .
+    #ckr:defeasibleCovers a ckr:AxiomType .
+
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    #-------------------------------------------------------------------------
+    # TBox/RBox axioms #
+   
+     :Supervisor a owl:Class .
+
+     :Robotics a owl:Class .
+     :OnRemote a owl:Class .
+   
+     #D_c(s \subs r)
+     :ax3 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasibleCovers ;
+     owl:annotatedSource :Supervisor ;
+     owl:annotatedProperty rdfs:subClassOf ;
+     owl:annotatedTarget :Robotics .
+
+     #D_t(s \subs or)
+     :ax4 rdf:type owl:Axiom ;
+     ckr:hasAxiomType ckr:defeasibleTime ;
+     owl:annotatedSource :Supervisor ;
+     owl:annotatedProperty rdfs:subClassOf ;
+     owl:annotatedTarget :OnRemote .   
+   
+    #------------------------------------------------------------------------- 
+    ## TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+#}
+
+#=============================================================================

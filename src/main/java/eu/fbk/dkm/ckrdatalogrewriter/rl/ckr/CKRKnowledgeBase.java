@@ -16,7 +16,7 @@ import eu.fbk.dkm.ckrdatalogrewriter.rl.profile.CKRRLProfile;
 
 /**
  * @author Loris
- * @version 1.3
+ * @version 1.6
  * 
  * Represents the input CKR to be translated. 
  * Contains references to the global context and local modules and 
@@ -27,6 +27,7 @@ public class CKRKnowledgeBase {
 	//--- FIELDS ---------------------------------------------
 	
 	private static final String META_SCHEMA_FILENAME = "./schemas/meta.n3";
+	private static final String MRCKR_SCHEMA_FILENAME = "./schemas/meta-mr.n3";
 	
 	private CKRModule globalModule;
 	private LinkedList<CKRModule> localModule;
@@ -139,6 +140,7 @@ public class CKRKnowledgeBase {
 		//Load global ontology.
 		OWLOntology globalOntology = man.loadOntologyFromOntologyDocument(globalOntologyFile);
 		man.addAxioms(globalOntology, meta.getAxioms()); //*!*
+		
 		globalModule.setModuleOntology(globalOntology);
 		//System.out.println("Global ontology loaded.");
 		
@@ -165,9 +167,57 @@ public class CKRKnowledgeBase {
 			  
 			  //System.out.println("Local ontology loaded: " + s); 
 		}
-		
 	}
 
+	/**
+	 * Initializes the files and loads the ontologies
+	 * for global and local knowledge bases.
+	 * 
+	 * Adds auxiliary meta-knowledge axioms and annotations for
+	 * multi-relational CKRs.
+	 * (Analogous to loadOntologies, kept separated for 
+	 * debugging purposes).
+	 * 
+	 * @throws OWLOntologyCreationException
+	 */	
+	public void loadOntologiesMR() throws OWLOntologyCreationException {
+		File globalOntologyFile = new File(globalModule.getModuleFilename());
+		globalModule.setModuleFile(globalOntologyFile);
+		
+		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
+		
+		//Load MR-CKR primitives definition vocabulary.
+		File metamrFile = new File(MRCKR_SCHEMA_FILENAME);
+		OWLOntology metamr = man.loadOntologyFromOntologyDocument(metamrFile);
+		
+		//Load global ontology.
+		OWLOntology globalOntology = man.loadOntologyFromOntologyDocument(globalOntologyFile);
+		man.addAxioms(globalOntology, metamr.getAxioms()); //*!*
+						
+		globalModule.setModuleOntology(globalOntology);
+		//System.out.println("Global ontology MR loaded.");
+        //System.out.println(globalModule.getModuleOntology().getAnnotationPropertiesInSignature());
+				
+		//Add to local modules
+		for (CKRModule mod : localModule) {
+			String s = mod.getModuleFilename();
+
+			File f = new File(s);
+			mod.setModuleFile(f);
+
+  		    //As module name we take the filename of the module ontology
+			mod.setModuleName("\"" + f.getName().substring(0, f.getName().lastIndexOf('.')) + "\"");
+
+			OWLOntology ont = man.loadOntologyFromOntologyDocument(f);
+			man.addAxioms(ont, metamr.getAxioms()); //*!*
+			mod.setModuleOntology(ont);
+			  
+			//System.out.println("Local ontology MR loaded: " + s);
+			//System.out.println(mod.getModuleOntology().getAnnotationPropertiesInSignature());
+			
+		}
+	}
+	
 	//--- PROFILES CHECK ---------------------------------------------
 	
 	/**

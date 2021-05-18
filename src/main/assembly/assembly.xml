@@ -70,6 +70,7 @@
 			  <exclude>/simple-rl/**</exclude>
 			  <exclude>/simple-rl-d/**</exclude>
 			  <exclude>/simple-dl-lite-d/**</exclude>
+			  <exclude>/mr-ckr-simple-d/**</exclude>
 			  <exclude>/ordering-test/**</exclude>
 			  <exclude>/trig-test/**</exclude>			  
 			  <exclude>*.bat</exclude>
@@ -99,6 +100,8 @@
 				<include>winnerQuery.dlv</include>
 				<include>workingNowQuery.dlv</include>
 				<include>hasCourseQuery.dlv</include>
+				<include>pref.dlv</include>
+				<include>mrExampleAux.dlv</include>
 			</includes>
 		</fileSet>
 
@@ -115,6 +118,7 @@
 			<outputDirectory>schemas</outputDirectory>
 			<includes>
 				<include>meta.n3</include>
+				<include>meta-mr.n3</include>
 			</includes>
 		</fileSet>
 		

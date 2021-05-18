@@ -1,0 +1,69 @@
+%----------------------------------------------------------------------------
+% # PREPARATIONS FOR PREFERENCE #
+
+preceq_except(C1, C2, REL) :- relation(REL), preceq(C1, C3, REL1), preceq(C3, C2, REL2), REL != REL1, REL != REL2.
+preceq_except(C1, C2, REL) :- relation(REL), preceq(C1, C2, REL1), REL != REL1.
+
+% gather all the named individuals
+indiv(X) :- nom(X,C).
+%indiv(X) :- insta(X,Z,C,main).
+%indiv(X) :- instd(X,Z,C,main).
+%indiv(X) :- tripled(X,Z,Y,C,main).
+%indiv(Y) :- tripled(X,Z,Y,C,main). 
+%indiv(X) :- def_insta(X,Z,C,REL).
+%indiv(X) :- def_ninsta(X,Z,C,REL).
+%indiv(X) :- def_triplea(X,Z,Y,C,REL).
+%indiv(Y) :- def_triplea(X,Z,Y,C,REL).
+%indiv(X) :- def_ntriplea(X,Z,Y,C,REL).
+%indiv(Y) :- def_ntriplea(X,Z,Y,C,REL).
+
+% gather all the possible overridings
+%poss_ovr(insta(X,Y),C,REL)              :- def_insta(X,Y,C,REL).
+%poss_ovr(ninsta(X,Y),C,REL)             :- def_ninsta(X,Y,C,REL).
+%poss_ovr(triplea(X,Y,Z),C,REL)          :- def_triplea(X,Y,Z,C,REL).
+%poss_ovr(ntriplea(X,Y,Z),C,REL)         :- def_ntriplea(X,Y,Z,C,REL).
+poss_ovr(subClass(X,Y,Z),C,REL)         :- def_subclass(Y,Z,C,REL), indiv(X).
+poss_ovr(subConj(X,Y1,Y2,Z),C,REL)      :- def_subconj(Y1,Y2,Z,C,REL), indiv(X).
+poss_ovr(subEx(X,R,Y,Z),C,REL)          :- def_subex(R,Y,Z,C,REL), indiv(X).
+poss_ovr(supEx(X,Y,R,W),C,REL)          :- def_supex(Y,R,W,C,REL), indiv(X).
+poss_ovr(supAll(X,Y,Z,R,W),C,REL)       :- def_supforall(Z,R,W,C,REL), indiv(X), indiv(Y).
+poss_ovr(supLeqOne(X,X1,X2,Z,R),C,REL)  :- def_supleqone(Z,R,C,REL), indiv(X), indiv(X1), indiv(X2).
+poss_ovr(subRole(X,Y,R,S),C,REL)        :- def_subr(R,S,C,REL), indiv(X), indiv(Y).
+poss_ovr(subRChain(X,Y,Z,R,S,T),C,REL)  :- def_subrc(R,S,T,C,REL), indiv(X), indiv(Y), indiv(Z).
+poss_ovr(dis(X,Y,R,S),C,REL)            :- def_dis(R,S,C,REL), indiv(X), indiv(Y).
+poss_ovr(inv(X,Y,R,S),C,REL)            :- def_inv(R,S,C,REL), indiv(X), indiv(Y).
+poss_ovr(irr(X,R),C,REL)                :- def_irr(R,C,REL), indiv(X).
+
+
+% gather all the actual overridings
+%ovr(insta(X,Y),C1,C,REL)                :- ovrInsta(X,Y,C1,C,REL).
+%ovr(ninsta(X,Y),C1,C,REL)               :- ovrNinsta(X,Y,C1,C,REL).
+%ovr(triplea(X,Y,Z),C1,C,REL)            :- ovrTriplea(X,Y,Z,C1,C,REL).
+%ovr(ntriplea(X,Y,Z),C1,C,REL)           :- ovrNtriplea(X,Y,Z,C1,C,REL).
+ovr(subClass(X,Y,Z),C1,C,REL)           :- ovrSubClass(X,Y,Z,C1,C,REL).
+ovr(subConj(X,Y1,Y2,Z),C1,C,REL)        :- ovrSubConj(X,Y1,Y2,Z,C1,C,REL).
+ovr(subEx(X,R,Y,Z),C1,C,REL)            :- ovrSubEx(X,R,Y,Z,C1,C,REL).
+ovr(supEx(X,Y,R,W),C1,C,REL)            :- ovrSupEx(X,Y,R,W,C1,C,REL).
+ovr(supAll(X,Y,Z,R,W),C1,C,REL)         :- ovrSupAll(X,Y,Z,R,W,C1,C,REL).
+ovr(supLeqOne(X,X1,X2,Z,R),C1,C,REL)    :- ovrSupLeqOne(X,X1,X2,Z,R,C1,C,REL).
+ovr(subRole(X,Y,R,S),C,REL)             :- ovrSubRole(X,Y,R,S,C1,C,REL).
+ovr(subRChain(X,Y,Z,R,S,T),C1,C,REL)    :- ovrSubRChain(X,Y,Z,R,S,T,C1,C,REL).
+ovr(dis(X,Y,R,S),C1,C,REL)              :- ovrDis(X,Y,R,S,C1,C,REL).
+ovr(inv(X,Y,R,S),C1,C,REL)              :- ovrInv(X,Y,R,S,C1,C,REL).
+ovr(irr(X,R),C1,C,REL)                  :- ovrIrr(X,R,C1,C,REL).
+
+%-------------------------------------------------------------------------------
+% # PREFERENCE #
+#preference(loc(C,REL),poset){ 
+    not ovr(A,G,C,REL); 
+    not ovr(A2,C2,C,REL) >> not ovr(A1,C1,C,REL) : preceq_except(C1b,C1,REL), preceq_except(C2b,C2,REL), prec(C,C2b,REL), prec(C2b,C1b,REL), poss_ovr(A1,C1,REL), poss_ovr(A2,C2,REL)
+} : context(C), relation(REL).
+
+#preference(rel_glob(REL),pareto){
+    **loc(C,REL) : context(C)
+} : relation(REL).
+
+#preference(glob,lexico){
+    W::**rel_glob(REL) : relation_weight(REL,W)
+}.
+#optimize(glob).

@@ -2,6 +2,9 @@
   CKRew: ckr-datalog-rewriter - CHANGELOG
 ##############################
 
+* v.1.6.:
+- Rewriting for multi-relational simple CKRs (with time and coverage hierarchies).
+
 * v.1.5.:
 - Rewriting for DLliteR defeasible knowledge bases.
 

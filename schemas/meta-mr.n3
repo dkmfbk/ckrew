@@ -1,0 +1,49 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix :       <http://dkm.fbk.eu/ckr/meta#> .
+@base           <http://dkm.fbk.eu/ckr/meta#> .
+#=============================================================================
+
+    #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/meta#> a owl:Ontology ;
+    rdfs:comment "CKR Meta Vocabulary (for MR-CKR)" .
+
+    #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    :Context a owl:Class .
+
+    :Module a owl:Class .
+
+    :AttributeValue a owl:Class .
+    
+    :hasModule a owl:ObjectProperty ;
+               rdfs:range :Module ;
+               rdfs:domain :Context .
+
+    :hasAttribute a owl:ObjectProperty ;
+               rdfs:range :AttributeValue ;
+               rdfs:domain :Context .
+
+    :hasEvalObject a owl:AnnotationProperty .
+    :hasEvalMeta a owl:AnnotationProperty .
+    
+    :prec-c a owl:ObjectProperty .
+    :prec-t a owl:ObjectProperty .
+
+    #-------------------------------------------------------------------------
+    # Defeasibility #
+
+    :hasAxiomType a owl:AnnotationProperty .
+    
+    :AxiomType a owl:Class .
+                
+    :defeasibleTime a :AxiomType .
+    :defeasibleCovers a :AxiomType .
+
+
+#=============================================================================

@@ -1,53 +1,14 @@
-prec("local_2020", "branch_2020", "covers").
-context("local_2021").
-prec("local_2020", "local_2019", "time").
-prec("local_2021", "local_2020", "time").
-context("world_2019").
-context("branch_2021").
-context("local_2019").
-prec("branch_2020", "world_2020", "covers").
-prec("local_2021", "branch_2021", "covers").
-prec("world_2020", "world_2019", "time").
-prec("branch_2019", "world_2019", "covers").
-prec("branch_2020", "branch_2019", "time").
-context("branch_2019").
-context("branch_2020").
-prec("branch_2021", "world_2021", "covers").
-context("world_2020").
-prec("branch_2021", "branch_2020", "time").
-context("local_2020").
-prec("local_2019", "branch_2019", "covers").
-context("world_2021").
-prec("world_2021", "world_2020", "time").
-relation("covers").
-relation("time").
-relation_weight("covers", 1).
-relation_weight("time", 2).
+
 prec(C1, C2, REL) :- prec(C1, C3, REL), prec(C3, C2, REL).
+
 preceq(C1, C2, REL) :- prec(C1, C2, REL).
 preceq(C1, C1, REL) :- context(C1), relation(REL).
-insta("bob", "Supervisor", "local_2019").
-nom("bob", "local_2019").
-cls("Supervisor", "local_2019").
-def_subclass("Supervisor", "OnSite", "branch_2019", "time").
-subConj("OnRemote", "OnSite", "bot", "branch_2019").
-cls("Supervisor", "branch_2019").
-cls("bot", "branch_2019").
-cls("OnSite", "branch_2019").
-cls("OnRemote", "branch_2019").
-def_subclass("Supervisor", "Electronics", "world_2019", "covers").
-subConj("Electronics", "Robotics", "bot", "world_2019").
-cls("Robotics", "world_2019").
-cls("Supervisor", "world_2019").
-cls("Electronics", "world_2019").
-cls("bot", "world_2019").
-def_subclass("Supervisor", "OnRemote", "branch_2020", "time").
-def_subclass("Supervisor", "Robotics", "branch_2020", "covers").
-cls("Robotics", "branch_2020").
-cls("Supervisor", "branch_2020").
-cls("OnRemote", "branch_2020").
+
+
 instd(X, Z, C, "main") :- insta(X, Z, C).
 tripled(X, R, Y, C, "main") :- triplea(X, R, Y, C).
+unsat(T) :- ninsta(X, Z, C), instd(X, Z, C, T).
+unsat(T) :- ntriplea(X, R, Y, C), tripled(X, R, Y, C, T).
 unsat(T) :- eq(X, Y, C, T).
 instd(X, "top", C, "main") :- nom(X, C).
 unsat(T) :- instd(X, "bot", C, T).
@@ -64,12 +25,12 @@ tripled(Y, V, X, C, T) :- inv(U, V, C), tripled(X, U, Y, C, T).
 tripled(Y, U, X, C, T) :- inv(U, V, C), tripled(X, V, Y, C, T).
 unsat(T) :- irr(U, C), tripled(X, U, X, C, T).
  :- unsat("main").
-instd(X, B, C, T) :- subEval(A, C1, B, C), instd(X, A, C1, T).
-tripled(X, S, Y, C, T) :- subEvalR(R, C1, S, C), tripled(X, R, Y, C1, T).
-instd(X, B, C, T) :- subEval(A, C1, B, C2), instd(X, A, C1, T), prec(C, C3, REL1), preceq(C3, C2, REL2), REL1 != REL2.
-tripled(X, S, Y, C, T) :- subEvalR(R, C1, S, C2), tripled(X, R, Y, C1, T), prec(C, C3, REL1), preceq(C3, C2, REL2), REL1 != REL2.
+
+ 
 instd(X, Z, C, "main") :- insta(X, Z, C1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 tripled(X, R, Y, C, "main") :- triplea(X, R, Y, C1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
+unsat(T) :- ninsta(X, Z, C1), instd(X, Z, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
+unsat(T) :- ntriplea(X, R, Y, C1), tripled(X, R, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- subClass(Y, Z, C1), instd(X, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- subConj(Y1, Y2, Z, C1), instd(X, Y1, C, T), instd(X, Y2, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- subEx(V, Y, Z, C1), tripled(X, V, X1, C, T), instd(X1, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
@@ -82,6 +43,12 @@ unsat(T) :- dis(U, V, C1), tripled(X, U, Y, C, T), tripled(X, V, Y, C, T), prec(
 tripled(Y, V, X, C, T) :- inv(U, V, C1), tripled(X, U, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 tripled(X, U, Y, C, T) :- inv(U, V, C1), tripled(Y, V, X, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
 unsat(T) :- irr(U, C1), tripled(X, U, X, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
+
+
+instd(X, Z, C, "main") :- def_insta(X, Z, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrInsta(X, Z, C1, C, REL1).
+tripled(X, R, Y, C, "main") :- def_triplea(X, R, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrTriplea(X, R, Y, C1, C, REL1).
+unsat(T) :- def_ninsta(X, Z, C1, REL1), instd(X, Z, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrNinsta(X, Z, C1, C, REL1).
+unsat(T) :- def_ntriplea(X, R, Y, C1, REL1), tripled(X, R, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrNtriplea(X, R, Y, C1, C, REL1).
 instd(X, Z, C, T) :- def_subclass(Y, Z, C1, REL1), instd(X, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrSubClass(X, Y, Z, C1, C, REL1).
 instd(X, Z, C, T) :- def_subcnj(Y1, Y2, Z, C1, REL1), instd(X, Y1, C, T), instd(X, Y2, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrSubConj(X, Y1, Y2, Z, C1, C, REL1).
 instd(X, Z, C, T) :- def_subex(V, Y, Z, C1, REL1), tripled(X, V, X1, C, T), instd(X1, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrSubEx(X, V, Y, Z, C1, C, REL1).
@@ -94,6 +61,12 @@ unsat(T) :- def_dis(U, V, C1, REL1), tripled(X, U, Y, C, T), tripled(X, V, Y, C,
 tripled(Y, V, X, C, T) :- def_inv(U, V, C1, REL1), tripled(X, U, Y, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrInv(X, Y, U, V, C1, C, REL1).
 tripled(X, U, Y, C, T) :- def_inv(U, V, C1, REL1), tripled(Y, V, X, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrInv(X, Y, U, V, C1, C, REL1).
 unsat(T) :- def_irr(U, C1, REL1), tripled(X, U, X, C, T), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not ovrIrr(X, U, C1, C, REL1).
+
+
+instd(X, Z, C, "main") :- def_insta(X, Z, C1, REL1), preceq(C, C1, REL2), REL1 != REL2.
+tripled(X, R, Y, C, "main") :- def_triplea(X, R, Y, C1, REL1), preceq(C, C1, REL2), REL1 != REL2.
+unsat(T) :- def_ninsta(X, Z, C1, REL1), instd(X, Z, C, T), preceq(C, C1, REL2), REL1 != REL2.
+unsat(T) :- def_ntriplea(X, R, Y, C1, REL1), tripled(X, R, Y, C, T), preceq(C, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- def_subclass(Y, Z, C1, REL1), instd(X, Y, C, T), preceq(C, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- def_subcnj(Y1, Y2, Z, C1, REL1), instd(X, Y1, C, T), instd(X, Y2, C, T), preceq(C, C1, REL2), REL1 != REL2.
 instd(X, Z, C, T) :- def_subex(V, Y, Z, C1, REL1), tripled(X, V, X1, C, T), instd(X1, Y, C, T), preceq(C, C1, REL2), REL1 != REL2.
@@ -106,6 +79,12 @@ unsat(T) :- def_dis(U, V, C1, REL1), tripled(X, U, Y, C, T), tripled(X, V, Y, C,
 tripled(Y, V, X, C, T) :- def_inv(U, V, C1, REL1), tripled(X, U, Y, C, T), preceq(C, C1, REL2), REL1 != REL2.
 tripled(X, U, Y, C, T) :- def_inv(U, V, C1, REL1), tripled(Y, V, X, C, T), preceq(C, C1, REL2), REL1 != REL2.
 unsat(T) :- def_irr(U, C1, REL1), tripled(X, U, X, C, T), preceq(C, C1, REL2), REL1 != REL2.
+
+
+ovrInsta(X, Y, C1, C, REL1) :- def_insta(X, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not test_fails(nlit(X, Y, C)).
+ovrTriplea(X, R, Y, C1, C, REL1) :- def_triplea(X, R, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, not test_fails(nrel(X, R, Y, C)).
+ovrNinsta(X, Z, C1, C, REL1) :- def_ninsta(X, Z, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, instd(X, Z, C, "main").
+ovrNtriplea(X, R, Y, C1, C, REL1) :- def_ntriplea(X, R, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, tripled(X, R, Y, C, "main").
 ovrSubClass(X, Y, Z, C1, C, REL1) :- def_subclass(Y, Z, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, instd(X, Y, C, "main"), not test_fails(nlit(X, Z, C)).
 ovrSubConj(X, Y1, Y2, Z, C1, C, REL1) :- def_subcnj(Y1, Y2, Z, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), not test_fails(nlit(X, Z, C)).
 ovrSubEx(X, R, Y, Z, C1, C, REL1) :- def_subex(R, Y, Z, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, tripled(X, R, W, C, "main"), instd(W, Y, C, "main"), not test_fails(nlit(X, Z, C)).
@@ -118,6 +97,12 @@ ovrDis(X, Y, R, S, C1, C, REL1) :- def_dis(R, S, C1, REL1), prec(C, C2, REL1), p
 ovrInv(X, Y, R, S, C1, C, REL1) :- def_inv(R, S, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, tripled(X, R, Y, C, "main"), not test_fails(nrel(Y, S, X, C)).
 ovrInv(X, Y, R, S, C1, C, REL1) :- def_inv(R, S, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, tripled(Y, S, X, C, "main"), not test_fails(nrel(X, R, Y, C)).
 ovrIrr(X, R, C1, C, REL1) :- def_irr(R, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2, tripled(X, R, X, C, "main").
+
+
+test(nlit(X, Y, C)) :- def_insta(X, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
+ :- test_fails(nlit(X, Y, C)), ovrInsta(X, Y, C1, C, REL).
+test(nrel(X, R, Y, C)) :- def_triplea(X, R, Y, C1, REL1), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
+ :- test_fails(nrel(X, R, Y, C)), ovrTriplea(X, R, Y, C1, C, REL).
 test(nlit(X, Z, C)) :- def_subclass(Y, Z, C1, REL1), instd(X, Y, C, "main"), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.
  :- test_fails(nlit(X, Z, C)), ovrSubClass(X, Y, Z, C1, C, REL).
 test(nlit(X, Z, C)) :- def_subcnj(Y1, Y2, Z, C1, REL1), instd(X, Y1, C, "main"), instd(X, Y2, C, "main"), prec(C, C2, REL1), preceq(C2, C1, REL2), REL1 != REL2.

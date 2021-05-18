@@ -23,6 +23,7 @@ Usage: ckrew <global-context-file> [<local-module-file> | <options>]
 Example: ckrew global.n3 m1.n3 m2.n3
 
 Options:
+ -mrckr: interprets input as multi-relational sCKR
  -dllite: interprets global ontology as (single context) DLliteR defeasible KB
  -v: verbose (prints more information about loading and rewriting process)
  -out <output-file>: specifies the path to the output program file 

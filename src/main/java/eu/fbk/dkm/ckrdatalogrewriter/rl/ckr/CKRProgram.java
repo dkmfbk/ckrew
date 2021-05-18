@@ -3,18 +3,6 @@
  */
 package eu.fbk.dkm.ckrdatalogrewriter.rl.ckr;
 
-import it.unical.mat.dlv.program.Literal;
-import it.unical.mat.wrapper.DLVError;
-import it.unical.mat.wrapper.DLVInputProgram;
-import it.unical.mat.wrapper.DLVInputProgramImpl;
-import it.unical.mat.wrapper.DLVInvocation;
-import it.unical.mat.wrapper.DLVInvocationException;
-import it.unical.mat.wrapper.DLVWrapper;
-import it.unical.mat.wrapper.Model;
-import it.unical.mat.wrapper.ModelHandler;
-import it.unical.mat.wrapper.ModelResult;
-import it.unical.mat.wrapper.Predicate;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,12 +22,26 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DLRDeductionRuleset;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DLRGlobal2DatalogRewriter;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.DeductionRuleset;
+import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.MRDeductionRuleset;
+import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.MRGlobal2DatalogRewriter;
+import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.MRLocal2DatalogRewriter;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.RLGlobal2DatalogRewriter;
 import eu.fbk.dkm.ckrdatalogrewriter.rl.rewriter.RLLocal2DatalogRewriter;
+import it.unical.mat.dlv.program.Literal;
+import it.unical.mat.wrapper.DLVError;
+import it.unical.mat.wrapper.DLVInputProgram;
+import it.unical.mat.wrapper.DLVInputProgramImpl;
+import it.unical.mat.wrapper.DLVInvocation;
+import it.unical.mat.wrapper.DLVInvocationException;
+import it.unical.mat.wrapper.DLVWrapper;
+import it.unical.mat.wrapper.Model;
+import it.unical.mat.wrapper.ModelHandler;
+import it.unical.mat.wrapper.ModelResult;
+import it.unical.mat.wrapper.Predicate;
 
 /**
  * @author Loris
- * @version 1.3
+ * @version 1.6
  * 
  * Represents the output program of the translation. 
  * Contains references to the global and local programs and 
@@ -61,10 +63,10 @@ public class CKRProgram {
 	private DLProgram datalogCKR;
 	
 	//Set of context computed from GlobalProgram
-	final private Set<String> contextsSet = new HashSet<String>();
+	private Set<String> contextsSet = new HashSet<String>();
 	
 	//Set of context to module associations computed from GlobalProgram
-	final private Set<String[]> hasModuleAssociations = new HashSet<String[]>();
+	private Set<String[]> hasModuleAssociations = new HashSet<String[]>();
 	
 	//(Map of contexts to local ontologies)
 	private HashMap<String, OWLOntology> contextsOntologies = new HashMap<String, OWLOntology>();
@@ -259,8 +261,66 @@ public class CKRProgram {
 		datalogCKR.addAll(datalogGlobal.getStatements());
 
 		//Add local propagation rules.
-		datalogCKR.addAll(DLRDeductionRuleset.getPd()); //TODO: update rules
+		datalogCKR.addAll(DLRDeductionRuleset.getPd());
 	}	
+
+	//--- REWRITING: option for MR-CKR ----------------------------
+
+	/**
+	 * Rewrites the input CKR using MR-CKR translation rules.
+	 */
+	public void rewriteMRCKR(){
+				
+		long startTime = System.currentTimeMillis();
+		
+		//Rewriting for global context.
+		MRGlobal2DatalogRewriter globalrewriter = new MRGlobal2DatalogRewriter();
+		datalogGlobal = globalrewriter.rewrite(inputCKR.getGlobalOntology());
+		//System.out.println("Rewriting program for global context complete.");
+				
+		//Get set of contexts and associations to modules from globalrewriter
+		contextsSet = globalrewriter.getContextsSet();
+		hasModuleAssociations = globalrewriter.getHasModuleAssociations();
+		//System.out.println("Set of contexts and modules associations computed.");
+		
+		//Computation of local contexts knowledge bases.
+		computeLocalKB();
+				
+		//Rewriting for local contexts knowledge bases.
+		MRLocal2DatalogRewriter localrewriter = new MRLocal2DatalogRewriter();
+				
+		datalogLocal = new LinkedList<DLProgram>();
+		for (String c : contextsSet) {
+			//System.out.println("Rewriting program for " + c.replaceAll("\"", ""));
+			localrewriter.setContextID(c.replaceAll("\"", ""));
+			
+			datalogLocal.add(localrewriter.rewrite(contextsOntologies.get(c)));
+		}
+				
+		long endTime = System.currentTimeMillis();
+		rewritingTime = endTime - startTime;
+        
+		//System.out.println("Rewriting completed in " + rewritingTime + " ms.");
+		//System.out.println(datalogGlobal.getStatements().size());
+		
+		//Compute CKR Program.
+		datalogCKR = new DLProgram();
+	    
+		datalogCKR.addAll(datalogGlobal.getStatements());
+		
+		for (DLProgram dlProgram : datalogLocal) {
+			datalogCKR.addAll(dlProgram.getStatements());	
+		}
+		
+		//Add local inference rules.
+		datalogCKR.addAll(MRDeductionRuleset.getPrl());
+		datalogCKR.addAll(MRDeductionRuleset.getPeval());
+		
+		//Add local propagation rules.
+		datalogCKR.addAll(MRDeductionRuleset.getPd());		
+	}
+	
+	//XXX: #####################
 	
 	//--- REWRITING: DLV INTERACTION ------------------------------
 	

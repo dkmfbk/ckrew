@@ -1,0 +1,48 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    ckr:prec-c a owl:ObjectProperty .
+    ckr:prec-t a owl:ObjectProperty .
+    
+    # (global object knowledge) #    
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    :c1 a ckr:Context .
+    :c1 ckr:hasModule :m1 .
+    
+    #:c2 a ckr:Context .
+    #:c2 ckr:hasModule :m1 .
+
+    #:c3 a ckr:Context .
+    #:c3 ckr:hasModule :m1 .
+
+    :m1 a ckr:Module .
+    
+    #:c1 ckr:prec-c :c2 .
+    #:c1 ckr:prec-t :c3 .
+
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

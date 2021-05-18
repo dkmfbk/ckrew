@@ -4,7 +4,7 @@
 
 = INTRODUCTION = 
 The files presented in this demo represent an implementation for examples
-introduced in recent CKR related publications [1, 2, 3, 4, 5]. Their goal is 
+introduced in recent CKR related publications [1 - 6]. Their goal is 
 to demonstrate the functionality of the CKR rewriter prototype and provide 
 an intuitive interpretation for its output.
 
@@ -20,6 +20,10 @@ Example queries over the output program can be run (assuming that a local copy
 of DLV is installed in "../localdlv") by executing:
 
 ../localdlv/dlv output.dlv -cautious queryname.dlv
+
+Example 6 on multi-relational CKRs from [6] requires the installation of 
+asprin (ver.3.x). For details on installing and using asprin, we refer 
+to: https://potassco.org/asprin/
 
 In the following, for each of the examples, we give a brief description for 
 the represented scenario and an intuitive explanation for the query results.
@@ -171,6 +175,58 @@ of :alice, since no overriding can be derived: thus :alice is the only
 instance that is returned by the query.
 
 --------------------------------------------------------------------------------
+= EXAMPLE 6: CORPORATE ORGANIZATION =
+
+Reference: [6]
+Shell file: mr-ckr-example-d
+Auxiliary files: pref.dlv, mrExampleAux.dlv
+
+This example demonstrates the use of the option for multi-relational simple CKRs
+and the interpretation of overriding preference for time and coverage context 
+hierarchies.
+The input sCKR describes the organization of a corporation and the evolution
+of corporate rules over time. By coverage hierarchy, we assert that the 
+corporation has rules at the level :world, :branch and :local. The three 
+contexts representing the rule levels are represented in 3 "time slices": over 
+the time relation, we have versions of the contexts for 2019, 2020 and 2021. 
+Their organization (and association to knowledge modules) is defined in the 
+file global.n3.
+
+Local knowledge modules (contained in the corresponding .n3 files) define the 
+(possibly defeasible) corporate rules adopted in a particular organization level 
+and time. In particular:
+- in :world_2019, we assert that each :Supervisor can be either assigned to the 
+  :Robotics or :Electronics areas. By default, every :Supervisor is assigned 
+  to :Electronics.
+- in :branch_2019, we declare that, by default, each :Supervisor has to work
+  :OnSite (and work :OnSite and :OnRemote are disjoint).
+- in :branch_2020, we update the previous rules: by default, each :Supervisor
+  under this branch need to work :OnRemote and in the area of :Robotics.
+- in :local_2019, the instance :bob of :Supervisor is declared.
+
+Intuitively, we expect that the assignment of :bob to different areas and
+working place in contexts :local_2019, :local_2020 and :local_2021 is decided
+by the most specific and recent rules.
+
+By executing CKRew on the input files and running an ASP solver (like DLV or 
+clingo) on the resulting output.dlv file, we obtain 8 answer sets corresponding 
+to the possible combinations of assignments for :bob in the different contexts.
+In order to enforce the intended preference on overridings with respect to the 
+time and coverage hierarchies (and filter the results), we can call asprin with:
+
+  asprin  output.dlv  pref.dlv  mrExampleAux.dlv -q 1 -Wno-atom-undefined
+
+File pref.dlv contains the definition of the asprin preference, while file
+mrExampleAux.dlv contains directives and auxiliary predicates "worksAt" and
+"hasArea" to filter and better visualize the results.
+
+asprin returns a single preferred model: as expected, in 2019 :bob works 
+:OnSite, while in 2020 and 2021 :bob works :OnRemote. Moreover, in 2019 :bob
+is assigned to :Electronics using the general corporation rule, but in 2020 :bob
+is assigned to :Robotics by the updated branch rule. In 2021, no updates are
+given to this rule, thus :bob still works on :Robotics.
+  
+--------------------------------------------------------------------------------
 = REFERENCES =
 
 [1] Bozzato, L., Corcoglioniti, F., Homola, M., Joseph, M., Serafini, L.: 
@@ -192,5 +248,9 @@ instance that is returned by the query.
 [5] Bozzato, L., Eiter, T., Serafini, L.: 
     Reasoning on DL-Lite_R with Defeasibility in ASP.
     In: RuleML+RR 2019 (2019)
+
+[6] Bozzato, L., Keisel R., Eiter, T.:
+    Reasoning on Multi-Relational Contextual Hierarchies
+    via Answer Set Programming with Algebraic Measures.
 
 ================================================================================

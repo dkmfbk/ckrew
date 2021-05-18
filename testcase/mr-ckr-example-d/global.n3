@@ -1,0 +1,80 @@
+#=============================================================================
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix ckr:    <http://dkm.fbk.eu/ckr/meta#> .
+@prefix :       <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+@base           <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> .
+#=============================================================================
+
+   #-------------------------------------------------------------------------
+
+    <http://dkm.fbk.eu/ckr/test/mr-ckr-example-d#> a owl:Ontology ;                         
+                 owl:imports <http://dkm.fbk.eu/ckr/meta#> .
+
+   #-------------------------------------------------------------------------
+    # TBox axioms #
+
+    # (global meta knowledge) #
+    #ckr:prec-c a owl:ObjectProperty .
+    #ckr:prec-t a owl:ObjectProperty .
+    
+    # (global object knowledge) #    
+        
+    #-------------------------------------------------------------------------
+    # ABox axioms #
+    
+    # Modules #
+    :m_world19 a ckr:Module.
+    :m_branch19 a ckr:Module.
+    :m_branch20 a ckr:Module.
+    :m_local19 a ckr:Module.
+    
+    # Context #
+    :world_2019 a ckr:Context .
+    :world_2019 ckr:hasModule :m_world19 .
+    :branch_2019 a ckr:Context .
+    :branch_2019 ckr:hasModule :m_branch19 .
+    :local_2019 a ckr:Context .
+    :local_2019 ckr:hasModule :m_local19 .
+
+    :world_2020 a ckr:Context .
+    :branch_2020 a ckr:Context .
+    :branch_2020 ckr:hasModule :m_branch20 .
+    :local_2020 a ckr:Context .
+
+    :world_2021 a ckr:Context .
+    :branch_2021 a ckr:Context .
+    :local_2021 a ckr:Context .
+
+
+    # TIME relation #
+    :world_2020 ckr:prec-t :world_2019 .
+    :branch_2020 ckr:prec-t :branch_2019 .
+    :local_2020 ckr:prec-t :local_2019 .
+
+    :world_2021 ckr:prec-t :world_2020 .
+    :branch_2021 ckr:prec-t :branch_2020 .
+    :local_2021 ckr:prec-t :local_2020 .
+    
+    # COVERAGE relation #
+    :branch_2019 ckr:prec-c :world_2019 .
+    :local_2019 ckr:prec-c :branch_2019 .
+
+    :branch_2020 ckr:prec-c :world_2020 .
+    :local_2020 ckr:prec-c :branch_2020 .
+
+    :branch_2021 ckr:prec-c :world_2021 .
+    :local_2021 ckr:prec-c :branch_2021 .
+    
+    ########################
+
+    
+    #------------------------------------------------------------------------- 
+    # TEST: Inferred axioms #
+    #
+    #-------------------------------------------------------------------------
+
+
+#=============================================================================

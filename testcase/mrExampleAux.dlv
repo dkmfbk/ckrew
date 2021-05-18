@@ -1,0 +1,12 @@
+%----------------------------------------------------------------------------
+% # Auxiliary declarations #
+
+worksAt(X, Z, C) :- instd(X, Z, C, "main"), Z = ("OnSite"; "OnRemote").
+
+hasArea(X, Z, C) :- instd(X, Z, C, "main"), Z = ("Electronics"; "Robotics").
+
+%#show ovr/4.
+#show worksAt/3.
+#show hasArea/3.
+
+%-------------------------------------------------------------------------------
